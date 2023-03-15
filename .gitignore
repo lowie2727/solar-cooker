@@ -1,6 +1,17 @@
 build/
 .vscode/
 
-!*.kicad_pcb
-!*.kicad_pro
-!*.kicad_sch
+# kicad
+*.bak
+*.bck
+*.kicad_pcb-bak
+
+*.erc
+*.net
+*-cache.lib
+*-rescue.lib
+
+*.kicad_prl
+
+kicad/solar_cooker-backups
+
