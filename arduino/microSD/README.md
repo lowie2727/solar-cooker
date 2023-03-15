@@ -8,8 +8,4 @@
 
 # Schematic
 
-![schematic](images/schematic.png)
-
 ![pinout](images/pinout.png)
-
-![wiring](images/wiring.png)
