@@ -4,7 +4,7 @@
 
 # Sources
 
-[lastminuteengineers.com](https://lastminuteengineers.com/arduino-micro-sd-card-module-tutorial/)
+- [lastminuteengineers.com](https://lastminuteengineers.com/arduino-micro-sd-card-module-tutorial/)
 
 # Schematic
 

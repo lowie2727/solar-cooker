@@ -1,3 +1,3 @@
 # Blink
 
-A simple programme to test if your arduino is working properly
+A simple program to test if your arduino is working properly

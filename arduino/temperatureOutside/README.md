@@ -1,12 +1,12 @@
 # Sources
 
-[cactus.io](http://cactus.io/hookups/sensors/temperature-humidity/am2315/hookup-arduino-to-am2315-temp-humidity-sensor)
+- [cactus.io](http://cactus.io/hookups/sensors/temperature-humidity/am2315/hookup-arduino-to-am2315-temp-humidity-sensor)
 
-[learn.adafruit.com](https://learn.adafruit.com/am2315-encased-i2c-temperature-humidity-sensor/arduino-code)
+- [learn.adafruit.com](https://learn.adafruit.com/am2315-encased-i2c-temperature-humidity-sensor/arduino-code)
 
-# prerequisites
+# Prerequisites
 
-You first have to install the Adafruit_AM2315 library in the arduino IDE
+You first have to install the **Adafruit_AM2315** in the arduino IDE library manager
 
 # Schematic
 
