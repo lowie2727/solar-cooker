@@ -11,3 +11,6 @@ You first have to install the **GxEPD2** library in the arduino IDE library mana
 # Schematic
 
 ![pinout](images/pinout.png)
+
+## e-Paper layout
+![diagram](images/e-Paper_diagram.svg)
