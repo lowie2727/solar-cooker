@@ -19,6 +19,7 @@ jobs:
             - arduino/blink
             - arduino/clockModule
             - arduino/e-Paper
+            - arduino/GPS
             - arduino/main
             - arduino/microSD
             - arduino/temperatureOutside
@@ -38,3 +39,6 @@ jobs:
             # temperatureOutside
             - source-url: https://github.com/adafruit/Adafruit_AM2315.git
             # - source-url: https://github.com/adafruit/Adafruit_BusIO.git
+
+            # GPS
+            - source-url: https://github.com/mikalhart/TinyGPSPlus.git
