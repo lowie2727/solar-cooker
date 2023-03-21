@@ -1,0 +1,40 @@
+name: Compile Arduino Sketches
+
+on:
+  - push
+  - pull_request
+
+jobs:
+  compile-sketch:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3.4.0
+
+      - name: Compile sketch
+        uses: arduino/compile-sketches@v1.0.1
+        with:
+          fqbn: 'arduino:avr:mega'
+          sketch-paths: |
+            - arduino/blink
+            - arduino/clockModule
+            - arduino/e-Paper
+            - arduino/main
+            - arduino/microSD
+            - arduino/temperatureOutside
+          libraries: |
+            # e-Paper
+            - source-url: https://github.com/ZinggJM/GxEPD2.git
+            - source-url: https://github.com/adafruit/Adafruit-GFX-Library.git
+            - source-url: https://github.com/adafruit/Adafruit_BusIO.git
+
+            # clockModule
+            - source-url: https://github.com/DFRobot/Gravity-I2C-SD2405-RTC-Module.git
+              source-path: GravityRtc
+
+            # microSD
+            - name: SD
+
+            # temperatureOutside
+            - source-url: https://github.com/adafruit/Adafruit_AM2315.git
+            # - source-url: https://github.com/adafruit/Adafruit_BusIO.git
