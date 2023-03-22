@@ -1,8 +1,12 @@
 name: Compile Arduino Sketches
 
 on:
-  - push
-  - pull_request
+  push:
+    paths:
+      - arduino/**/*.ino
+  pull_request:
+    paths:
+      - arduino/**/*.ino
 
 jobs:
   compile-sketch:
@@ -14,7 +18,7 @@ jobs:
       - name: Compile sketch
         uses: arduino/compile-sketches@v1.0.1
         with:
-          fqbn: 'arduino:avr:mega'
+          fqbn: "arduino:avr:mega"
           sketch-paths: |
             - arduino/blink
             - arduino/clockModule
