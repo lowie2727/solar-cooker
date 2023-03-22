@@ -1,5 +1,5 @@
 // clock module
-#include "GravityRtc.h"
+#include "libraries/GravityRtc/GravityRtc.cpp"
 #include "Wire.h"
 
 GravityRtc rtc;  //RTC Initialization

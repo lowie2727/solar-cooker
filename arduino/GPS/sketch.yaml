@@ -1,0 +1,15 @@
+profiles:
+  mega:
+    fqbn: arduino:avr:mega
+    platforms:
+      - platform: arduino:avr (1.8.6)
+    libraries:
+      - TinyGPSPlus (1.0.3)
+
+default_fqbn: arduino:avr:mega
+default_protocol: serial
+
+# Windows
+# default_port: COM0
+# Linux
+# default_port: /dev/ttyACM0
