@@ -23,17 +23,14 @@
 
 Adafruit_AM2315 am2315;
 
-void setup()
-{
+void setup() {
   Serial.begin(9600);
-  while (!Serial)
-  {
+  while (!Serial) {
     delay(10);
   }
   Serial.println("AM2315 Test!");
 
-  if (!am2315.begin())
-  {
+  if (!am2315.begin()) {
     Serial.println("Sensor not found, check wiring & pullups!");
     while (1)
       ;
@@ -43,12 +40,10 @@ void setup()
   delay(2000);
 }
 
-void loop()
-{
+void loop() {
   float temperature, humidity;
 
-  if (!am2315.readTemperatureAndHumidity(&temperature, &humidity))
-  {
+  if (!am2315.readTemperatureAndHumidity(&temperature, &humidity)) {
     Serial.println("Failed to read data from AM2315");
     return;
   }
