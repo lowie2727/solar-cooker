@@ -18,15 +18,15 @@ void setup() {
 void loop() {
   rtc.read();
   //*************************Time********************************
-  Serial.print("   Year = ");    //year
+  Serial.print("   Year = ");  //year
   Serial.print(rtc.year);
-  Serial.print("   Month = ");   //month
+  Serial.print("   Month = ");  //month
   Serial.print(rtc.month);
-  Serial.print("   Day = ");     //day
+  Serial.print("   Day = ");  //day
   Serial.print(rtc.day);
-  Serial.print("   Week = ");    //week
+  Serial.print("   Week = ");  //week
   Serial.print(rtc.week);
-  Serial.print("   Hour = ");    //hour
+  Serial.print("   Hour = ");  //hour
   Serial.print(rtc.hour);
   Serial.print("   Minute = ");  //minute
   Serial.print(rtc.minute);
