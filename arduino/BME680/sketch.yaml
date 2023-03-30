@@ -4,9 +4,9 @@ profiles:
     platforms:
       - platform: arduino:avr (1.8.6)
     libraries:
+      - Adafruit BusIO (1.14.1)
       - Adafruit BME680 Library (2.0.2)
       - Adafruit GFX Library (1.11.5)
-      - Adafruit BusIO (1.14.1)
       - Adafruit SSD1306 (2.5.7)
       - Adafruit Unified Sensor (1.1.9)
 

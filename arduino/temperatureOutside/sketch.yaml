@@ -4,8 +4,8 @@ profiles:
     platforms:
       - platform: arduino:avr (1.8.6)
     libraries:
-      - Adafruit AM2315 (2.2.1)
       - Adafruit BusIO (1.14.1)
+      - Adafruit AM2315 (2.2.1)
 
 default_fqbn: arduino:avr:mega
 default_protocol: serial

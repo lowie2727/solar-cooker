@@ -10,6 +10,13 @@ You first have to install the **GxEPD2** library in the arduino IDE library mana
 
 # Schematic
 
+## SPI
+
+| Pin  | Uno | Mega |
+| ---- | --- | ---- |
+| MOSI | 12  | 51   |
+| SCK  | 13  | 52   |
+
 ![pinout](images/pinout.png)
 
 ## e-Paper layout

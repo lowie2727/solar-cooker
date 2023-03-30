@@ -4,9 +4,9 @@ profiles:
     platforms:
       - platform: arduino:avr (1.8.6)
     libraries:
-      - GxEPD2 (1.5.1)
-      - Adafruit GFX Library (1.11.5)
       - Adafruit BusIO (1.14.1)
+      - Adafruit GFX Library (1.11.5)
+      - GxEPD2 (1.5.1)
 
 default_fqbn: arduino:avr:mega
 default_protocol: serial

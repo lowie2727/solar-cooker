@@ -20,29 +20,39 @@ jobs:
         with:
           fqbn: "arduino:avr:mega"
           sketch-paths: |
+            - arduino/anemometer
             - arduino/blink
+            - arduino/BME680
             - arduino/clockModule
             - arduino/e-Paper
             - arduino/GPS
             - arduino/main
             - arduino/microSD
+            - arduino/switch
             - arduino/temperatureOutside
           libraries: |
-            # e-Paper
-            - source-url: https://github.com/ZinggJM/GxEPD2.git
-            - source-url: https://github.com/adafruit/Adafruit-GFX-Library.git
+            # BME680
             - source-url: https://github.com/adafruit/Adafruit_BusIO.git
+            - source-url: https://github.com/adafruit/Adafruit_BME680.git
+            - source-url: https://github.com/adafruit/Adafruit-GFX-Library.git
+            - source-url: https://github.com/adafruit/Adafruit_SSD1306.git
+            - source-url: https://github.com/adafruit/Adafruit_Sensor.git
 
             # clockModule
             - source-url: https://github.com/DFRobot/Gravity-I2C-SD2405-RTC-Module.git
               source-path: GravityRtc
 
+            # e-Paper
+            # - source-url: https://github.com/adafruit/Adafruit_BusIO.git
+            # - source-url: https://github.com/adafruit/Adafruit-GFX-Library.git
+            - source-url: https://github.com/ZinggJM/GxEPD2.git
+
+            # GPS
+            - source-url: https://github.com/mikalhart/TinyGPSPlus.git
+
             # microSD
             - name: SD
 
             # temperatureOutside
-            - source-url: https://github.com/adafruit/Adafruit_AM2315.git
             # - source-url: https://github.com/adafruit/Adafruit_BusIO.git
-
-            # GPS
-            - source-url: https://github.com/mikalhart/TinyGPSPlus.git
+            - source-url: https://github.com/adafruit/Adafruit_AM2315.git

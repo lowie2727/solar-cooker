@@ -5,9 +5,9 @@ profiles:
       - platform: arduino:avr (1.8.6)
     libraries:
       # e-Paper
-      - GxEPD2 (1.5.0)
-      - Adafruit GFX Library (1.11.5)
       - Adafruit BusIO (1.14.1)
+      - Adafruit GFX Library (1.11.5)
+      - GxEPD2 (1.5.1)
 
       # GPS
       - TinyGPSPlus (1.0.3)
@@ -16,8 +16,8 @@ profiles:
       - SD (1.2.4)
 
       # temperatureOutside
-      - Adafruit AM2315 (2.2.1)
       - Adafruit BusIO (1.14.1)
+      - Adafruit AM2315 (2.2.1)
 
 default_fqbn: arduino:avr:mega
 default_protocol: serial

@@ -8,4 +8,11 @@ You first have to install the [SD2405](https://github.com/DFRobot/Gravity-I2C-SD
 
 # Schematic
 
+## I2C
+
+| Pin | Uno | Mega |
+| --- | --- | ---- |
+| SDA | SDA | 20   |
+| SCL | SCL | 21   |
+
 ![pinout](images/pinout.png)

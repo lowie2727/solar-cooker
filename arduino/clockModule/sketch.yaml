@@ -3,7 +3,7 @@ profiles:
     fqbn: arduino:avr:mega
     platforms:
       - platform: arduino:avr (1.8.6)
-    libraries: 
+    libraries:
 
 default_fqbn: arduino:avr:mega
 default_protocol: serial

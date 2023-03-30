@@ -6,8 +6,17 @@
 
 # Prerequisites
 
-You first have to install the **Adafruit_AM2315** in the arduino IDE library manager
+You first have to install the **Adafruit AM2315** in the arduino IDE library manager
 
 # Schematic
+
+TODO KiCad
+
+## I2C
+
+| Pin | Uno | Mega |
+| --- | --- | ---- |
+| SDA | SDA | 20   |
+| SCL | SCL | 21   |
 
 ![wiring](images/wiring.png)

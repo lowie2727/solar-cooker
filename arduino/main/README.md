@@ -13,8 +13,8 @@ The clockModule uses a library that can be found on github.
 ### e-Paper
 
 - [GxEPD2](https://github.com/ZinggJM/GxEPD2) (v1.5.1)
-    - [Adafruit GFX Library](https://github.com/adafruit/Adafruit-GFX-Library) (v1.11.5)
     - [Adafruit BusIO](https://github.com/adafruit/Adafruit_BusIO) (v1.14.1)
+    - [Adafruit GFX Library](https://github.com/adafruit/Adafruit-GFX-Library) (v1.11.5)
 
 ### GPS
 
