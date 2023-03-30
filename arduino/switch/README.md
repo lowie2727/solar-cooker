@@ -4,4 +4,4 @@
 
 # Schematic
 
-TODO
+![pinout](images/pinout.png)
