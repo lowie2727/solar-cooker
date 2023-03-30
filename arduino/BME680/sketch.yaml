@@ -1,0 +1,19 @@
+profiles:
+  mega:
+    fqbn: arduino:avr:mega
+    platforms:
+      - platform: arduino:avr (1.8.6)
+    libraries:
+      - Adafruit BME680 Library (2.0.2)
+      - Adafruit GFX Library (1.11.5)
+      - Adafruit BusIO (1.14.1)
+      - Adafruit SSD1306 (2.5.7)
+      - Adafruit Unified Sensor (1.1.9)
+
+default_fqbn: arduino:avr:mega
+default_protocol: serial
+
+# Windows
+# default_port: COM0
+# Linux
+# default_port: /dev/ttyACM0
