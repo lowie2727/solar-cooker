@@ -1,8 +1,10 @@
 # Arduino
 
-In each subfolder, you will find code for each individual component, along with the connection diagram.
-
 The folder [**main**](main) contains the various components brought together.
+
+In the [**components**](components) subfolder, you will find code for each individual component, along with the connection diagram.
+
+In [**blink**](blink) you will find a simple programme to check if your arduino is working properly.
 
 ## Contributing
 

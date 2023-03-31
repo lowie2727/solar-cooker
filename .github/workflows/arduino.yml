@@ -20,16 +20,9 @@ jobs:
         with:
           fqbn: "arduino:avr:mega"
           sketch-paths: |
-            - arduino/anemometer
             - arduino/blink
-            - arduino/BME680
-            - arduino/clockModule
-            - arduino/e-Paper
-            - arduino/GPS
             - arduino/main
-            - arduino/microSD
-            - arduino/switch
-            - arduino/temperatureOutside
+            - arduino/components
           libraries: |
             # BME680
             - source-url: https://github.com/adafruit/Adafruit_BusIO.git
