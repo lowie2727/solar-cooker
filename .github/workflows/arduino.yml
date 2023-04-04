@@ -46,6 +46,10 @@ jobs:
             # microSD
             - name: SD
 
+            # PT100
+            # - source-url: https://github.com/adafruit/Adafruit_BusIO.git
+            - source-url: https://github.com/adafruit/Adafruit_MAX31865.git
+
             # temperatureOutside
             # - source-url: https://github.com/adafruit/Adafruit_BusIO.git
             - source-url: https://github.com/adafruit/Adafruit_AM2315.git
