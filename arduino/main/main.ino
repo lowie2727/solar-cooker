@@ -23,17 +23,26 @@ SoftwareSerial ss(RXPin, TXPin);
 #include <SPI.h>
 
 const int CS_SD = 4;
-const String headers =
-    "windspeed (m/s);latitude;longitude;temperaturePT100 (°C)";
+const String CSVHeaders = "temperaturePT100 (°C)";
 String filePath;
+
+int fileNameUpdated = 0;
 
 // PT100
 #include <Adafruit_MAX31865.h>
 
-Adafruit_MAX31865 thermo = Adafruit_MAX31865(11); // CS
+const int CS_PT100 = 11;
+Adafruit_MAX31865 thermo = Adafruit_MAX31865(CS_PT100);
 
 #define RREF 430.0
 #define RNOMINAL 100.0
+
+// switch
+const int SWITCH_PIN = 34;
+const int LED_GREEN_PIN = 32;
+const int LED_RED_PIN = 30;
+
+unsigned long previousMillis = 0;
 
 void setup() {
   Serial.begin(9600);
@@ -41,19 +50,36 @@ void setup() {
 
   microSDInit();
   clockModuleSetup();
-  updateFileName();
-  writeHeaders();
 
   GPSSetup();
 
   PT100Setup();
+
+  switchSetup();
 }
 
 void loop() {
-  String data = getWindSpeed() + ";" + getGPSLatitude() + ";" +
-                getGPSLongitude() + ";" + getPT100Temperature();
-  stringToSd(data);
-  delay(1000);
+  int switchState = digitalRead(SWITCH_PIN);
+  if (switchState) {
+    digitalWrite(LED_GREEN_PIN, HIGH);
+    digitalWrite(LED_RED_PIN, LOW);
+
+    if (!fileNameUpdated) {
+      updateFileName();
+      writeCSVHeaders();
+      fileNameUpdated = 1;
+    }
+
+    unsigned long currentMillis = millis();
+    if (currentMillis - previousMillis >= 1000) {
+      previousMillis = currentMillis;
+      String data = getPT100Temperature(); // TODO multiple data sources
+    }
+  } else {
+    digitalWrite(LED_GREEN_PIN, LOW);
+    digitalWrite(LED_RED_PIN, HIGH);
+    fileNameUpdated = 0;
+  }
 }
 
 void microSDInit() {
@@ -75,9 +101,25 @@ void clockModuleSetup() {
 
 void updateFileName() {
   rtc.read();
-  String directory = String(rtc.year) + "/" + String(rtc.month) + "/";
-  String fileName = String(rtc.day) + "T" + String(rtc.hour) + "-" +
-                    String(rtc.minute) + ".csv";
+  int year = rtc.year;
+  int month = rtc.month;
+  int day = rtc.day;
+  int hour = rtc.hour;
+  int minute = rtc.minute;
+  int second = rtc.second;
+
+  int array[5] = {month, day, hour, minute, second};
+
+  String arrayf[5] = {"", "", "", "", ""};
+
+  for (int i = 0; i < 5; i++) {
+    char buffer[3];
+    sprintf(buffer, "%02d", array[i]);
+    arrayf[i] = String(buffer);
+  }
+
+  String directory = String(year) + "/" + arrayf[0] + "/";
+  String fileName = arrayf[1] + arrayf[2] + arrayf[3] + arrayf[4] + ".csv";
 
   SD.mkdir(directory);
 
@@ -103,7 +145,7 @@ void stringToSd(String data) {
   }
 }
 
-void writeHeaders() { stringToSd(headers); }
+void writeCSVHeaders() { stringToSd(CSVHeaders); }
 
 String getWindSpeed() {
   float sensorValue = analogRead(A0);
@@ -137,11 +179,12 @@ void PT100Setup() { thermo.begin(MAX31865_4WIRE); }
 
 String getPT100Temperature() {
   uint16_t rtd = thermo.readRTD();
+  float temperature = thermo.temperature(RNOMINAL, RREF);
   Serial.print("Temperature = ");
-  Serial.print(thermo.temperature(RNOMINAL, RREF));
+  Serial.print(temperature);
   Serial.println(" °C");
   PT100Fault();
-  return String(thermo.temperature(RNOMINAL, RREF));
+  return String(temperature);
 }
 
 void PT100Fault() {
@@ -171,4 +214,10 @@ void PT100Fault() {
     thermo.clearFault();
   }
   Serial.println();
+}
+
+void switchSetup() {
+  pinMode(SWITCH_PIN, INPUT);
+  pinMode(LED_GREEN_PIN, OUTPUT);
+  pinMode(LED_RED_PIN, OUTPUT);
 }
