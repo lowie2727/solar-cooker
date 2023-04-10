@@ -1,7 +1,7 @@
 (fp_lib_table
   (version 7)
   (lib (name "2x3 pin connector")(type "KiCad")(uri "${KIPRJMOD}/library/2x3 pin connector")(options "")(descr ""))
-  (lib (name "diode")(type "KiCad")(uri "${KIPRJMOD}/library/diode")(options "")(descr ""))
   (lib (name "push button")(type "KiCad")(uri "${KIPRJMOD}/library/push button")(options "")(descr ""))
   (lib (name "resonator 16MHz")(type "KiCad")(uri "${KIPRJMOD}/library/resonator 16MHz")(options "")(descr ""))
+  (lib (name "mini USB B")(type "KiCad")(uri "${KIPRJMOD}/library/mini USB B")(options "")(descr ""))
 )

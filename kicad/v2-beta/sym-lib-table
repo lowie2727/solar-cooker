@@ -2,6 +2,6 @@
   (version 7)
   (lib (name "custom_components")(type "KiCad")(uri "${KIPRJMOD}/custom_components.kicad_sym")(options "")(descr ""))
   (lib (name "M20-9980346")(type "KiCad")(uri "${KIPRJMOD}/library/2x3 pin connector/M20-9980346.kicad_sym")(options "")(descr ""))
-  (lib (name "SMD-DIODE-SWITCHING-75V-150MA_D1206_")(type "KiCad")(uri "${KIPRJMOD}/library/diode/SMD-DIODE-SWITCHING-75V-150MA_D1206_.kicad_sym")(options "")(descr ""))
   (lib (name "CSTCE16M0V53-R0")(type "KiCad")(uri "${KIPRJMOD}/library/resonator 16MHz/CSTCE16M0V53-R0.kicad_sym")(options "")(descr ""))
+  (lib (name "MUSB-05-X-B-SM-A")(type "KiCad")(uri "${KIPRJMOD}/library/mini USB B/MUSB-05-X-B-SM-A.kicad_sym")(options "")(descr ""))
 )
