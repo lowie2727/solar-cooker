@@ -1,0 +1,50 @@
+
+(kicad_symbol_lib (version 20211014) (generator kicad_symbol_editor)
+  (symbol "SMD-DIODE-SWITCHING-75V-150MA(D1206)" (pin_names (offset 1.016)) (in_bom yes) (on_board yes)
+    (property "Reference" "D" (id 0) (at -3.81754 2.54502 0)
+      (effects (font (size 1.27 1.27)) (justify bottom left))
+    )
+    (property "Value" "SMD-DIODE-SWITCHING-75V-150MA(D1206)" (id 1) (at -3.81164 -3.81164 0)
+      (effects (font (size 1.27 1.27)) (justify bottom left))
+    )
+    (property "Footprint" "LED-1206" (id 2) (at 0 0 0)
+      (effects (font (size 1.27 1.27)) (justify bottom) hide)
+    )
+    (property "MPN" "CD1206-S01575" (id 4) (at 0 0 0)
+      (effects (font (size 1.27 1.27)) (justify bottom) hide)
+    )
+    (property "VALUE" "75V 150MA" (id 5) (at 0 0 0)
+      (effects (font (size 1.27 1.27)) (justify bottom) hide)
+    )
+    (symbol "SMD-DIODE-SWITCHING-75V-150MA(D1206)_0_0"
+      (polyline
+        (pts (xy -1.27 -2.54) (xy -1.27 2.54)) (stroke (width 0.254))
+      )
+      (polyline
+        (pts (xy -1.27 -2.54) (xy 1.27 0.0)) (stroke (width 0.254))
+      )
+      (polyline
+        (pts (xy -1.27 2.54) (xy 1.27 0.0)) (stroke (width 0.254))
+      )
+      (polyline
+        (pts (xy 1.27 2.54) (xy 1.27 -2.54)) (stroke (width 0.254))
+      )
+      (pin passive line (at -3.81 0.0 0) (length 2.54)
+        (name "~"
+          (effects (font (size 1.016 1.016)))
+        )
+        (number "+"
+          (effects (font (size 1.016 1.016)))
+        )
+      )
+      (pin passive line (at 3.81 0.0 180.0) (length 2.54)
+        (name "~"
+          (effects (font (size 1.016 1.016)))
+        )
+        (number "-"
+          (effects (font (size 1.016 1.016)))
+        )
+      )
+    )
+  )
+)

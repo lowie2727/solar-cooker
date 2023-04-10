@@ -2,6 +2,7 @@ build/
 .vscode/
 
 # kicad
+
 *.bak
 *.bck
 *.kicad_pcb-bak
@@ -14,10 +15,13 @@ build/
 *.kicad_prl
 fp-info-cache
 
-kicad/solar_cooker-backups
-kicad/\#auto_saved_files\#
-kicad/_autosave-solar_cooker.kicad_sch
+kicad/**/solar_cooker*-backups
+kicad/**/\#auto_saved_files\#
+kicad/**/_autosave-solar_cooker*.kicad_sch
+
+kicad/v1/fp-lib-table
 
 # diagrams.net
+
 *.bkp
 *.dtmp
