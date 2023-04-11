@@ -24,8 +24,12 @@ jobs:
             - arduino/main
             - arduino/components
           libraries: |
-            # BME680
+            # AM2315
             - source-url: https://github.com/adafruit/Adafruit_BusIO.git
+            - source-url: https://github.com/adafruit/Adafruit_AM2315.git
+
+            # BME680
+            # - source-url: https://github.com/adafruit/Adafruit_BusIO.git
             - source-url: https://github.com/adafruit/Adafruit_BME680.git
             - source-url: https://github.com/adafruit/Adafruit-GFX-Library.git
             - source-url: https://github.com/adafruit/Adafruit_SSD1306.git
@@ -49,7 +53,3 @@ jobs:
             # PT100
             # - source-url: https://github.com/adafruit/Adafruit_BusIO.git
             - source-url: https://github.com/adafruit/Adafruit_MAX31865.git
-
-            # temperatureOutside
-            # - source-url: https://github.com/adafruit/Adafruit_BusIO.git
-            - source-url: https://github.com/adafruit/Adafruit_AM2315.git

@@ -19,4 +19,4 @@ TODO KiCad
 | SDA | SDA | 20   |
 | SCL | SCL | 21   |
 
-![wiring](images/wiring.png)
+![pinout](images/pinout.png)
