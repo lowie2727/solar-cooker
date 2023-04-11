@@ -1,19 +1,29 @@
 // anemometer
 const int ANEMO_PIN = A0;
-float anemoSensorValue;
-float anemoWindSpeed;
+
+// BME680
+#include "Adafruit_BME680.h"
+
+#define BME_SCK 52
+#define BME_MISO 50
+#define BME_MOSI 51
+#define BME_CS 6
+
+#define SEALEVELPRESSURE_HPA (1013.25)
+
+Adafruit_BME680 bme(BME_CS);
 
 // clock module
 #include "Wire.h"
 #include "libraries/GravityRtc/GravityRtc.cpp"
 
-GravityRtc rtc; // RTC Initialization
+GravityRtc rtc;  // RTC Initialization
 
 // GPS
 #include <SoftwareSerial.h>
 #include <TinyGPS++.h>
 
-const int RXPin = 4, TXPin = 3;
+const int RXPin = 12, TXPin = 13;
 static const uint32_t GPSBaud = 9600;
 TinyGPSPlus gps;
 SoftwareSerial ss(RXPin, TXPin);
@@ -37,10 +47,18 @@ Adafruit_MAX31865 thermo = Adafruit_MAX31865(CS_PT100);
 #define RREF 430.0
 #define RNOMINAL 100.0
 
+// pyranometer
+//TODO
+
 // switch
 const int SWITCH_PIN = 34;
 const int LED_GREEN_PIN = 32;
 const int LED_RED_PIN = 30;
+
+// temperatureOutside
+#include <Adafruit_AM2315.h>
+
+Adafruit_AM2315 am2315;
 
 unsigned long previousMillis = 0;
 
@@ -48,38 +66,44 @@ void setup() {
   Serial.begin(9600);
   Serial.println();
 
-  microSDInit();
-  clockModuleSetup();
-
+  //microSDInit();
+  //clockModuleSetup();
   GPSSetup();
-
   PT100Setup();
-
-  switchSetup();
+  //switchSetup();
+  BME680Setup();
+  AM2315Setup();
 }
 
 void loop() {
   int switchState = digitalRead(SWITCH_PIN);
-  if (switchState) {
-    digitalWrite(LED_GREEN_PIN, HIGH);
-    digitalWrite(LED_RED_PIN, LOW);
+  //if (switchState) {
+    //digitalWrite(LED_GREEN_PIN, HIGH);
+    //digitalWrite(LED_RED_PIN, LOW);
 
-    if (!fileNameUpdated) {
+    /*if (!fileNameUpdated) {
       updateFileName();
       writeCSVHeaders();
       fileNameUpdated = 1;
-    }
+    }*/
 
     unsigned long currentMillis = millis();
     if (currentMillis - previousMillis >= 1000) {
       previousMillis = currentMillis;
-      String data = getPT100Temperature(); // TODO multiple data sources
+      String data = getPT100Temperature();  // TODO multiple data sources
+      //data += getGPSLatitude() + ";";
+      //data += getGPSLongitude() + ";";
+      data += getWindSpeed() + "";
+      data += getAM2315Temperature() + ";";
+      data += getAM2315Humidity() + ";";
+      Serial.println(data);
+      Serial.println("PT100;windSPeed;AM2315T;AM2315H");
     }
-  } else {
+  /*} else {
     digitalWrite(LED_GREEN_PIN, LOW);
     digitalWrite(LED_RED_PIN, HIGH);
     fileNameUpdated = 0;
-  }
+  }*/
 }
 
 void microSDInit() {
@@ -108,9 +132,9 @@ void updateFileName() {
   int minute = rtc.minute;
   int second = rtc.second;
 
-  int array[5] = {month, day, hour, minute, second};
+  int array[5] = { month, day, hour, minute, second };
 
-  String arrayf[5] = {"", "", "", "", ""};
+  String arrayf[5] = { "", "", "", "", "" };
 
   for (int i = 0; i < 5; i++) {
     char buffer[3];
@@ -145,7 +169,9 @@ void stringToSd(String data) {
   }
 }
 
-void writeCSVHeaders() { stringToSd(CSVHeaders); }
+void writeCSVHeaders() {
+  stringToSd(CSVHeaders);
+}
 
 String getWindSpeed() {
   float sensorValue = analogRead(A0);
@@ -163,7 +189,9 @@ float mapfloat(float x, float in_min, float in_max, float out_min,
   return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
 }
 
-void GPSSetup() { ss.begin(GPSBaud); }
+void GPSSetup() {
+  ss.begin(GPSBaud);
+}
 
 String getGPSLatitude() {
   gps.encode(ss.read());
@@ -175,7 +203,9 @@ String getGPSLongitude() {
   return String(gps.location.lng());
 }
 
-void PT100Setup() { thermo.begin(MAX31865_4WIRE); }
+void PT100Setup() {
+  thermo.begin(MAX31865_4WIRE);
+}
 
 String getPT100Temperature() {
   uint16_t rtd = thermo.readRTD();
@@ -220,4 +250,41 @@ void switchSetup() {
   pinMode(SWITCH_PIN, INPUT);
   pinMode(LED_GREEN_PIN, OUTPUT);
   pinMode(LED_RED_PIN, OUTPUT);
+}
+
+void BME680Setup() {
+  if (!bme.begin()) {
+    Serial.println("Could not find a valid BME680 sensor, check wiring!");
+  }
+
+  // Set up oversampling and filter initialization
+  bme.setTemperatureOversampling(BME680_OS_8X);
+  bme.setHumidityOversampling(BME680_OS_2X);
+  bme.setPressureOversampling(BME680_OS_4X);
+  bme.setIIRFilterSize(BME680_FILTER_SIZE_3);
+  bme.setGasHeater(320, 150);  // 320*C for 150 ms
+}
+
+void AM2315Setup() {
+  if (!am2315.begin()) {
+    Serial.println("Sensor not found, check wiring & pullups!");
+  }
+}
+
+String getAM2315Temperature() {
+  float temperature, humidity;
+  if (!am2315.readTemperatureAndHumidity(&temperature, &humidity)) {
+    Serial.println("Failed to read data from AM2315");
+    return "error";
+  }
+  return String(temperature);
+}
+
+String getAM2315Humidity() {
+  float temperature, humidity;
+  if (!am2315.readTemperatureAndHumidity(&temperature, &humidity)) {
+    Serial.println("Failed to read data from AM2315");
+    return "error";
+  }
+  return String(humidity);
 }
