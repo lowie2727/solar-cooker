@@ -12,10 +12,10 @@ const int ANEMO_PIN = A0;
 #include <SPI.h>
 #include <Wire.h>
 
-#define BME_CS 6
+#define CS_BME680 6
 #define SEALEVELPRESSURE_HPA (1013.25)
 
-Adafruit_BME680 bme(BME_CS);
+Adafruit_BME680 bme(CS_BME680);
 
 // clock module
 #include "Wire.h"
@@ -24,7 +24,26 @@ Adafruit_BME680 bme(BME_CS);
 GravityRtc rtc; // RTC Initialization
 
 // e-Paper
-// TODO
+#define ENABLE_GxEPD2_GFX 0
+
+#include <GxEPD2_3C.h>
+#include <Fonts/FreeMonoBold12pt7b.h>
+
+#define GxEPD2_DISPLAY_CLASS GxEPD2_3C
+#define GxEPD2_DRIVER_CLASS GxEPD2_583c_Z83 // 648x480
+
+#define CS_paper 10
+#define DC_paper 9
+#define RST_paper 8
+#define BUSY_paper 7
+
+#define MAX_DISPLAY_BUFFER_SIZE 5000
+#define MAX_HEIGHT(EPD)                                                        \
+  (EPD::HEIGHT <= (MAX_DISPLAY_BUFFER_SIZE / 2) / (EPD::WIDTH / 8)             \
+       ? EPD::HEIGHT                                                           \
+       : (MAX_DISPLAY_BUFFER_SIZE / 2) / (EPD::WIDTH / 8))
+GxEPD2_DISPLAY_CLASS<GxEPD2_DRIVER_CLASS, MAX_HEIGHT(GxEPD2_DRIVER_CLASS)>
+    display(GxEPD2_DRIVER_CLASS(CS_paper, DC_paper, RST_paper, BUSY_paper));
 
 // GPS
 #include <SoftwareSerial.h>
@@ -55,7 +74,7 @@ Adafruit_MAX31865 thermo = Adafruit_MAX31865(CS_PT100);
 #define RNOMINAL 100.0
 
 // pyranometer
-// TODO
+const int PYRANO_PIN = A1;
 
 // switch
 const int SWITCH_PIN = 34;
@@ -71,11 +90,10 @@ void setup() {
   AM2315Setup();
   BME680Setup();
   // clockModuleSetup();
-  // e_PaperSetup(); // TODO
+  e_PaperSetup();
   GPSSetup();
   // microSDSetup();
   PT100Setup();
-  // pyranoSetup(); // TODO
   // switchSetup();
 }
 
@@ -94,13 +112,25 @@ void loop() {
   unsigned long currentMillis = millis();
   if (currentMillis - previousMillis >= 1000) {
     previousMillis = currentMillis;
-    Serial.println("AM2315T (°C);AM2315H (%);Wind speed (m/s);BME680T (°C);BME680P (°C);BME680H(°C);PT100T (°C)");
-    String data = getAM2315Temperature() + ";" + getAM2315Humidity() + ";" +
-                  getWindSpeed() + ";" + getBME680Temperature() + ";" +
-                  getBME680Pressure() + ";" + getBME680Humidity() + ";" +
-                  /*getGPSLatitude() + ";" + getGPSLongitude() + ";"*/
-                  getPT100Temperature() + ";";
+    Serial.println("AM2315T (°C);AM2315H (%);Wind speed (m/s);BME680T "
+                   "(°C);BME680P (°C);BME680H(°C);PT100T (°C)");
+    String AM2315Temp = getAM2315Temperature();
+    String AM2315Hum = getAM2315Humidity();
+    String windSpeed = getWindSpeed();
+    String BME680Temp = getBME680Temperature();
+    String BME680Pres = getBME680Pressure();
+    String BME680Hum = getBME680Humidity();
+    // String GPSLat = getGPSLatitude();
+    // String GPSLong = getGPSLongitude();
+    String PT100Temp = getPT100Temperature();
+    // String PyranoIrr = getSolarIrradiance();
+    String data = AM2315Temp + ";" + AM2315Hum + ";" + windSpeed + ";" +
+                  BME680Temp + ";" + BME680Pres + ";" + BME680Hum + ";" +
+                  /*GPSLat + ";" + GPSLong + ";"*/
+                  PT100Temp + ";" /* + PyranoIrr */;
     Serial.println(data);
+    e_PaperPrint(AM2315Temp, AM2315Hum, windSpeed, BME680Temp, BME680Pres,
+                 BME680Hum, PT100Temp);
   }
   /*} else {
     digitalWrite(LED_GREEN_PIN, LOW);
@@ -188,7 +218,54 @@ void clockModuleSetup() {
 }
 
 void e_PaperSetup() {
-  // TODO
+  display.setRotation(3);
+  display.setFont(&FreeMonoBold12pt7b);
+  display.setTextColor(GxEPD_BLACK);
+}
+
+void e_PaperPrint(String AM2315Temp, String AM2315Hum, String windSpeed,
+                  String BME680Temp, String BME680Pres, String BME680Hum,
+                  String PT100Temp) {
+  int16_t tbx_line1, tby_line1, tbx_line2, tby_line2, tbx_line3, tby_line3,
+      tbx_line4, tby_line4;
+  uint16_t tbw_line1, tbh_line1, tbw_line2, tbh_line2, tbw_line3, tbh_line3,
+      tbw_line4, tbh_line4;
+
+  String line1 = "AM2315 T: " + AM2315Temp + " °C, Hum: " + AM2315Hum;
+  String line2 = "wind speed: " + windSpeed + "m/s";
+  String line3 = "BME680 T:" + BME680Temp + " °C, P: " + BME680Pres +
+                 " Pa, Hum: " + BME680Hum + " %";
+  String line4 = "PT100 T: " + PT100Temp + " °C";
+
+  display.getTextBounds(line1, 0, 0, &tbx_line1, &tby_line1, &tbw_line1,
+                        &tbh_line1);
+  display.getTextBounds(line2, 0, 0, &tbx_line2, &tby_line2, &tbw_line2,
+                        &tbh_line2);
+  display.getTextBounds(line3, 0, 0, &tbx_line3, &tby_line3, &tbw_line3,
+                        &tbh_line3);
+  display.getTextBounds(line4, 0, 0, &tbx_line4, &tby_line4, &tbw_line4,
+                        &tbh_line4);
+
+  uint16_t x1 = ((display.width() - tbw_line1) / 2) - tbx_line1;
+  uint16_t x2 = ((display.width() - tbw_line2) / 2) - tbx_line2;
+  uint16_t x3 = ((display.width() - tbw_line3) / 2) - tbx_line3;
+  uint16_t x4 = ((display.width() - tbw_line4) / 2) - tbx_line4;
+
+  uint16_t y = ((display.height() - tbh_line1) / 2) - tby_line1;
+
+  display.setFullWindow();
+  display.firstPage();
+  do {
+    display.fillScreen(GxEPD_WHITE);
+    display.setCursor(x1, y + 80);
+    display.print(line1);
+    display.setCursor(x2, y + 40);
+    display.print(line2);
+    display.setCursor(x3, y);
+    display.print(line3);
+    display.setCursor(x4, y - 40);
+    display.print(line4);
+  } while (display.nextPage());
 }
 
 void GPSSetup() { ss.begin(GPSBaud); }
@@ -299,8 +376,11 @@ void PT100Fault() {
   Serial.println();
 }
 
-void pyranoSetup() {
-  // TODO
+String getSolarIrradiance() {
+  int pyranoValue = analogRead(PYRANO_PIN);
+  float pyranoVoltage = pyranoValue * (5.0 / 1023.0);
+  float pyranoIrradiance = pyranoVoltage * 20.0;
+  return String(pyranoIrradiance);
 }
 
 void switchSetup() {
