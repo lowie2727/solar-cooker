@@ -12,7 +12,7 @@ const int ANEMO_PIN = A0;
 #include <SPI.h>
 #include <Wire.h>
 
-const int CS_BME680 = 6;
+const uint8_t CS_BME680 = 6;
 const float SEALEVELPRESSURE_HPA = 1013.25;
 
 Adafruit_BME680 bme(CS_BME680);
@@ -32,12 +32,12 @@ GravityRtc rtc;  // RTC Initialization
 #define GxEPD2_DISPLAY_CLASS GxEPD2_3C
 #define GxEPD2_DRIVER_CLASS GxEPD2_583c_Z83  // 648x480
 
-const int CS_paper = 10;
-const int DC_paper = 9;
-const int RST_paper = 8;
-const int BUSY_paper = 7;
+const uint8_t CS_paper = 10;
+const uint8_t DC_paper = 9;
+const uint8_t RST_paper = 8;
+const uint8_t BUSY_paper = 7;
 
-const int MAX_DISPLAY_BUFFER_SIZE = 5000;
+const uint32_t MAX_DISPLAY_BUFFER_SIZE = 5000;
 #define MAX_HEIGHT(EPD) \
   (EPD::HEIGHT <= (MAX_DISPLAY_BUFFER_SIZE / 2) / (EPD::WIDTH / 8) \
      ? EPD::HEIGHT \
@@ -49,7 +49,7 @@ GxEPD2_DISPLAY_CLASS<GxEPD2_DRIVER_CLASS, MAX_HEIGHT(GxEPD2_DRIVER_CLASS)>
 #include <SoftwareSerial.h>
 #include <TinyGPS++.h>
 
-const int RXPin = 12, TXPin = 13;
+const uint8_t RXPin = 12, TXPin = 13;
 static const uint32_t GPSBaud = 9600;
 TinyGPSPlus gps;
 SoftwareSerial ss(RXPin, TXPin);
@@ -58,16 +58,16 @@ SoftwareSerial ss(RXPin, TXPin);
 #include <SD.h>
 #include <SPI.h>
 
-const int CS_SD = 4;
+const uint8_t CS_SD = 4;
 const String CSVHeaders = "temperaturePT100 (°C)";  // TODO update this
 String filePath;
 
-int fileNameUpdated = 0;
+uint8_t fileNameUpdated = 0;
 
 // PT100
 #include <Adafruit_MAX31865.h>
 
-const int CS_PT100 = 11;
+const uint8_t CS_PT100 = 11;
 Adafruit_MAX31865 thermo = Adafruit_MAX31865(CS_PT100);
 
 const float RREF = 430.0;
@@ -77,9 +77,9 @@ const float RNOMINAL = 100.0;
 const int PYRANO_PIN = A1;
 
 // switch
-const int SWITCH_PIN = 34;
-const int LED_GREEN_PIN = 32;
-const int LED_RED_PIN = 30;
+const uint8_t SWITCH_PIN = 34;
+const uint8_t LED_GREEN_PIN = 32;
+const uint8_t LED_RED_PIN = 30;
 
 unsigned long previousMillis = 0;
 
@@ -195,7 +195,7 @@ String getBME680Pressure() {
     Serial.println(F("BME680: Failed to perform reading :("));
     return "";
   }
-  return String(bme.pressure);  // Pa
+  return String(bme.pressure*0.01);  // hPa
 }
 
 String getBME680Humidity() {
@@ -218,7 +218,7 @@ String getDateTime() {
 
   String arrayf[5];
 
-  for (int i = 0; i < 5; i++) {
+  for (uint8_t i = 0; i < 5; i++) {
     char buffer[3];
     sprintf(buffer, "%02d", array[i]);
     arrayf[i] = String(buffer);
@@ -258,9 +258,9 @@ void e_PaperPrint(String dateTime, String AM2315Temp, String AM2315Hum, String w
   String line11 = PT100Temp + " *C";
   String line21 = windSpeed + " m/s";
   String line31 = AM2315Temp + " *C";
-  String line41 = BME680Pres + " Pa";
+  String line41 = BME680Pres + " hPa";
   String line51 = AM2315Hum + " %";
-  const char PROGMEM line61[] = "hello";//dateTime;
+  String line61 = dateTime;
 
   display.getTextBounds(line1, 0, 0, &tbx_line1, &tby_line1, &tbw_line1,
                         &tbh_line1);
@@ -324,6 +324,8 @@ void e_PaperPrint(String dateTime, String AM2315Temp, String AM2315Hum, String w
     display.print(line41);
     display.setCursor(x51, y + 120);
     display.print(line51);
+    display.setCursor(x61, y + 200);
+    display.print(line61);
   } while (display.nextPage());
 }
 
@@ -356,17 +358,17 @@ void microSDSetup() {
 void updateFileName() {
   rtc.read();
   int year = rtc.year;
-  int month = rtc.month;
-  int day = rtc.day;
-  int hour = rtc.hour;
-  int minute = rtc.minute;
-  int second = rtc.second;
+  uint8_t month = rtc.month;
+  uint8_t day = rtc.day;
+  uint8_t hour = rtc.hour;
+  uint8_t minute = rtc.minute;
+  uint8_t second = rtc.second;
 
   int array[5] = { month, day, hour, minute, second };
 
   String arrayf[5] = { "", "", "", "", "" };
 
-  for (int i = 0; i < 5; i++) {
+  for (uint8_t i = 0; i < 5; i++) {
     char buffer[3];
     sprintf(buffer, "%02d", array[i]);
     arrayf[i] = String(buffer);
