@@ -113,26 +113,26 @@ void loop() {
 
   if (currentMillis - previousMillis >= 1000) {
     previousMillis = currentMillis;
-    Serial.println("AM2315T (°C);Wind speed (m/s);BME680T "
-                   "(°C);BME680P (°C);BME680H(°C);PT100T (°C)");
+    Serial.println(F("AM2315T (°C);Wind speed (m/s);BME680T "
+                   "(°C);BME680P (°C);BME680H(°C);PT100T (°C)"));
 
+    String dateTime = getDateTime();
     String AM2315Temp, AM2315Hum;
     getAM2315TempAndHum(&AM2315Temp, &AM2315Hum);
     String windSpeed = getWindSpeed();
     String BME680Temp = getBME680Temperature();
     String BME680Pres = getBME680Pressure();
     String BME680Hum = getBME680Humidity();
-    //String dateTime = getDateTime();
-    //Serial.println(dateTime);
+    Serial.println(dateTime);
     // String GPSLat = getGPSLatitude();
     // String GPSLong = getGPSLongitude();
     String PT100Temp = getPT100Temperature();
     // String PyranoIrr = getSolarIrradiance();
-    String data = AM2315Temp + ";" + AM2315Hum + ";" + windSpeed + ";" + BME680Temp + ";" + BME680Pres + ";" + BME680Hum + ";" +
+    String data = dateTime + ";" + AM2315Temp + ";" + AM2315Hum + ";" + windSpeed + ";" + BME680Temp + ";" + BME680Pres + ";" + BME680Hum + ";" +
                   /*GPSLat + ";" + GPSLong + ";"*/
                   PT100Temp + ";" /* + PyranoIrr */;
     Serial.println(data);
-    e_PaperPrint(AM2315Temp, AM2315Hum, windSpeed, BME680Temp, BME680Pres,
+    e_PaperPrint(dateTime, AM2315Temp, AM2315Hum, windSpeed, BME680Temp, BME680Pres,
                  BME680Hum, PT100Temp);
   }
   /*} else {
@@ -144,26 +144,17 @@ void loop() {
 
 void AM2315Setup() {
   if (!am2315.begin()) {
-    Serial.println("Sensor not found, check wiring & pullups!");
+    Serial.println(F("Sensor not found, check wiring & pullups!"));
   }
 }
 
 void getAM2315TempAndHum(String* temp, String* hum) {
   float temperature, humidity;
   if (!am2315.readTemperatureAndHumidity(&temperature, &humidity)) {
-    Serial.println("Failed to read data from AM2315");
+    Serial.println(F("Failed to read data from AM2315"));
   }
   *temp = temperature;
   *hum = humidity;
-}
-
-String getAM2315Humidity() {
-  float temperature, humidity;
-  if (!am2315.readTemperatureAndHumidity(&temperature, &humidity)) {
-    Serial.println("Failed to read data from AM2315");
-    return "error";
-  }
-  return String(humidity);
 }
 
 String getWindSpeed() {
@@ -180,7 +171,7 @@ float mapfloat(float x, float in_min, float in_max, float out_min,
 
 void BME680Setup() {
   if (!bme.begin()) {
-    Serial.println("Could not find a valid BME680 sensor, check wiring!");
+    Serial.println(F("Could not find a valid BME680 sensor, check wiring!"));
   }
 
   // Set up oversampling and filter initialization
@@ -193,7 +184,7 @@ void BME680Setup() {
 
 String getBME680Temperature() {
   if (!bme.performReading()) {
-    Serial.println("BME680: Failed to perform reading :(");
+    Serial.println(F("BME680: Failed to perform reading :("));
     return "";
   }
   return String(bme.temperature);  // °C
@@ -201,7 +192,7 @@ String getBME680Temperature() {
 
 String getBME680Pressure() {
   if (!bme.performReading()) {
-    Serial.println("BME680: Failed to perform reading :(");
+    Serial.println(F("BME680: Failed to perform reading :("));
     return "";
   }
   return String(bme.pressure);  // Pa
@@ -209,7 +200,7 @@ String getBME680Pressure() {
 
 String getBME680Humidity() {
   if (!bme.performReading()) {
-    Serial.println("BME680: Failed to perform reading :(");
+    Serial.println(F("BME680: Failed to perform reading :("));
     return "";
   }
   return String(bme.humidity);  // %
@@ -245,30 +236,31 @@ void e_PaperSetup() {
   display.setTextColor(GxEPD_BLACK);
 }
 
-void e_PaperPrint(String AM2315Temp, String AM2315Hum, String windSpeed,
+void e_PaperPrint(String dateTime, String AM2315Temp, String AM2315Hum, String windSpeed,
                   String BME680Temp, String BME680Pres, String BME680Hum,
                   String PT100Temp) {
   int16_t tbx_line1, tby_line1, tbx_line2, tby_line2, tbx_line3, tby_line3,
     tbx_line4, tby_line4, tbx_line5, tby_line5, tbx_line6, tby_line6,
     tbx_line11, tby_line11, tbx_line21, tby_line21, tbx_line31, tby_line31,
-    tbx_line41, tby_line41, tbx_line51, tby_line51;
+    tbx_line41, tby_line41, tbx_line51, tby_line51, tbx_line61, tby_line61;
   uint16_t tbw_line1, tbh_line1, tbw_line2, tbh_line2, tbw_line3, tbh_line3,
     tbw_line4, tbh_line4, tbw_line5, tbh_line5, tbw_line6, tbh_line6,
     tbw_line11, tbh_line11, tbw_line21, tbh_line21, tbw_line31, tbh_line31,
-    tbw_line41, tbh_line41, tbw_line51, tbh_line51;
+    tbw_line41, tbh_line41, tbw_line51, tbh_line51, tbw_line61, tbh_line61;
 
-  String line1 = "Water temperature: ";
-  String line2 = "Wind speed: ";
-  String line3 = "Outside temperature: ";
-  String line4 = "Air pressure: ";
-  String line5 = "Humidity: ";
-  String line6 = "Last updated: ";
+  const char PROGMEM line1[] = "Water temperature: ";
+  const char PROGMEM line2[] = "Wind speed: ";
+  const char PROGMEM line3[]= "Outside temperature: ";
+  const char PROGMEM line4[] = "Air pressure: ";
+  const char PROGMEM line5[] = "Humidity: ";
+  const char PROGMEM line6[] = "Last updated: ";
 
   String line11 = PT100Temp + " *C";
   String line21 = windSpeed + " m/s";
   String line31 = AM2315Temp + " *C";
   String line41 = BME680Pres + " Pa";
   String line51 = AM2315Hum + " %";
+  const char PROGMEM line61[] = "hello";//dateTime;
 
   display.getTextBounds(line1, 0, 0, &tbx_line1, &tby_line1, &tbw_line1,
                         &tbh_line1);
@@ -292,6 +284,8 @@ void e_PaperPrint(String AM2315Temp, String AM2315Hum, String windSpeed,
                         &tbh_line41);
   display.getTextBounds(line51, 0, 0, &tbx_line51, &tby_line51, &tbw_line51,
                         &tbh_line51);
+  display.getTextBounds(line61, 0, 0, &tbx_line61, &tby_line61, &tbw_line61,
+                        &tbh_line61);
 
   uint16_t x = 40;
 
@@ -300,6 +294,7 @@ void e_PaperPrint(String AM2315Temp, String AM2315Hum, String windSpeed,
   uint16_t x31 = (display.width() - tbw_line31 - 40);
   uint16_t x41 = (display.width() - tbw_line41 - 40);
   uint16_t x51 = (display.width() - tbw_line51 - 40);
+  uint16_t x61 = (display.width() - tbw_line61 - 40);
 
   uint16_t y = ((display.height() - tbh_line1) / 2) - tby_line1;
 
@@ -347,15 +342,15 @@ String getGPSLongitude() {
 }
 
 void microSDSetup() {
-  Serial.print("Initializing SD card...");
+  Serial.print(F("Initializing SD card..."));
 
   // see if the card is present and can be initialized:
   if (!SD.begin(CS_SD)) {
-    Serial.println("Card failed, or not present");
+    Serial.println(F("Card failed, or not present"));
     while (1) {
     };
   }
-  Serial.println("card initialized.");
+  Serial.println(F("card initialized."));
 }
 
 void updateFileName() {
@@ -388,7 +383,8 @@ void updateFileName() {
   if (dataFile) {
     dataFile.close();
   } else {
-    Serial.println("error opening " + filePath);
+    Serial.print(F("error opening "));
+    Serial.println(filePath);
   }
 }
 
@@ -398,7 +394,8 @@ void stringToSd(String data) {
     dataFile.println(data);
     dataFile.close();
   } else {
-    Serial.println("error opening " + filePath);
+    Serial.print(F("error opening "));
+    Serial.println(filePath);
   }
 }
 
@@ -421,25 +418,25 @@ void PT100Fault() {
   uint8_t fault = thermo.readFault();
 
   if (fault) {
-    Serial.print("Fault 0x");
+    Serial.print(F("Fault 0x"));
     Serial.println(fault, HEX);
     if (fault & MAX31865_FAULT_HIGHTHRESH) {
-      Serial.println("RTD High Threshold");
+      Serial.println(F("RTD High Threshold"));
     }
     if (fault & MAX31865_FAULT_LOWTHRESH) {
-      Serial.println("RTD Low Threshold");
+      Serial.println(F("RTD Low Threshold"));
     }
     if (fault & MAX31865_FAULT_REFINLOW) {
-      Serial.println("REFIN- > 0.85 x Bias");
+      Serial.println(F("REFIN- > 0.85 x Bias"));
     }
     if (fault & MAX31865_FAULT_REFINHIGH) {
-      Serial.println("REFIN- < 0.85 x Bias - FORCE- open");
+      Serial.println(F("REFIN- < 0.85 x Bias - FORCE- open"));
     }
     if (fault & MAX31865_FAULT_RTDINLOW) {
-      Serial.println("RTDIN- < 0.85 x Bias - FORCE- open");
+      Serial.println(F("RTDIN- < 0.85 x Bias - FORCE- open"));
     }
     if (fault & MAX31865_FAULT_OVUV) {
-      Serial.println("Under/Over voltage");
+      Serial.println(F("Under/Over voltage"));
     }
     thermo.clearFault();
   }
