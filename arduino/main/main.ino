@@ -238,14 +238,26 @@ void e_PaperPrint(String AM2315Temp, String AM2315Hum, String windSpeed,
                   String BME680Temp, String BME680Pres, String BME680Hum,
                   String PT100Temp) {
   int16_t tbx_line1, tby_line1, tbx_line2, tby_line2, tbx_line3, tby_line3,
-    tbx_line4, tby_line4;
+    tbx_line4, tby_line4, tbx_line5, tby_line5, tbx_line6, tby_line6,
+    tbx_line11, tby_line11, tbx_line21, tby_line21, tbx_line31, tby_line31,
+    tbx_line41, tby_line41, tbx_line51, tby_line51;
   uint16_t tbw_line1, tbh_line1, tbw_line2, tbh_line2, tbw_line3, tbh_line3,
-    tbw_line4, tbh_line4;
+    tbw_line4, tbh_line4, tbw_line5, tbh_line5, tbw_line6, tbh_line6, 
+    tbw_line11, tbh_line11, tbw_line21, tbh_line21, tbw_line31, tbh_line31,
+    tbw_line41, tbh_line41, tbw_line51, tbh_line51;
 
-  String line1 = "AM2315 T: " + AM2315Temp + " *C, Hum: " + AM2315Hum + " %";
-  String line2 = "wind speed: " + windSpeed + "m/s";
-  String line3 = "BME680 T:" + BME680Temp + " *C, P: " + BME680Pres + " Pa, Hum: " + BME680Hum + " %";
-  String line4 = "PT100 T: " + PT100Temp + " *C";
+  String line1 = "Water temperature: ";
+  String line2 = "Wind speed: ";
+  String line3 = "Outside temperature: ";
+  String line4 = "Air pressure: ";
+  String line5 = "Humidity: ";
+  String line6 = "Last updated: ";
+
+  String line11 = PT100Temp + " *C";
+  String line21 = windSpeed + " m/s";
+  String line31 = AM2315Temp + " *C";
+  String line41 = BME680Pres + " Pa";
+  String line51 = AM2315Hum + " %";
 
   display.getTextBounds(line1, 0, 0, &tbx_line1, &tby_line1, &tbw_line1,
                         &tbh_line1);
@@ -255,11 +267,32 @@ void e_PaperPrint(String AM2315Temp, String AM2315Hum, String windSpeed,
                         &tbh_line3);
   display.getTextBounds(line4, 0, 0, &tbx_line4, &tby_line4, &tbw_line4,
                         &tbh_line4);
+  display.getTextBounds(line5, 0, 0, &tbx_line5, &tby_line5, &tbw_line5,
+                        &tbh_line5);
+  display.getTextBounds(line6, 0, 0, &tbx_line6, &tby_line6, &tbw_line6,
+                        &tbh_line6);
+  display.getTextBounds(line11, 0, 0, &tbx_line11, &tby_line11, &tbw_line11,
+                        &tbh_line11);
+  display.getTextBounds(line21, 0, 0, &tbx_line21, &tby_line21, &tbw_line21,
+                        &tbh_line21);
+  display.getTextBounds(line31, 0, 0, &tbx_line31, &tby_line31, &tbw_line31,
+                        &tbh_line31);
+  display.getTextBounds(line41, 0, 0, &tbx_line41, &tby_line41, &tbw_line41,
+                        &tbh_line41);
+  display.getTextBounds(line51, 0, 0, &tbx_line51, &tby_line51, &tbw_line51,
+                        &tbh_line51);
 
-  uint16_t x1 = ((display.width() - tbw_line1) / 2) - tbx_line1;
-  uint16_t x2 = ((display.width() - tbw_line2) / 2) - tbx_line2;
-  uint16_t x3 = ((display.width() - tbw_line3) / 2) - tbx_line3;
-  uint16_t x4 = ((display.width() - tbw_line4) / 2) - tbx_line4;
+  uint16_t x1 = 40;
+  uint16_t x2 = 40;
+  uint16_t x3 = 40;
+  uint16_t x4 = 40;
+  uint16_t x5 = 40;
+  uint16_t x6 = 40;
+  uint16_t x11 = (display.width() - tbw_line11 - 40);
+  uint16_t x21 = (display.width() - tbw_line21 - 40);
+  uint16_t x31 = (display.width() - tbw_line31 - 40);
+  uint16_t x41 = (display.width() - tbw_line41 - 40);
+  uint16_t x51 = (display.width() - tbw_line51 - 40);
 
   uint16_t y = ((display.height() - tbh_line1) / 2) - tby_line1;
 
@@ -267,14 +300,28 @@ void e_PaperPrint(String AM2315Temp, String AM2315Hum, String windSpeed,
   display.firstPage();
   do {
     display.fillScreen(GxEPD_WHITE);
-    display.setCursor(x1, y + 40);
+    display.setCursor(x1, y - 40);
     display.print(line1);
-    display.setCursor(x2, y + 80);
+    display.setCursor(x2, y);
     display.print(line2);
-    display.setCursor(x3, y + 120);
+    display.setCursor(x3, y + 40);
     display.print(line3);
-    display.setCursor(x4, y + 160);
+    display.setCursor(x4, y + 80);
     display.print(line4);
+    display.setCursor(x5, y + 120);
+    display.print(line5);
+    display.setCursor(x6, y + 200);
+    display.print(line6);
+    display.setCursor(x11, y - 40);
+    display.print(line11);
+    display.setCursor(x21, y);
+    display.print(line21);
+    display.setCursor(x31, y + 40);
+    display.print(line31);
+    display.setCursor(x41, y + 80);
+    display.print(line41);
+    display.setCursor(x51, y + 120);
+    display.print(line51);
   } while (display.nextPage());
 }
 
