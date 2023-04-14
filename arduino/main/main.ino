@@ -21,7 +21,7 @@ Adafruit_BME680 bme(CS_BME680);
 #include "Wire.h"
 #include "libraries/GravityRtc/GravityRtc.cpp"
 
-GravityRtc rtc; // RTC Initialization
+GravityRtc rtc;  // RTC Initialization
 
 // e-Paper
 #define ENABLE_GxEPD2_GFX 0
@@ -30,7 +30,7 @@ GravityRtc rtc; // RTC Initialization
 #include <Fonts/FreeMonoBold12pt7b.h>
 
 #define GxEPD2_DISPLAY_CLASS GxEPD2_3C
-#define GxEPD2_DRIVER_CLASS GxEPD2_583c_Z83 // 648x480
+#define GxEPD2_DRIVER_CLASS GxEPD2_583c_Z83  // 648x480
 
 #define CS_paper 10
 #define DC_paper 9
@@ -38,12 +38,12 @@ GravityRtc rtc; // RTC Initialization
 #define BUSY_paper 7
 
 #define MAX_DISPLAY_BUFFER_SIZE 5000
-#define MAX_HEIGHT(EPD)                                                        \
-  (EPD::HEIGHT <= (MAX_DISPLAY_BUFFER_SIZE / 2) / (EPD::WIDTH / 8)             \
-       ? EPD::HEIGHT                                                           \
-       : (MAX_DISPLAY_BUFFER_SIZE / 2) / (EPD::WIDTH / 8))
+#define MAX_HEIGHT(EPD) \
+  (EPD::HEIGHT <= (MAX_DISPLAY_BUFFER_SIZE / 2) / (EPD::WIDTH / 8) \
+     ? EPD::HEIGHT \
+     : (MAX_DISPLAY_BUFFER_SIZE / 2) / (EPD::WIDTH / 8))
 GxEPD2_DISPLAY_CLASS<GxEPD2_DRIVER_CLASS, MAX_HEIGHT(GxEPD2_DRIVER_CLASS)>
-    display(GxEPD2_DRIVER_CLASS(CS_paper, DC_paper, RST_paper, BUSY_paper));
+  display(GxEPD2_DRIVER_CLASS(CS_paper, DC_paper, RST_paper, BUSY_paper));
 
 // GPS
 #include <SoftwareSerial.h>
@@ -59,7 +59,7 @@ SoftwareSerial ss(RXPin, TXPin);
 #include <SPI.h>
 
 const int CS_SD = 4;
-const String CSVHeaders = "temperaturePT100 (°C)"; // TODO update this
+const String CSVHeaders = "temperaturePT100 (°C)";  // TODO update this
 String filePath;
 
 int fileNameUpdated = 0;
@@ -110,28 +110,36 @@ void loop() {
   }*/
 
   unsigned long currentMillis = millis();
+  String windSpeed;
+  String BME680Temp;
+  String BME680Pres;
+  String BME680Hum;
+  String PT100Temp;
+
+  String AM2315Temp, AM2315Hum;
+
   if (currentMillis - previousMillis >= 1000) {
     previousMillis = currentMillis;
-    Serial.println("AM2315T (°C);AM2315H (%);Wind speed (m/s);BME680T "
+    Serial.println("AM2315T (°C);Wind speed (m/s);BME680T "
                    "(°C);BME680P (°C);BME680H(°C);PT100T (°C)");
-    String AM2315Temp = getAM2315Temperature();
-    String AM2315Hum = getAM2315Humidity();
-    String windSpeed = getWindSpeed();
-    String BME680Temp = getBME680Temperature();
-    String BME680Pres = getBME680Pressure();
-    String BME680Hum = getBME680Humidity();
+
+    getAM2315TempAndHum(&AM2315Temp, &AM2315Hum);
+    windSpeed = getWindSpeed();
+    BME680Temp = getBME680Temperature();
+    BME680Pres = getBME680Pressure();
+    BME680Hum = getBME680Humidity();
     // String GPSLat = getGPSLatitude();
     // String GPSLong = getGPSLongitude();
-    String PT100Temp = getPT100Temperature();
+    PT100Temp = getPT100Temperature();
     // String PyranoIrr = getSolarIrradiance();
-    String data = AM2315Temp + ";" + AM2315Hum + ";" + windSpeed + ";" +
-                  BME680Temp + ";" + BME680Pres + ";" + BME680Hum + ";" +
+    String data = AM2315Temp + ";" + AM2315Hum + ";" + windSpeed + ";" + BME680Temp + ";" + BME680Pres + ";" + BME680Hum + ";" +
                   /*GPSLat + ";" + GPSLong + ";"*/
                   PT100Temp + ";" /* + PyranoIrr */;
     Serial.println(data);
-    e_PaperPrint(AM2315Temp, AM2315Hum, windSpeed, BME680Temp, BME680Pres,
-                 BME680Hum, PT100Temp);
   }
+  e_PaperPrint(AM2315Temp, AM2315Hum, windSpeed, BME680Temp, BME680Pres,
+               BME680Hum, PT100Temp);
+  delay(1000);
   /*} else {
     digitalWrite(LED_GREEN_PIN, LOW);
     digitalWrite(LED_RED_PIN, HIGH);
@@ -145,13 +153,13 @@ void AM2315Setup() {
   }
 }
 
-String getAM2315Temperature() {
+void getAM2315TempAndHum(String* temp, String* hum) {
   float temperature, humidity;
   if (!am2315.readTemperatureAndHumidity(&temperature, &humidity)) {
     Serial.println("Failed to read data from AM2315");
-    return "error";
   }
-  return String(temperature);
+  *temp = temperature;
+  *hum = humidity;
 }
 
 String getAM2315Humidity() {
@@ -185,7 +193,7 @@ void BME680Setup() {
   bme.setHumidityOversampling(BME680_OS_2X);
   bme.setPressureOversampling(BME680_OS_4X);
   bme.setIIRFilterSize(BME680_FILTER_SIZE_3);
-  bme.setGasHeater(320, 150); // 320*C for 150 ms
+  bme.setGasHeater(320, 150);  // 320*C for 150 ms
 }
 
 String getBME680Temperature() {
@@ -193,7 +201,7 @@ String getBME680Temperature() {
     Serial.println("BME680: Failed to perform reading :(");
     return "";
   }
-  return String(bme.temperature); // °C
+  return String(bme.temperature);  // °C
 }
 
 String getBME680Pressure() {
@@ -201,7 +209,7 @@ String getBME680Pressure() {
     Serial.println("BME680: Failed to perform reading :(");
     return "";
   }
-  return String(bme.pressure); // Pa
+  return String(bme.pressure);  // Pa
 }
 
 String getBME680Humidity() {
@@ -209,7 +217,7 @@ String getBME680Humidity() {
     Serial.println("BME680: Failed to perform reading :(");
     return "";
   }
-  return String(bme.humidity); // %
+  return String(bme.humidity);  // %
 }
 
 void clockModuleSetup() {
@@ -218,7 +226,10 @@ void clockModuleSetup() {
 }
 
 void e_PaperSetup() {
-  display.setRotation(3);
+  display.init(9600, true, 2, false);
+  display.setFullWindow();
+  display.clearScreen();
+  display.setRotation(2);
   display.setFont(&FreeMonoBold12pt7b);
   display.setTextColor(GxEPD_BLACK);
 }
@@ -227,15 +238,14 @@ void e_PaperPrint(String AM2315Temp, String AM2315Hum, String windSpeed,
                   String BME680Temp, String BME680Pres, String BME680Hum,
                   String PT100Temp) {
   int16_t tbx_line1, tby_line1, tbx_line2, tby_line2, tbx_line3, tby_line3,
-      tbx_line4, tby_line4;
+    tbx_line4, tby_line4;
   uint16_t tbw_line1, tbh_line1, tbw_line2, tbh_line2, tbw_line3, tbh_line3,
-      tbw_line4, tbh_line4;
+    tbw_line4, tbh_line4;
 
-  String line1 = "AM2315 T: " + AM2315Temp + " °C, Hum: " + AM2315Hum;
+  String line1 = "AM2315 T: " + AM2315Temp + " *C, Hum: " + AM2315Hum + " %";
   String line2 = "wind speed: " + windSpeed + "m/s";
-  String line3 = "BME680 T:" + BME680Temp + " °C, P: " + BME680Pres +
-                 " Pa, Hum: " + BME680Hum + " %";
-  String line4 = "PT100 T: " + PT100Temp + " °C";
+  String line3 = "BME680 T:" + BME680Temp + " *C, P: " + BME680Pres + " Pa, Hum: " + BME680Hum + " %";
+  String line4 = "PT100 T: " + PT100Temp + " *C";
 
   display.getTextBounds(line1, 0, 0, &tbx_line1, &tby_line1, &tbw_line1,
                         &tbh_line1);
@@ -257,18 +267,20 @@ void e_PaperPrint(String AM2315Temp, String AM2315Hum, String windSpeed,
   display.firstPage();
   do {
     display.fillScreen(GxEPD_WHITE);
-    display.setCursor(x1, y + 80);
+    display.setCursor(x1, y + 40);
     display.print(line1);
-    display.setCursor(x2, y + 40);
+    display.setCursor(x2, y + 80);
     display.print(line2);
-    display.setCursor(x3, y);
+    display.setCursor(x3, y + 120);
     display.print(line3);
-    display.setCursor(x4, y - 40);
+    display.setCursor(x4, y + 160);
     display.print(line4);
   } while (display.nextPage());
 }
 
-void GPSSetup() { ss.begin(GPSBaud); }
+void GPSSetup() {
+  ss.begin(GPSBaud);
+}
 
 String getGPSLatitude() {
   gps.encode(ss.read());
@@ -301,9 +313,9 @@ void updateFileName() {
   int minute = rtc.minute;
   int second = rtc.second;
 
-  int array[5] = {month, day, hour, minute, second};
+  int array[5] = { month, day, hour, minute, second };
 
-  String arrayf[5] = {"", "", "", "", ""};
+  String arrayf[5] = { "", "", "", "", "" };
 
   for (int i = 0; i < 5; i++) {
     char buffer[3];
@@ -336,9 +348,13 @@ void stringToSd(String data) {
   }
 }
 
-void writeCSVHeaders() { stringToSd(CSVHeaders); }
+void writeCSVHeaders() {
+  stringToSd(CSVHeaders);
+}
 
-void PT100Setup() { thermo.begin(MAX31865_4WIRE); }
+void PT100Setup() {
+  thermo.begin(MAX31865_4WIRE);
+}
 
 String getPT100Temperature() {
   uint16_t rtd = thermo.readRTD();
