@@ -26,7 +26,10 @@ GravityRtc rtc;  // RTC Initialization
 // e-Paper
 #define ENABLE_GxEPD2_GFX 0
 
+#include "bitmaps.h"
+
 #include <GxEPD2_3C.h>
+
 #include <Fonts/FreeMonoBold12pt7b.h>
 
 #define GxEPD2_DISPLAY_CLASS GxEPD2_3C
@@ -114,7 +117,7 @@ void loop() {
   if (currentMillis - previousMillis >= 1000) {
     previousMillis = currentMillis;
     Serial.println(F("AM2315T (°C);Wind speed (m/s);BME680T "
-                   "(°C);BME680P (°C);BME680H(°C);PT100T (°C)"));
+                     "(°C);BME680P (°C);BME680H(°C);PT100T (°C)"));
 
     String dateTime = getDateTime();
     String AM2315Temp, AM2315Hum;
@@ -123,7 +126,6 @@ void loop() {
     String BME680Temp = getBME680Temperature();
     String BME680Pres = getBME680Pressure();
     String BME680Hum = getBME680Humidity();
-    Serial.println(dateTime);
     // String GPSLat = getGPSLatitude();
     // String GPSLong = getGPSLongitude();
     String PT100Temp = getPT100Temperature();
@@ -195,7 +197,7 @@ String getBME680Pressure() {
     Serial.println(F("BME680: Failed to perform reading :("));
     return "";
   }
-  return String(bme.pressure*0.01);  // hPa
+  return String(bme.pressure * 0.01);  // hPa
 }
 
 String getBME680Humidity() {
@@ -250,7 +252,7 @@ void e_PaperPrint(String dateTime, String AM2315Temp, String AM2315Hum, String w
 
   const char PROGMEM line1[] = "Water temperature: ";
   const char PROGMEM line2[] = "Wind speed: ";
-  const char PROGMEM line3[]= "Outside temperature: ";
+  const char PROGMEM line3[] = "Outside temperature: ";
   const char PROGMEM line4[] = "Air pressure: ";
   const char PROGMEM line5[] = "Humidity: ";
   const char PROGMEM line6[] = "Last updated: ";
@@ -326,6 +328,8 @@ void e_PaperPrint(String dateTime, String AM2315Temp, String AM2315Hum, String w
     display.print(line51);
     display.setCursor(x61, y + 200);
     display.print(line61);
+    display.drawBitmap(308, 40, uhasselt_logo, 300, 71, GxEPD_BLACK);
+    display.drawBitmap(30, 40, UNILU_logo, 248, 71, GxEPD_BLACK);
   } while (display.nextPage());
 }
 
