@@ -80,11 +80,17 @@ const float RNOMINAL = 100.0;
 const int PYRANO_PIN = A1;
 
 // switch
-const uint8_t SWITCH_PIN = 34;
-const uint8_t LED_GREEN_PIN = 32;
-const uint8_t LED_RED_PIN = 30;
+const uint8_t SWITCH_PIN = 24;
+const uint8_t LED_GREEN_PIN = 22;
+const uint8_t LED_RED_PIN = 23;
 
 unsigned long previousMillis = 0;
+
+String dateTime;
+String AM2315Temp, AM2315Hum;
+String windSpeed;
+String BME680Temp, BME680Pres, BME680Hum;
+String PT100Temp;
 
 void setup() {
   Serial.begin(9600);
@@ -97,51 +103,52 @@ void setup() {
   GPSSetup();
   // microSDSetup();
   PT100Setup();
-  // switchSetup();
+  switchSetup();
 }
 
 void loop() {
-  // int switchState = digitalRead(SWITCH_PIN);
-  //  if (switchState) {
-  //  digitalWrite(LED_GREEN_PIN, HIGH);
-  //  digitalWrite(LED_RED_PIN, LOW);
+  int switchState = digitalRead(SWITCH_PIN);
 
-  /*if (!fileNameUpdated) {
+  if (switchState) {
+    digitalWrite(LED_GREEN_PIN, HIGH);
+    digitalWrite(LED_RED_PIN, LOW);
+
+    /*if (!fileNameUpdated) {
     updateFileName();
     writeCSVHeaders();
     fileNameUpdated = 1;
   }*/
 
-  unsigned long currentMillis = millis();
+    unsigned long currentMillis = millis();
 
-  if (currentMillis - previousMillis >= 1000) {
-    previousMillis = currentMillis;
-    Serial.println(F("AM2315T (°C);Wind speed (m/s);BME680T "
-                     "(°C);BME680P (°C);BME680H(°C);PT100T (°C)"));
+    if (currentMillis - previousMillis >= 1000) {
+      previousMillis = currentMillis;
+      Serial.println(F("AM2315T (°C);Wind speed (m/s);BME680T "
+                       "(°C);BME680P (°C);BME680H(°C);PT100T (°C)"));
 
-    String dateTime = getDateTime();
-    String AM2315Temp, AM2315Hum;
-    getAM2315TempAndHum(&AM2315Temp, &AM2315Hum);
-    String windSpeed = getWindSpeed();
-    String BME680Temp = getBME680Temperature();
-    String BME680Pres = getBME680Pressure();
-    String BME680Hum = getBME680Humidity();
-    // String GPSLat = getGPSLatitude();
-    // String GPSLong = getGPSLongitude();
-    String PT100Temp = getPT100Temperature();
-    // String PyranoIrr = getSolarIrradiance();
-    String data = dateTime + ";" + AM2315Temp + ";" + AM2315Hum + ";" + windSpeed + ";" + BME680Temp + ";" + BME680Pres + ";" + BME680Hum + ";" +
-                  /*GPSLat + ";" + GPSLong + ";"*/
-                  PT100Temp + ";" /* + PyranoIrr */;
-    Serial.println(data);
-    e_PaperPrint(dateTime, AM2315Temp, AM2315Hum, windSpeed, BME680Temp, BME680Pres,
-                 BME680Hum, PT100Temp);
-  }
-  /*} else {
+      dateTime = getDateTime();
+      AM2315Temp, AM2315Hum;
+      getAM2315TempAndHum(&AM2315Temp, &AM2315Hum);
+      windSpeed = getWindSpeed();
+      BME680Temp = getBME680Temperature();
+      BME680Pres = getBME680Pressure();
+      BME680Hum = getBME680Humidity();
+      // String GPSLat = getGPSLatitude();
+      // String GPSLong = getGPSLongitude();
+      PT100Temp = getPT100Temperature();
+      // String PyranoIrr = getSolarIrradiance();
+      String data = dateTime + ";" + AM2315Temp + ";" + AM2315Hum + ";" + windSpeed + ";" + BME680Temp + ";" + BME680Pres + ";" + BME680Hum + ";" +
+                    /*GPSLat + ";" + GPSLong + ";"*/
+                    PT100Temp + ";" /* + PyranoIrr */;
+      Serial.println(data);
+      e_PaperPrint(dateTime, AM2315Temp, AM2315Hum, windSpeed, BME680Temp, BME680Pres,
+                   BME680Hum, PT100Temp);
+    }
+  } else {
     digitalWrite(LED_GREEN_PIN, LOW);
     digitalWrite(LED_RED_PIN, HIGH);
     fileNameUpdated = 0;
-  }*/
+  }
 }
 
 void AM2315Setup() {
@@ -210,7 +217,7 @@ String getBME680Humidity() {
 
 void clockModuleSetup() {
   rtc.setup();
-  rtc.adjustRtc(F(__DATE__), F(__TIME__));
+  //rtc.adjustRtc(F(__DATE__), F(__TIME__));
 }
 
 String getDateTime() {
