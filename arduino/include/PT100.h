@@ -1,5 +1,5 @@
 void PT100Setup();
 
-String getPT100Temperature();
+float getPT100Temperature();
 
 void PT100Fault();

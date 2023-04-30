@@ -1,12 +1,9 @@
 #include "clockModule.h"
 #include <SD.h>
 
-
 const uint8_t CS_SD = 4;
-const String CSVHeaders = "temperaturePT100 (°C)"; // TODO update this
+const String CSVHeaders = "Time [YYYY-MM-DDTHH:MM:ss];Water temperature [°C];Wind speed [m/s];Outside temperature [°C];Air pressure [hPa];Relative humidity [%];Solar irradiance [W/m²]";
 String filePath;
-
-uint8_t fileNameUpdated = 0;
 
 void microSDSetup() {
   Serial.print(F("Initializing SD card..."));
@@ -20,8 +17,7 @@ void microSDSetup() {
   Serial.println(F("card initialized."));
 }
 
-void updateFileName() { // make a function in clockModule that gets the time for
-                        // the filename
+void updateFileName() {
   String directory = getYear() + "/" + getMonth() + "/";
   String fileName = getDateTimeFile();
 
@@ -49,4 +45,6 @@ void stringToSd(String data) {
   }
 }
 
-void writeCSVHeaders() { stringToSd(CSVHeaders); }
+void writeCSVHeaders() {
+  stringToSd(CSVHeaders);
+}

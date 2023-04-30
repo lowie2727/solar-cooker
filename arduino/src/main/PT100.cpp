@@ -10,11 +10,11 @@ void PT100Fault();
 
 void PT100Setup() { thermo.begin(MAX31865_4WIRE); }
 
-String getPT100Temperature() {
+float getPT100Temperature() {
   thermo.readRTD();
   float temperature = thermo.temperature(RNOMINAL, RREF);
   PT100Fault();
-  return String(temperature);
+  return temperature;
 }
 
 void PT100Fault() {

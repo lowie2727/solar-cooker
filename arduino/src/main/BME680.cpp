@@ -19,26 +19,26 @@ void BME680Setup() {
   bme.setGasHeater(320, 150); // 320*C for 150 ms
 }
 
-String getBME680Temperature() {
+float getBME680Temperature() {
   if (!bme.performReading()) {
     Serial.println(F("BME680: Failed to perform reading :("));
-    return "";
+    return -1.0;
   }
-  return String(bme.temperature); // °C
+  return bme.temperature; // °C
 }
 
-String getBME680Pressure() {
+float getBME680Pressure() {
   if (!bme.performReading()) {
     Serial.println(F("BME680: Failed to perform reading :("));
-    return "";
+    return -1.0;
   }
-  return String(bme.pressure * 0.01); // hPa
+  return (bme.pressure) / 100; // Pa
 }
 
-String getBME680Humidity() {
+float getBME680Humidity() {
   if (!bme.performReading()) {
     Serial.println(F("BME680: Failed to perform reading :("));
-    return "";
+    return -1.0;
   }
-  return String(bme.humidity); // %
+  return bme.humidity; // %
 }

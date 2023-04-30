@@ -1,7 +1,7 @@
 void BME680Setup();
 
-String getBME680Temperature();
+float getBME680Temperature();
 
-String getBME680Pressure();
+float getBME680Pressure();
 
-String getBME680Humidity();
+float getBME680Humidity();

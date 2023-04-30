@@ -82,44 +82,55 @@ void e_PaperPrint(String dateTime, String AM2315Temp, String AM2315Hum,
   display.getTextBounds(line61, 0, 0, &tbx_line61, &tby_line61, &tbw_line61,
                         &tbh_line61);
 
-  uint16_t x = 40;
+  uint16_t x PROGMEM = 40;
 
-  uint16_t x11 = (display.width() - tbw_line11 - 40);
-  uint16_t x21 = (display.width() - tbw_line21 - 40);
-  uint16_t x31 = (display.width() - tbw_line31 - 40);
-  uint16_t x41 = (display.width() - tbw_line41 - 40);
-  uint16_t x51 = (display.width() - tbw_line51 - 40);
-  uint16_t x61 = (display.width() - tbw_line61 - 40);
+  uint16_t x11 PROGMEM = (display.width() - tbw_line11 - 40);
+  uint16_t x21 PROGMEM = (display.width() - tbw_line21 - 40);
+  uint16_t x31 PROGMEM = (display.width() - tbw_line31 - 40);
+  uint16_t x41 PROGMEM = (display.width() - tbw_line41 - 40);
+  uint16_t x51 PROGMEM = (display.width() - tbw_line51 - 40);
+  uint16_t x61 PROGMEM = (display.width() - tbw_line61 - 40);
 
-  uint16_t y = ((display.height() - tbh_line1) / 2) - tby_line1;
+  uint16_t y PROGMEM = ((display.height() - tbh_line1) / 2) - tby_line1;
+
+  const uint8_t y1 PROGMEM = y - 40;
+  const uint8_t y3 PROGMEM = y + 40;
+  const uint8_t y4 PROGMEM = y + 80;
+  const uint8_t y5 PROGMEM = y + 120;
+  const uint8_t y6 PROGMEM = y + 200;
+  const uint8_t y11 PROGMEM = y - 40;
+  const uint8_t y31 PROGMEM = y + 40;
+  const uint8_t y41 PROGMEM = y + 80;
+  const uint8_t y51 PROGMEM = y + 120;
+  const uint8_t y61 PROGMEM = y + 200;
 
   display.setFullWindow();
   display.firstPage();
   do {
     display.fillScreen(GxEPD_WHITE);
-    display.setCursor(x, y - 40);
+    display.setCursor(x, y1);
     display.print(line1);
     display.setCursor(x, y);
     display.print(line2);
-    display.setCursor(x, y + 40);
+    display.setCursor(x, y3);
     display.print(line3);
-    display.setCursor(x, y + 80);
+    display.setCursor(x, y4);
     display.print(line4);
-    display.setCursor(x, y + 120);
+    display.setCursor(x, y5);
     display.print(line5);
-    display.setCursor(x, y + 200);
+    display.setCursor(x, y6);
     display.print(line6);
-    display.setCursor(x11, y - 40);
+    display.setCursor(x11, y11);
     display.print(line11);
     display.setCursor(x21, y);
     display.print(line21);
-    display.setCursor(x31, y + 40);
+    display.setCursor(x31, y31);
     display.print(line31);
-    display.setCursor(x41, y + 80);
+    display.setCursor(x41, y41);
     display.print(line41);
-    display.setCursor(x51, y + 120);
+    display.setCursor(x51, y51);
     display.print(line51);
-    display.setCursor(x61, y + 200);
+    display.setCursor(x61, y61);
     display.print(line61);
     display.drawBitmap(308, 40, uhasselt_logo, 300, 71, GxEPD_BLACK);
     display.drawBitmap(30, 40, UNILU_logo, 248, 71, GxEPD_BLACK);

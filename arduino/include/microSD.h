@@ -1,5 +1,3 @@
-extern uint8_t fileNameUpdated;
-
 void microSDSetup();
 
 void updateFileName();

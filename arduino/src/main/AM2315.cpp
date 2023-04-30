@@ -4,15 +4,15 @@ Adafruit_AM2315 am2315;
 
 void AM2315Setup() {
   if (!am2315.begin()) {
-    Serial.println("Sensor not found, check wiring & pullups!");
+    Serial.println(F("Sensor not found, check wiring & pullups!"));
   }
 }
 
-void getAM2315TempAndHum(String *temp, String *hum) {
+float getAM2315Temp() {
   float temperature, humidity;
   if (!am2315.readTemperatureAndHumidity(&temperature, &humidity)) {
     Serial.println(F("Failed to read data from AM2315"));
+    return -1.0;
   }
-  *temp = temperature;
-  *hum = humidity;
+  return temperature;
 }
