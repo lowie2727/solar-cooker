@@ -471,6 +471,14 @@
     [
       "44c2afa1-48ea-4efe-ab9b-507688a863d4",
       ""
+    ],
+    [
+      "27b19281-8c9c-419f-90e7-59a0d218fc1a",
+      "Sensors"
+    ],
+    [
+      "3c5563ef-6d18-4330-9831-b0afed78c676",
+      "Arduino"
     ]
   ],
   "text_variables": {}
