@@ -1,15 +1,16 @@
 name: PlatformIO CI
 
-on: [push]
-    #paths:
-      #- arduino/**/*.cpp
-      #- arduino/**/*.h
-      #- arduino/platformio.ini
-  #pull_request:
-   # paths:
-      #- arduino/**/*.cpp
-      #- arduino/**/*.h
-      #- arduino/platformio.ini
+on: 
+  push:
+    paths:
+      - arduino/**/*.cpp
+      - arduino/**/*.h
+      - arduino/platformio.ini
+  pull_request:
+    paths:
+      - arduino/**/*.cpp
+      - arduino/**/*.h
+      - arduino/platformio.ini
 
 jobs:
   build:
