@@ -18,12 +18,12 @@ void microSDSetup() {
 }
 
 void updateFileName() {
-  String directory = getYear() + "/" + getMonth() + "/";
+  String directoryName = getDirectoryName();
   String fileName = getDateTimeFile();
 
-  SD.mkdir(directory);
+  SD.mkdir(directoryName);
 
-  filePath = directory + fileName;
+  filePath = directoryName + fileName;
   File dataFile = SD.open(filePath, FILE_WRITE);
 
   if (dataFile) {

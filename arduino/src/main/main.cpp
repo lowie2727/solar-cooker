@@ -14,12 +14,6 @@
 // clock module
 #include "clockModule.h"
 
-// e-Paper
-#include "e-Paper.h"
-
-// GPS
-#include "GPS.h"
-
 // microSD
 #include "microSD.h"
 
@@ -43,8 +37,6 @@ void setup() {
   AM2315Setup();
   BME680Setup();
   clockModuleSetup();
-  e_PaperSetup();
-  GPSSetup();
   microSDSetup();
   PT100Setup();
   switchSetup();
@@ -65,7 +57,13 @@ void loop() {
     if (currentMillis - previousMillis >= 1000) {
       previousMillis = currentMillis;
 
-      String dateTime = getDateTime();
+      uint16_t year = getYear();
+      uint8_t month = getMonth();
+      uint8_t day = getDay();
+      String hour = getHour();
+      uint8_t minute = getMinute();
+      uint8_t second = getSecond();
+
       float AM2315Temp = getAM2315Temp();
       float windSpeed = getWindSpeed();
       float BME680Temp = getBME680Temperature();
@@ -74,38 +72,49 @@ void loop() {
       float PT100Temp = getPT100Temperature();
       float pyranoIrr = getSolarIrradiance();
 
-      char data[200] PROGMEM;
-      char AM2315TempString[6] PROGMEM;
-      char windSpeedString[6] PROGMEM;
-      char BME680TempString[6] PROGMEM;
-      char BME680PresString[8] PROGMEM;
-      char BME680HumString[6] PROGMEM;
-      char PT100TempString[7] PROGMEM;
-      char pyranoIrrString[8] PROGMEM;
+      // csv data
+      char csv[100];
+      snprintf(csv, 100,
+               "%04u;%02u;%02u;%s;%02u;%02u;%.2f;%.2f;%.2f;%.2f;%.2f;%.2f;%.2f",
+               year, month, day, hour.c_str(), minute, second,
+               (double)AM2315Temp, (double)windSpeed, (double)BME680Temp,
+               (double)BME680Pres, (double)BME680Hum, (double)PT100Temp,
+               (double)pyranoIrr);
+      stringToSd(csv);
+      Serial.println(csv);
 
-      dtostrf(AM2315Temp, 4, 2, AM2315TempString);
-      dtostrf(windSpeed, 4, 2, windSpeedString);
-      dtostrf(BME680Temp, 5, 2, BME680TempString);
-      dtostrf(BME680Pres, 6, 2, BME680PresString);
-      dtostrf(BME680Hum, 5, 2, BME680HumString);
-      dtostrf(PT100Temp, 5, 2, PT100TempString);
-      dtostrf(pyranoIrr, 6, 2, pyranoIrrString);
+      // serial monitor data
+      char date[100];
+      snprintf(date, 100, "Date: %04u-%02u-%02u", year, month, day);
+      Serial.println(date);
 
-      snprintf(data, 200, "%s;%s;%s;%s;%s;%s;%s;%s", dateTime.c_str(),
-               AM2315TempString, windSpeedString, BME680TempString,
-               BME680PresString, BME680HumString, PT100TempString,
-               pyranoIrrString);
+      char time[100];
+      snprintf(time, 100, "Time: %s:%02u:%02u", hour.c_str(), minute, second);
+      Serial.println(time);
 
-      //"Time [YYYY-MM-DDTHH:MM:ss];Water temperature [°C];Wind speed
-      //[m/s];Outside temperature [°C];Air pressure [hPa];Relative humidity
-      //[%];Solar irradiance [W/m²]";
+      char AM2315[100];
+      snprintf(AM2315, 100, "AM2315 Temperature: %.2f °C", (double)AM2315Temp);
+      Serial.println(AM2315);
 
-      // GPSLat + ";" + GPSLong + ";"*/
-      /*PyranoIrr*/;
-      /*e_PaperPrint(dateTime, AM2315Temp, BME680Hum, windSpeed, BME680Temp,
-                   BME680Pres, BME680Hum, PT100Temp);*/
-      stringToSd(data);
-      Serial.println(data);
+      char anemo[100];
+      snprintf(anemo, 100, "Wind speed: %.2f m/s", (double)windSpeed);
+      Serial.println(anemo);
+
+      char BME680[100];
+      snprintf(
+          BME680, 100,
+          "BME680 Temperature: %.2f °C, Pressure: %.2f hPa, Humidity: %.2f \%",
+          (double)BME680Temp, (double)BME680Pres, (double)BME680Hum);
+      Serial.println(BME680);
+
+      char PT100[100];
+      snprintf(PT100, 100, "PT100: %.2f °C", (double)PT100Temp);
+      Serial.println(PT100);
+
+      char pyranometer[100];
+      snprintf(pyranometer, 100, "Pyranometer Irradiance: %.2f °C",
+               (double)pyranoIrr);
+      Serial.println(pyranometer);
     }
   } else {
     redLedOn();

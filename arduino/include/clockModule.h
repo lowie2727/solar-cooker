@@ -1,12 +1,22 @@
 #include <Arduino.h>
 #include <GravityRtc.h>
 
-String getDateTime();
+void clockModuleSetup();
+
+String getDateTimeISO();
 
 String getDateTimeFile();
 
-String getYear();
+String getDirectoryName();
 
-String getMonth();
+uint16_t getYear();
 
-void clockModuleSetup();
+uint8_t getMonth();
+
+uint8_t getDay();
+
+String getHour();
+
+uint8_t getMinute();
+
+uint8_t getSecond();

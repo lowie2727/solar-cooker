@@ -1,6 +1,6 @@
 #include <Arduino.h>
 
-const int PYRANO_PIN = A5;
+const int PYRANO_PIN = A10;
 
 float getSolarIrradiance() {
   int pyranoValue = analogRead(PYRANO_PIN);

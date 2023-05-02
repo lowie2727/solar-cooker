@@ -32,7 +32,7 @@ float getBME680Pressure() {
     Serial.println(F("BME680: Failed to perform reading :("));
     return -1.0;
   }
-  return (bme.pressure) / 100; // Pa
+  return (bme.pressure) / 100; // hPa
 }
 
 float getBME680Humidity() {
