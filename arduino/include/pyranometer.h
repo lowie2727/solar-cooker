@@ -1,1 +1,1 @@
-float getSolarIrradiance();
+String getSolarIrradiance();

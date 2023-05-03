@@ -57,40 +57,44 @@ void loop() {
     if (currentMillis - previousMillis >= 1000) {
       previousMillis = currentMillis;
 
-      uint16_t year = getYear();
-      uint8_t month = getMonth();
-      uint8_t day = getDay();
+      String year = getYear();
+      String month = getMonth();
+      String day = getDay();
       String hour = getHour();
-      uint8_t minute = getMinute();
-      uint8_t second = getSecond();
+      String minute = getMinute();
+      String second = getSecond();
 
-      float AM2315Temp = getAM2315Temp();
-      float windSpeed = getWindSpeed();
-      float BME680Temp = getBME680Temperature();
-      float BME680Pres = getBME680Pressure();
-      float BME680Hum = getBME680Humidity();
-      float PT100Temp = getPT100Temperature();
-      float pyranoIrr = getSolarIrradiance();
+      String AM2315Temp = getAM2315Temp();
+      String windSpeed = getWindSpeed();
+      String BME680Temp = getBME680Temperature();
+      String BME680Pres = getBME680Pressure();
+      String BME680Hum = getBME680Humidity();
+      String PT100Temp = getPT100Temperature();
+      String pyranoIrr = getSolarIrradiance();
 
+      String dataCSV = year + ";" + month + ";" + day + ";" + hour + ";"+ minute + ";" + second + ";" + AM2315Temp + ";" + windSpeed + ";" + BME680Pres + ";" + BME680Hum + ";" + PT100Temp + ";" + pyranoIrr;
+      Serial.println(dataCSV);
+      stringToSd(dataCSV);
       // csv data
-      char csv[100];
+
+      /*char csv[100];
       snprintf(csv, 100,
                "%04u;%02u;%02u;%s;%02u;%02u;%.2f;%.2f;%.2f;%.2f;%.2f;%.2f;%.2f",
                year, month, day, hour.c_str(), minute, second,
                (double)AM2315Temp, (double)windSpeed, (double)BME680Pres,
-               (double)BME680Hum, (double)PT100Temp, (double)pyranoIrr);
-      stringToSd(csv);
+               (double)BME680Hum, (double)PT100Temp, (double)pyranoIrr);*/
+      //stringToSd(csv);
 
       // serial monitor data
-      char date[100];
+      /*char date[100];
       snprintf(date, 100, "Date: %04u-%02u-%02u", year, month, day);
-      Serial.println(date);
+      Serial.println(date);*/
 
-      char time[100];
+      /*char time[100];
       snprintf(time, 100, "Time: %s:%02u:%02u", hour.c_str(), minute, second);
-      Serial.println(time);
+      Serial.println(time);*/
 
-      char AM2315[100];
+      /*char AM2315[100];
       snprintf(AM2315, 100, "AM2315 Temperature: %.2f °C", (double)AM2315Temp);
       Serial.println(AM2315);
 
@@ -112,7 +116,7 @@ void loop() {
       char pyranometer[100];
       snprintf(pyranometer, 100, "Pyranometer Irradiance: %.2f °C",
                (double)pyranoIrr);
-      Serial.println(pyranometer);
+      Serial.println(pyranometer);*/
     }
   } else {
     redLedOn();

@@ -8,11 +8,11 @@ void AM2315Setup() {
   }
 }
 
-float getAM2315Temp() {
+String getAM2315Temp() {
   float temperature, humidity;
   if (!am2315.readTemperatureAndHumidity(&temperature, &humidity)) {
     Serial.println(F("Failed to read data from AM2315"));
-    return -1.0;
+    return String(-1.0);
   }
-  return temperature;
+  return String(temperature);
 }

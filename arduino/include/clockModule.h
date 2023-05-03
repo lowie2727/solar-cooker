@@ -9,14 +9,14 @@ String getDateTimeFile();
 
 String getDirectoryName();
 
-uint16_t getYear();
+String getYear();
 
-uint8_t getMonth();
+String getMonth();
 
-uint8_t getDay();
+String getDay();
 
 String getHour();
 
-uint8_t getMinute();
+String getMinute();
 
-uint8_t getSecond();
+String getSecond();

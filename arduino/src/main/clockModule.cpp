@@ -37,19 +37,19 @@ String getDirectoryName() {
   return String(diretoryName);
 }
 
-uint16_t getYear() {
+String getYear() {
   rtc.read();
-  return rtc.year;
+  return String(rtc.year);
 }
 
-uint8_t getMonth() {
+String getMonth() {
   rtc.read();
-  return rtc.month;
+  return String(rtc.month);
 }
 
-uint8_t getDay() {
+String getDay() {
   rtc.read();
-  return rtc.day;
+  return String(rtc.day);
 }
 
 String getHour() {
@@ -63,12 +63,12 @@ String getHour() {
   return String(buffer);
 }
 
-uint8_t getMinute() {
+String getMinute() {
   rtc.read();
-  return rtc.minute;
+  return String(rtc.minute);
 }
 
-uint8_t getSecond() {
+String getSecond() {
   rtc.read();
-  return rtc.second;
+  return String(rtc.second);
 }
