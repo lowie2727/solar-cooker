@@ -2,10 +2,12 @@
 
 ## Notes
 
-!SD card module SPI not working with other SPI devices! (not fixed yet)
-
 CSV files are generated in the following folder structure: YYYY/MM/DDHHMMSS.csv
 
+the header of the CSV file currently looks like this:
+
+| Year | Month | Day | Hour (12-hour clock) | Minute | Second | Outside temperature [°C] | Wind speed [m/s] | Air pressure (inside box) [hPa] | Relative humidity (inside box) [%] | Temperature inside pot [°C] | Solar irradiance [W/m²] |
+|------|-------|-----|----------------------|--------|--------|--------------------------|------------------|---------------------------------|------------------------------------|-----------------------------|-------------------------|
 ## Dependencies
 
 All libraries are available in the Arduino library manager, if not this will be stated.

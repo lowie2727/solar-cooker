@@ -22,7 +22,7 @@ String getDateTimeFile() {
   rtc.read();
 
   char fileName[100];
-  snprintf(fileName, 100, "%02u%02u%02u%02u", rtc.day, rtc.hour, rtc.minute,
+  snprintf(fileName, 100, "%02u%02u%02u%02u.csv", rtc.day, rtc.hour, rtc.minute,
            rtc.second);
 
   return String(fileName);

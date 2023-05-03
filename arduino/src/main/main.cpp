@@ -77,11 +77,9 @@ void loop() {
       snprintf(csv, 100,
                "%04u;%02u;%02u;%s;%02u;%02u;%.2f;%.2f;%.2f;%.2f;%.2f;%.2f;%.2f",
                year, month, day, hour.c_str(), minute, second,
-               (double)AM2315Temp, (double)windSpeed, (double)BME680Temp,
-               (double)BME680Pres, (double)BME680Hum, (double)PT100Temp,
-               (double)pyranoIrr);
+               (double)AM2315Temp, (double)windSpeed, (double)BME680Pres,
+               (double)BME680Hum, (double)PT100Temp, (double)pyranoIrr);
       stringToSd(csv);
-      Serial.println(csv);
 
       // serial monitor data
       char date[100];

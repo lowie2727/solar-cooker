@@ -2,7 +2,10 @@
 #include <SD.h>
 
 const uint8_t CS_SD = 4;
-const String CSVHeaders = "Time [YYYY-MM-DDTHH:MM:ss];Water temperature [°C];Wind speed [m/s];Outside temperature [°C];Air pressure [hPa];Relative humidity [%];Solar irradiance [W/m²]";
+const String CSVHeaders =
+    "Year;Month;Day;Hour (12-hour clock);Minute;Second;Outside temperature "
+    "[°C];Wind speed [m/s];Air pressure (inside box) [hPa];Relative humidity "
+    "(inside box) [%];Temperature inside pot [°C];Solar irradiance [W/m²]";
 String filePath;
 
 void microSDSetup() {
@@ -45,6 +48,4 @@ void stringToSd(String data) {
   }
 }
 
-void writeCSVHeaders() {
-  stringToSd(CSVHeaders);
-}
+void writeCSVHeaders() { stringToSd(CSVHeaders); }
