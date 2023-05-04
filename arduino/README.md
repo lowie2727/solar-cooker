@@ -1,41 +1,33 @@
 # Arduino
 
-The folder [**main**](main) contains the various components brought together.
+The [**src**](src) folder contains the code for both the individual components and the code for the entire test station.
 
-In the [**components**](components) subfolder, you will find code for each individual component, along with the connection diagram.
+The folder [**src/main**](src/main) contains the various components brought together. Each component has its own cpp file. It is joined via header files in [main.cpp](src/main/main.cpp).
 
-In [**blink**](blink) you will find a simple programme to check if your arduino is working properly.
+In the [**src/components**](src/components) subfolder, you will find code for each individual component, along with the connection diagram.
 
-## Contributing
+## PlatformIO
 
-### Arduino IDE
-You can contribute using the [Arduino IDE](https://www.arduino.cc/en/software)
+We migrated from the [Arduino IDE](https://www.arduino.cc/en/software) to [PlatformIO](https://platformio.org/platformio-ide) because of the size of the project.
 
-### Arduino CLI (advanced)
+### Prerequisites
 
-For advanced users who like the command line, there is also the [Arduino CLI](https://arduino.github.io/arduino-cli/0.31/installation/).
+#### Visual Studio Code
 
-To use the Arduino CLI, run the following commands in the appropriate directory.
+To use PlatformIO u need to first install [Visual Studio Code](https://code.visualstudio.com/)
 
-Check if your board has been detected by your PC.
+When VSCode is installed you need to install the [PlatformIO extension](https://platformio.org/install/ide?install=vscode) in VSCode and then you are ready to compile.
 
-```bash
-arduino-cli board list
-```
+### Using PlatformIO
 
-Delete the appropriate line from the comments and change the number if necessary.
+#### Opening the PlatformIO project
 
-```yaml
-# Windows
-# default_port: COM0
-# Linux
-# default_port: /dev/ttyACM0
-```
+When the extension is successfully installed, you will get a new icon on the left in VSCode. Click on it and open the correct folder (open the folder with the platform.ini file). In this case open the [arduino](/arduino) folder.
 
-Compile and upload to the board.
+#### Build main
 
-```bash
-arduino-cli compile --profile mega && arduino-cli upload --profile mega
-```
+You will now see several project tasks, open main and click on build. The terminal will open, if everything worked out it should show SUCCESS when it is done.
 
+#### Upload and Monitor
 
+To upload the code and view the serial monitor, a button is provided.
