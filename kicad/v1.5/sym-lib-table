@@ -3,4 +3,5 @@
   (lib (name "custom_components")(type "KiCad")(uri "${KIPRJMOD}/custom_components.kicad_sym")(options "")(descr ""))
   (lib (name "switch")(type "KiCad")(uri "${KIPRJMOD}/library/switch/500SSP1S2M2QEA.kicad_sym")(options "")(descr ""))
   (lib (name "Arduino Mega")(type "KiCad")(uri "${KIPRJMOD}/library/Arduino Mega/A000067.kicad_sym")(options "")(descr ""))
+  (lib (name "TBA_1-0519")(type "KiCad")(uri "${KIPRJMOD}/power supply.kicad_sym")(options "")(descr ""))
 )

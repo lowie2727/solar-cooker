@@ -3,4 +3,6 @@
   (lib (name "custom_components")(type "KiCad")(uri "${KIPRJMOD}/footprints")(options "")(descr ""))
   (lib (name "switch")(type "KiCad")(uri "${KIPRJMOD}/library/switch")(options "")(descr ""))
   (lib (name "Arduino Mega")(type "KiCad")(uri "${KIPRJMOD}/library/Arduino Mega")(options "")(descr ""))
+  (lib (name "TBA_1-0519")(type "KiCad")(uri "C:/Users/katow/TBA_1-0519.pretty")(options "")(descr ""))
+  (lib (name "TBA_1-0519 (1)")(type "KiCad")(uri "C:/Users/katow/TBA_1-0519 (1).pretty")(options "")(descr ""))
 )
