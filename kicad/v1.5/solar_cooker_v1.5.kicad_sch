@@ -2610,7 +2610,7 @@
       )
       (project "solar_cooker_v1.5"
         (path "/c2c342ae-c172-4b44-a50e-ddd387eb2591"
-          (reference "R?") (unit 1)
+          (reference "R4") (unit 1)
         )
       )
     )
