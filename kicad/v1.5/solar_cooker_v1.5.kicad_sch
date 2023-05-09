@@ -1305,11 +1305,7 @@
   (no_connect (at 264.795 120.65) (uuid b13c26c1-47ac-465d-a026-38bd7086ec98))
   (no_connect (at 224.155 118.11) (uuid b15d262b-db2a-487d-a889-8e872732c33b))
   (no_connect (at 224.155 87.63) (uuid b48f6a32-44c2-4841-8340-209f1589c056))
-<<<<<<< HEAD
-  (no_connect (at 264.795 49.53) (uuid b8add464-43a5-406e-9cf9-5300d56fc7f0))
-=======
-  (no_connect (at 77.47 92.075) (uuid c51262ea-5848-4eeb-bfab-cafb5b25314a))
->>>>>>> 6380591844bdcf7b8a3258ada72f1226e1c04549
+  (no_connect (at 264.795 49.53) (uuid bd05142b-b39b-4b60-a74b-2c6292492e17))
   (no_connect (at 224.155 138.43) (uuid c725d7bc-55ae-4c44-ab3b-e5673d562d6b))
   (no_connect (at 83.82 149.86) (uuid c786513f-c6aa-4981-b3a0-4fd0ce5242c6))
   (no_connect (at 224.155 64.77) (uuid c8e4aa3b-c759-4cec-943a-78508b9ed693))
@@ -1465,10 +1461,6 @@
   (wire (pts (xy 72.39 26.67) (xy 72.39 25.4))
     (stroke (width 0) (type default) (color 255 0 0 1))
     (uuid 36078cb9-0ae4-41d0-8f9b-9d517ad55af0)
-  )
-  (wire (pts (xy 154.94 156.845) (xy 160.655 156.845))
-    (stroke (width 0) (type default))
-    (uuid 37e65a73-9e31-48c2-be35-f29435ad952d)
   )
   (wire (pts (xy 39.37 31.75) (xy 44.45 31.75))
     (stroke (width 0) (type default) (color 0 0 255 1))
@@ -1721,6 +1713,10 @@
   (wire (pts (xy 271.145 105.41) (xy 264.795 105.41))
     (stroke (width 0) (type default))
     (uuid b8b731d0-bf6d-4825-bf28-b924b6b26593)
+  )
+  (wire (pts (xy 154.94 156.845) (xy 158.115 156.845))
+    (stroke (width 0) (type default))
+    (uuid bb949e93-6446-4cc4-8b50-5805eb8a48f6)
   )
   (wire (pts (xy 83.82 165.1) (xy 85.725 165.1))
     (stroke (width 0) (type default) (color 0 0 0 1))
@@ -1984,17 +1980,6 @@
     (effects (font (size 1.27 1.27)) (justify right bottom))
     (uuid 6970452c-58e9-49f3-8de6-342bcb4207a0)
   )
-<<<<<<< HEAD
-=======
-  (label "D9" (at 72.39 104.775 0) (fields_autoplaced)
-    (effects (font (size 1.27 1.27)) (justify left bottom))
-    (uuid 738f1e44-f953-4010-a44f-14f2f51e3b5d)
-  )
-  (label "D10" (at 160.655 159.385 180) (fields_autoplaced)
-    (effects (font (size 1.27 1.27)) (justify right bottom))
-    (uuid 7ce20e0d-a151-4467-9706-e30ff0129e85)
-  )
->>>>>>> 6380591844bdcf7b8a3258ada72f1226e1c04549
   (label "D24" (at 271.145 107.95 180) (fields_autoplaced)
     (effects (font (size 1.27 1.27)) (justify right bottom))
     (uuid 7d2923b7-3ef9-45b4-96ea-2ab4cd0133f7)
