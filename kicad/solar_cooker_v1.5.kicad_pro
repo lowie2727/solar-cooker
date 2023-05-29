@@ -51,10 +51,7 @@
       "diff_pair_dimensions": [],
       "drc_exclusions": [
         "lib_footprint_mismatch|127948988|131417500|3f055e89-3a9d-47cc-856d-456fd1d80cc4|00000000-0000-0000-0000-000000000000",
-        "silk_edge_clearance|230580000|135780000|1ae5a374-e9bc-4d10-8bd3-e9cdac8d73dd|99d68159-cd20-461f-a9f7-15623eab7707",
-        "silk_edge_clearance|230580000|82440000|1ae5a374-e9bc-4d10-8bd3-e9cdac8d73dd|b288bd85-52fc-4975-ad14-21f4759b03a3",
-        "unconnected_items|140020000|133240000|432bf922-3cce-4b03-8987-1c0add60b139|0968efdf-f441-4bde-a17f-bad5c6715d31",
-        "unconnected_items|183560000|146000000|629d5242-b357-4e02-b7b9-27989602500b|432bf922-3cce-4b03-8987-1c0add60b139"
+        "unconnected_items|140020000|133240000|432bf922-3cce-4b03-8987-1c0add60b139|0968efdf-f441-4bde-a17f-bad5c6715d31"
       ],
       "meta": {
         "version": 2
