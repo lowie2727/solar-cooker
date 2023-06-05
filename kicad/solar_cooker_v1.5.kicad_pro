@@ -50,7 +50,8 @@
       },
       "diff_pair_dimensions": [],
       "drc_exclusions": [
-        "lib_footprint_mismatch|127948988|131417500|3f055e89-3a9d-47cc-856d-456fd1d80cc4|00000000-0000-0000-0000-000000000000",
+        "silk_edge_clearance|230580000|135780000|1ae5a374-e9bc-4d10-8bd3-e9cdac8d73dd|2249b948-97f5-41a9-b5f6-00e768a1ddcf",
+        "silk_edge_clearance|230580000|82440000|1ae5a374-e9bc-4d10-8bd3-e9cdac8d73dd|e418f667-f05e-4194-802c-68ae698ae4a0",
         "unconnected_items|140020000|133240000|432bf922-3cce-4b03-8987-1c0add60b139|0968efdf-f441-4bde-a17f-bad5c6715d31"
       ],
       "meta": {
