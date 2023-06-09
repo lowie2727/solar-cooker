@@ -6,7 +6,7 @@
     (property "Value" "TBA_1-0519" (at -15.24 -5.842 0)
       (effects (font (size 1.27 1.27)) (justify left top))
     )
-    (property "Footprint" "CONV_TBA_1-0519" (at 0 0 0)
+    (property "Footprint" "TBA_1-0519:CONV_TBA_1-0519" (at 0 0 0)
       (effects (font (size 1.27 1.27)) (justify bottom) hide)
     )
     (property "Datasheet" "" (at 0 0 0)

@@ -6,7 +6,7 @@
     (property "Value" "500SSP1S2M2QEA" (at -2.54 -5.08 0)
       (effects (font (size 1.27 1.27)) (justify left top))
     )
-    (property "Footprint" "SW_500SSP1S2M2QEA" (at 0 0 0)
+    (property "Footprint" "500SSP1S2M2QEA:SW_500SSP1S2M2QEA" (at 0 0 0)
       (effects (font (size 1.27 1.27)) (justify bottom) hide)
     )
     (property "Datasheet" "" (at 0 0 0)
