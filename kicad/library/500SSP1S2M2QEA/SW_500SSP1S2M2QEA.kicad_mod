@@ -1,7 +1,7 @@
 (footprint "SW_500SSP1S2M2QEA" (version 20221018) (generator pcbnew)
   (layer "F.Cu")
   (attr through_hole)
-  (fp_text reference "REF**" (at -3.175 -4.445) (layer "F.SilkS")
+  (fp_text reference "REF**" (at -4.7 -5) (layer "F.SilkS")
       (effects (font (size 1 1) (thickness 0.15)))
     (tstamp b6a5739f-5648-4c70-ac8c-8f26326c60ee)
   )

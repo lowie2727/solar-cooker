@@ -5,7 +5,7 @@
       (effects (font (size 1 1) (thickness 0.15)))
     (tstamp dcfee384-ab55-4daa-9037-283d3094bb1d)
   )
-  (fp_text value "clock_module" (at 0 0 unlocked) (layer "F.SilkS")
+  (fp_text value "Clock" (at 0 0 unlocked) (layer "F.SilkS")
       (effects (font (size 1 1) (thickness 0.15)))
     (tstamp 6490d4ca-f3d9-41d4-b29a-f77f39ef68ac)
   )

@@ -43,4 +43,9 @@
       e8f4c758-86fc-43cf-887e-26992277cf0c
     )
   )
+  (model "${KIPRJMOD}/library/SSQ-107-01-G-S/SSQ-107-01-G-S.step"
+    (offset (xyz 0 6.35 0))
+    (scale (xyz 1 1 1))
+    (rotate (xyz -90 0 0))
+  )
 )
