@@ -197,7 +197,7 @@
     (property "Value" "Pt100" (at 0 11.43 0)
       (effects (font (size 1.27 1.27)))
     )
-    (property "Footprint" "custom_components:PT100" (at -2.54 11.43 0)
+    (property "Footprint" "custom_components:Pt100" (at -2.54 11.43 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Datasheet" "" (at -2.54 11.43 0)
