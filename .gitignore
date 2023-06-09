@@ -20,7 +20,9 @@ kicad/**/\#auto_saved_files\#
 kicad/**/_autosave-solar_cooker*.kicad_sch
 kicad/**/_autosave-solar_cooker*.kicad_pcb
 
-kicad/v1/fp-lib-table
+kicad/*.xml
+kicad/output
+kicad/**/__pycache__
 
 # diagrams.net
 
