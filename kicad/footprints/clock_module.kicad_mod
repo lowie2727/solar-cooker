@@ -1,4 +1,4 @@
-(footprint "clockModule" (version 20221018) (generator pcbnew)
+(footprint "clock_module" (version 20221018) (generator pcbnew)
   (layer "F.Cu")
   (attr through_hole)
   (fp_text reference "REF**" (at 8.89 -4.7 unlocked) (layer "F.SilkS")
@@ -44,5 +44,10 @@
       cba3c062-94cd-40b8-a99a-cb70f2fae5bb
       eb2edb3c-4c28-48c0-bd30-acc0dba838bf
     )
+  )
+  (model "${KIPRJMOD}/library/SSQ-108-01-G-S/SSQ-108-01-G-S.step"
+    (offset (xyz 0 6.7 0))
+    (scale (xyz 1 1 1))
+    (rotate (xyz -90 0 0))
   )
 )

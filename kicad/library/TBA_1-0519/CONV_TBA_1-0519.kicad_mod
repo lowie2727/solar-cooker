@@ -41,4 +41,9 @@
   (pad "2" thru_hole circle (at -1.27 1.65) (size 1.11 1.11) (drill 0.71) (layers "*.Cu" "*.Mask") (tstamp 2b4b839a-c5f6-4619-8195-04f2a8927b24))
   (pad "3" thru_hole circle (at 1.27 1.65) (size 1.11 1.11) (drill 0.71) (layers "*.Cu" "*.Mask") (tstamp ca840eb2-a07d-4519-9741-212f81a85ea9))
   (pad "4" thru_hole circle (at 3.81 1.65) (size 1.11 1.11) (drill 0.71) (layers "*.Cu" "*.Mask") (tstamp 4afd69b6-1aa5-44c2-af33-8cf508382941))
+  (model "${KIPRJMOD}/library/TBA_1-0519/TBA_1-0519.step"
+    (offset (xyz -40.65 -32.45 -10.5))
+    (scale (xyz 1 1 1))
+    (rotate (xyz 0 0 180))
+  )
 )

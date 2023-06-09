@@ -1,7 +1,7 @@
-(footprint "PT100" (version 20221018) (generator pcbnew)
+(footprint "Pt100" (version 20221018) (generator pcbnew)
   (layer "F.Cu")
   (attr through_hole)
-  (fp_text reference "REF**" (at 10.9 -11.7 90 unlocked) (layer "F.SilkS")
+  (fp_text reference "REF**" (at 11.4 -11.7 90 unlocked) (layer "F.SilkS")
       (effects (font (size 1 1) (thickness 0.15)))
     (tstamp 781f1a4e-cfc4-40a5-9b84-2eb46e5a1dbe)
   )
@@ -48,5 +48,10 @@
       eac4a467-bb96-4e50-99b8-85d33b373550
       ec761b09-2ddf-4a07-8cb7-4690b3c86902
     )
+  )
+  (model "${KIPRJMOD}/library/SSQ-108-01-G-S/SSQ-108-01-G-S.step"
+    (offset (xyz 0 11.65 0))
+    (scale (xyz 1 1 1))
+    (rotate (xyz -90 0 0))
   )
 )
