@@ -101,24 +101,6 @@
       (property "Datasheet" "" (at 0 0 0)
         (effects (font (size 1.27 1.27)) hide)
       )
-      (property "MF" "Arduino" (at 0 0 0)
-        (effects (font (size 1.27 1.27)) (justify bottom) hide)
-      )
-      (property "DESCRIPTION" "Dev.kit: Arduino; SPI, TWI, UART; ICSP, USB B, pin strips, supply" (at 0 0 0)
-        (effects (font (size 1.27 1.27)) (justify bottom) hide)
-      )
-      (property "PACKAGE" "None" (at 0 0 0)
-        (effects (font (size 1.27 1.27)) (justify bottom) hide)
-      )
-      (property "PRICE" "None" (at 0 0 0)
-        (effects (font (size 1.27 1.27)) (justify bottom) hide)
-      )
-      (property "MP" "ARDUINO MEGA2560 REV3 - RETAIL" (at 0 0 0)
-        (effects (font (size 1.27 1.27)) (justify bottom) hide)
-      )
-      (property "AVAILABILITY" "Unavailable" (at 0 0 0)
-        (effects (font (size 1.27 1.27)) (justify bottom) hide)
-      )
       (symbol "A000067_0_0"
         (rectangle (start -15.24 60.96) (end 15.24 -60.96)
           (stroke (width 0.254) (type default))
@@ -591,398 +573,6 @@
         (pin passive line (at 0 -2.54 90) (length 0.762)
           (name "~" (effects (font (size 1.27 1.27))))
           (number "2" (effects (font (size 1.27 1.27))))
-        )
-      )
-    )
-    (symbol "SSQ-108-01-G-S:SSQ-108-01-G-S" (pin_names (offset 1.016)) (in_bom yes) (on_board no)
-      (property "Reference" "J" (at 6.35 0 0)
-        (effects (font (size 1.27 1.27)) (justify left bottom))
-      )
-      (property "Value" "SSQ-108-01-G-S" (at 6.35 -1.27 0)
-        (effects (font (size 1.27 1.27)) (justify left top) hide)
-      )
-      (property "Footprint" "SSQ-108-01-G-S:SAMTEC_SSQ-108-01-G-S" (at 0 0 0)
-        (effects (font (size 1.27 1.27)) (justify bottom) hide)
-      )
-      (property "Datasheet" "" (at 5.08 0 0)
-        (effects (font (size 1.27 1.27)) hide)
-      )
-      (property "Description" "CONN RCPT 8POS 0.1 GOLD PCB" (at 0 0 0)
-        (effects (font (size 1.27 1.27)) hide)
-      )
-      (property "Manufacturer" "Samtec Inc." (at 0 0 0)
-        (effects (font (size 1.27 1.27)) hide)
-      )
-      (property "MPN" "SSQ-108-01-G-S" (at 0 0 0)
-        (effects (font (size 1.27 1.27)) hide)
-      )
-      (property "Supplier" "Digi-Key" (at 0 0 0)
-        (effects (font (size 1.27 1.27)) hide)
-      )
-      (property "SPN" "SAM1180-08-ND" (at 0 0 0)
-        (effects (font (size 1.27 1.27)) hide)
-      )
-      (symbol "SSQ-108-01-G-S_0_0"
-        (rectangle (start 0 8.89) (end 3.81 -11.43)
-          (stroke (width 0.254) (type default))
-          (fill (type background))
-        )
-        (pin passive line (at -5.08 7.62 0) (length 5.08)
-          (name "01" (effects (font (size 1.016 1.016))))
-          (number "01" (effects (font (size 1.016 1.016))))
-        )
-        (pin passive line (at -5.08 5.08 0) (length 5.08)
-          (name "02" (effects (font (size 1.016 1.016))))
-          (number "02" (effects (font (size 1.016 1.016))))
-        )
-        (pin passive line (at -5.08 2.54 0) (length 5.08)
-          (name "03" (effects (font (size 1.016 1.016))))
-          (number "03" (effects (font (size 1.016 1.016))))
-        )
-        (pin passive line (at -5.08 0 0) (length 5.08)
-          (name "04" (effects (font (size 1.016 1.016))))
-          (number "04" (effects (font (size 1.016 1.016))))
-        )
-        (pin passive line (at -5.08 -2.54 0) (length 5.08)
-          (name "05" (effects (font (size 1.016 1.016))))
-          (number "05" (effects (font (size 1.016 1.016))))
-        )
-        (pin passive line (at -5.08 -5.08 0) (length 5.08)
-          (name "06" (effects (font (size 1.016 1.016))))
-          (number "06" (effects (font (size 1.016 1.016))))
-        )
-        (pin passive line (at -5.08 -7.62 0) (length 5.08)
-          (name "07" (effects (font (size 1.016 1.016))))
-          (number "07" (effects (font (size 1.016 1.016))))
-        )
-        (pin passive line (at -5.08 -10.16 0) (length 5.08)
-          (name "08" (effects (font (size 1.016 1.016))))
-          (number "08" (effects (font (size 1.016 1.016))))
-        )
-      )
-    )
-    (symbol "SSQ-109-01-G-S:SSQ-109-01-G-S" (pin_names (offset 1.016)) (in_bom yes) (on_board no)
-      (property "Reference" "J" (at 5.08 0 0)
-        (effects (font (size 1.27 1.27)) (justify right))
-      )
-      (property "Value" "SSQ-109-01-G-S" (at -7.62 -15.24 0)
-        (effects (font (size 1.27 1.27)) (justify left bottom) hide)
-      )
-      (property "Footprint" "SAMTEC_SSQ-109-01-G-S" (at 0 0 0)
-        (effects (font (size 1.27 1.27)) (justify bottom) hide)
-      )
-      (property "Datasheet" "" (at 0 0 0)
-        (effects (font (size 1.27 1.27)) hide)
-      )
-      (property "Description" "CONN RCPT 9POS 0.1 GOLD PCB" (at 0 0 0)
-        (effects (font (size 1.27 1.27)) hide)
-      )
-      (property "Manufacturer" "Samtec Inc." (at 0 0 0)
-        (effects (font (size 1.27 1.27)) hide)
-      )
-      (property "MPN" "SSQ-109-01-G-S" (at 0 0 0)
-        (effects (font (size 1.27 1.27)) hide)
-      )
-      (property "Supplier" "Digi-Key" (at 0 0 0)
-        (effects (font (size 1.27 1.27)) hide)
-      )
-      (property "SPN" "SAM1180-09-ND" (at 0 0 0)
-        (effects (font (size 1.27 1.27)) hide)
-      )
-      (symbol "SSQ-109-01-G-S_0_0"
-        (rectangle (start 0 11.43) (end 3.81 -11.43)
-          (stroke (width 0.254) (type default))
-          (fill (type background))
-        )
-        (pin passive line (at -5.08 10.16 0) (length 5.08)
-          (name "01" (effects (font (size 1.016 1.016))))
-          (number "01" (effects (font (size 1.016 1.016))))
-        )
-        (pin passive line (at -5.08 7.62 0) (length 5.08)
-          (name "02" (effects (font (size 1.016 1.016))))
-          (number "02" (effects (font (size 1.016 1.016))))
-        )
-        (pin passive line (at -5.08 5.08 0) (length 5.08)
-          (name "03" (effects (font (size 1.016 1.016))))
-          (number "03" (effects (font (size 1.016 1.016))))
-        )
-        (pin passive line (at -5.08 2.54 0) (length 5.08)
-          (name "04" (effects (font (size 1.016 1.016))))
-          (number "04" (effects (font (size 1.016 1.016))))
-        )
-        (pin passive line (at -5.08 0 0) (length 5.08)
-          (name "05" (effects (font (size 1.016 1.016))))
-          (number "05" (effects (font (size 1.016 1.016))))
-        )
-        (pin passive line (at -5.08 -2.54 0) (length 5.08)
-          (name "06" (effects (font (size 1.016 1.016))))
-          (number "06" (effects (font (size 1.016 1.016))))
-        )
-        (pin passive line (at -5.08 -5.08 0) (length 5.08)
-          (name "07" (effects (font (size 1.016 1.016))))
-          (number "07" (effects (font (size 1.016 1.016))))
-        )
-        (pin passive line (at -5.08 -7.62 0) (length 5.08)
-          (name "08" (effects (font (size 1.016 1.016))))
-          (number "08" (effects (font (size 1.016 1.016))))
-        )
-        (pin passive line (at -5.08 -10.16 0) (length 5.08)
-          (name "09" (effects (font (size 1.016 1.016))))
-          (number "09" (effects (font (size 1.016 1.016))))
-        )
-      )
-    )
-    (symbol "SSQ-110-01-G-S:SSQ-110-01-G-S" (pin_names (offset 1.016)) (in_bom yes) (on_board no)
-      (property "Reference" "J" (at 1.27 15.24 0)
-        (effects (font (size 1.27 1.27)) (justify left bottom))
-      )
-      (property "Value" "SSQ-110-01-G-S" (at -7.62 -15.24 0)
-        (effects (font (size 1.27 1.27)) (justify left bottom) hide)
-      )
-      (property "Footprint" "SAMTEC_SSQ-110-01-G-S" (at 0 0 0)
-        (effects (font (size 1.27 1.27)) (justify bottom) hide)
-      )
-      (property "Datasheet" "" (at 0 0 0)
-        (effects (font (size 1.27 1.27)) hide)
-      )
-      (property "Description" "CONN RCPT 10POS 0.1 GOLD PCB" (at 0 0 0)
-        (effects (font (size 1.27 1.27)) hide)
-      )
-      (property "Manufacturer" "Samtec Inc." (at 0 0 0)
-        (effects (font (size 1.27 1.27)) hide)
-      )
-      (property "MPN" "SSQ-110-01-G-S" (at 0 0 0)
-        (effects (font (size 1.27 1.27)) hide)
-      )
-      (property "Supplier" "Digi-Key" (at 0 0 0)
-        (effects (font (size 1.27 1.27)) hide)
-      )
-      (property "SPN" "SAM1180-10-ND" (at 0 0 0)
-        (effects (font (size 1.27 1.27)) hide)
-      )
-      (symbol "SSQ-110-01-G-S_0_0"
-        (rectangle (start 0 13.97) (end 3.81 -11.43)
-          (stroke (width 0.254) (type default))
-          (fill (type background))
-        )
-        (pin passive line (at -5.08 12.7 0) (length 5.08)
-          (name "01" (effects (font (size 1.016 1.016))))
-          (number "01" (effects (font (size 1.016 1.016))))
-        )
-        (pin passive line (at -5.08 10.16 0) (length 5.08)
-          (name "02" (effects (font (size 1.016 1.016))))
-          (number "02" (effects (font (size 1.016 1.016))))
-        )
-        (pin passive line (at -5.08 7.62 0) (length 5.08)
-          (name "03" (effects (font (size 1.016 1.016))))
-          (number "03" (effects (font (size 1.016 1.016))))
-        )
-        (pin passive line (at -5.08 5.08 0) (length 5.08)
-          (name "04" (effects (font (size 1.016 1.016))))
-          (number "04" (effects (font (size 1.016 1.016))))
-        )
-        (pin passive line (at -5.08 2.54 0) (length 5.08)
-          (name "05" (effects (font (size 1.016 1.016))))
-          (number "05" (effects (font (size 1.016 1.016))))
-        )
-        (pin passive line (at -5.08 0 0) (length 5.08)
-          (name "06" (effects (font (size 1.016 1.016))))
-          (number "06" (effects (font (size 1.016 1.016))))
-        )
-        (pin passive line (at -5.08 -2.54 0) (length 5.08)
-          (name "07" (effects (font (size 1.016 1.016))))
-          (number "07" (effects (font (size 1.016 1.016))))
-        )
-        (pin passive line (at -5.08 -5.08 0) (length 5.08)
-          (name "08" (effects (font (size 1.016 1.016))))
-          (number "08" (effects (font (size 1.016 1.016))))
-        )
-        (pin passive line (at -5.08 -7.62 0) (length 5.08)
-          (name "09" (effects (font (size 1.016 1.016))))
-          (number "09" (effects (font (size 1.016 1.016))))
-        )
-        (pin passive line (at -5.08 -10.16 0) (length 5.08)
-          (name "10" (effects (font (size 1.016 1.016))))
-          (number "10" (effects (font (size 1.016 1.016))))
-        )
-      )
-    )
-    (symbol "SSQ-118-01-G-D:SSQ-118-01-G-D" (pin_names (offset 1.016)) (in_bom yes) (on_board no)
-      (property "Reference" "J" (at 0 25.4 0)
-        (effects (font (size 1.27 1.27)) (justify left bottom))
-      )
-      (property "Value" "SSQ-118-01-G-D" (at -7.62 -25.4 0)
-        (effects (font (size 1.27 1.27)) (justify left bottom) hide)
-      )
-      (property "Footprint" "SAMTEC_SSQ-118-01-G-D" (at -7.62 0 0)
-        (effects (font (size 1.27 1.27)) (justify bottom) hide)
-      )
-      (property "Datasheet" "" (at 3.81 0 0)
-        (effects (font (size 1.27 1.27)) hide)
-      )
-      (property "Description" "CONN RCPT 36POS 0.1 GOLD PCB" (at 0 0 0)
-        (effects (font (size 1.27 1.27)) hide)
-      )
-      (property "Manufacturer" "Samtec Inc." (at 0 0 0)
-        (effects (font (size 1.27 1.27)) hide)
-      )
-      (property "MPN" "SSQ-118-01-G-D" (at 0 0 0)
-        (effects (font (size 1.27 1.27)) hide)
-      )
-      (property "Supplier" "Digi-Key" (at 0 0 0)
-        (effects (font (size 1.27 1.27)) hide)
-      )
-      (property "SPN" "SAM1179-18-ND" (at 0 0 0)
-        (effects (font (size 1.27 1.27)) hide)
-      )
-      (symbol "SSQ-118-01-G-D_0_0"
-        (rectangle (start -3.81 24.13) (end 3.81 -21.59)
-          (stroke (width 0.254) (type default))
-          (fill (type background))
-        )
-        (pin passive line (at -8.89 22.86 0) (length 5.08)
-          (name "01" (effects (font (size 1.016 1.016))))
-          (number "01" (effects (font (size 1.016 1.016))))
-        )
-        (pin passive line (at 8.89 22.86 180) (length 5.08)
-          (name "02" (effects (font (size 1.016 1.016))))
-          (number "02" (effects (font (size 1.016 1.016))))
-        )
-        (pin passive line (at -8.89 20.32 0) (length 5.08)
-          (name "03" (effects (font (size 1.016 1.016))))
-          (number "03" (effects (font (size 1.016 1.016))))
-        )
-        (pin passive line (at 8.89 20.32 180) (length 5.08)
-          (name "04" (effects (font (size 1.016 1.016))))
-          (number "04" (effects (font (size 1.016 1.016))))
-        )
-        (pin passive line (at -8.89 17.78 0) (length 5.08)
-          (name "05" (effects (font (size 1.016 1.016))))
-          (number "05" (effects (font (size 1.016 1.016))))
-        )
-        (pin passive line (at 8.89 17.78 180) (length 5.08)
-          (name "06" (effects (font (size 1.016 1.016))))
-          (number "06" (effects (font (size 1.016 1.016))))
-        )
-        (pin passive line (at -8.89 15.24 0) (length 5.08)
-          (name "07" (effects (font (size 1.016 1.016))))
-          (number "07" (effects (font (size 1.016 1.016))))
-        )
-        (pin passive line (at 8.89 15.24 180) (length 5.08)
-          (name "08" (effects (font (size 1.016 1.016))))
-          (number "08" (effects (font (size 1.016 1.016))))
-        )
-        (pin passive line (at -8.89 12.7 0) (length 5.08)
-          (name "09" (effects (font (size 1.016 1.016))))
-          (number "09" (effects (font (size 1.016 1.016))))
-        )
-        (pin passive line (at 8.89 12.7 180) (length 5.08)
-          (name "10" (effects (font (size 1.016 1.016))))
-          (number "10" (effects (font (size 1.016 1.016))))
-        )
-        (pin passive line (at -8.89 10.16 0) (length 5.08)
-          (name "11" (effects (font (size 1.016 1.016))))
-          (number "11" (effects (font (size 1.016 1.016))))
-        )
-        (pin passive line (at 8.89 10.16 180) (length 5.08)
-          (name "12" (effects (font (size 1.016 1.016))))
-          (number "12" (effects (font (size 1.016 1.016))))
-        )
-        (pin passive line (at -8.89 7.62 0) (length 5.08)
-          (name "13" (effects (font (size 1.016 1.016))))
-          (number "13" (effects (font (size 1.016 1.016))))
-        )
-        (pin passive line (at 8.89 7.62 180) (length 5.08)
-          (name "14" (effects (font (size 1.016 1.016))))
-          (number "14" (effects (font (size 1.016 1.016))))
-        )
-        (pin passive line (at -8.89 5.08 0) (length 5.08)
-          (name "15" (effects (font (size 1.016 1.016))))
-          (number "15" (effects (font (size 1.016 1.016))))
-        )
-        (pin passive line (at 8.89 5.08 180) (length 5.08)
-          (name "16" (effects (font (size 1.016 1.016))))
-          (number "16" (effects (font (size 1.016 1.016))))
-        )
-        (pin passive line (at -8.89 2.54 0) (length 5.08)
-          (name "17" (effects (font (size 1.016 1.016))))
-          (number "17" (effects (font (size 1.016 1.016))))
-        )
-        (pin passive line (at 8.89 2.54 180) (length 5.08)
-          (name "18" (effects (font (size 1.016 1.016))))
-          (number "18" (effects (font (size 1.016 1.016))))
-        )
-        (pin passive line (at -8.89 0 0) (length 5.08)
-          (name "19" (effects (font (size 1.016 1.016))))
-          (number "19" (effects (font (size 1.016 1.016))))
-        )
-        (pin passive line (at 8.89 0 180) (length 5.08)
-          (name "20" (effects (font (size 1.016 1.016))))
-          (number "20" (effects (font (size 1.016 1.016))))
-        )
-        (pin passive line (at -8.89 -2.54 0) (length 5.08)
-          (name "21" (effects (font (size 1.016 1.016))))
-          (number "21" (effects (font (size 1.016 1.016))))
-        )
-        (pin passive line (at 8.89 -2.54 180) (length 5.08)
-          (name "22" (effects (font (size 1.016 1.016))))
-          (number "22" (effects (font (size 1.016 1.016))))
-        )
-        (pin passive line (at -8.89 -5.08 0) (length 5.08)
-          (name "23" (effects (font (size 1.016 1.016))))
-          (number "23" (effects (font (size 1.016 1.016))))
-        )
-        (pin passive line (at 8.89 -5.08 180) (length 5.08)
-          (name "24" (effects (font (size 1.016 1.016))))
-          (number "24" (effects (font (size 1.016 1.016))))
-        )
-        (pin passive line (at -8.89 -7.62 0) (length 5.08)
-          (name "25" (effects (font (size 1.016 1.016))))
-          (number "25" (effects (font (size 1.016 1.016))))
-        )
-        (pin passive line (at 8.89 -7.62 180) (length 5.08)
-          (name "26" (effects (font (size 1.016 1.016))))
-          (number "26" (effects (font (size 1.016 1.016))))
-        )
-        (pin passive line (at -8.89 -10.16 0) (length 5.08)
-          (name "27" (effects (font (size 1.016 1.016))))
-          (number "27" (effects (font (size 1.016 1.016))))
-        )
-        (pin passive line (at 8.89 -10.16 180) (length 5.08)
-          (name "28" (effects (font (size 1.016 1.016))))
-          (number "28" (effects (font (size 1.016 1.016))))
-        )
-        (pin passive line (at -8.89 -12.7 0) (length 5.08)
-          (name "29" (effects (font (size 1.016 1.016))))
-          (number "29" (effects (font (size 1.016 1.016))))
-        )
-        (pin passive line (at 8.89 -12.7 180) (length 5.08)
-          (name "30" (effects (font (size 1.016 1.016))))
-          (number "30" (effects (font (size 1.016 1.016))))
-        )
-        (pin passive line (at -8.89 -15.24 0) (length 5.08)
-          (name "31" (effects (font (size 1.016 1.016))))
-          (number "31" (effects (font (size 1.016 1.016))))
-        )
-        (pin passive line (at 8.89 -15.24 180) (length 5.08)
-          (name "32" (effects (font (size 1.016 1.016))))
-          (number "32" (effects (font (size 1.016 1.016))))
-        )
-        (pin passive line (at -8.89 -17.78 0) (length 5.08)
-          (name "33" (effects (font (size 1.016 1.016))))
-          (number "33" (effects (font (size 1.016 1.016))))
-        )
-        (pin passive line (at 8.89 -17.78 180) (length 5.08)
-          (name "34" (effects (font (size 1.016 1.016))))
-          (number "34" (effects (font (size 1.016 1.016))))
-        )
-        (pin passive line (at -8.89 -20.32 0) (length 5.08)
-          (name "35" (effects (font (size 1.016 1.016))))
-          (number "35" (effects (font (size 1.016 1.016))))
-        )
-        (pin passive line (at 8.89 -20.32 180) (length 5.08)
-          (name "36" (effects (font (size 1.016 1.016))))
-          (number "36" (effects (font (size 1.016 1.016))))
         )
       )
     )
@@ -2708,7 +2298,7 @@
     (pin "8" (uuid 456b79c4-b957-45b7-a9b1-e481768bd02c))
     (pin "9" (uuid 067e369f-2bb3-407d-987e-8ab28968154c))
     (instances
-      (project "solar_cooker_v1.5"
+      (project "solar_cooker"
         (path "/c2c342ae-c172-4b44-a50e-ddd387eb2591"
           (reference "J8") (unit 1)
         )
@@ -2738,56 +2328,9 @@
           (reference "#PWR015") (unit 1)
         )
       )
-      (project "solar_cooker_v1.5"
+      (project "solar_cooker"
         (path "/c2c342ae-c172-4b44-a50e-ddd387eb2591"
           (reference "#PWR09") (unit 1)
-        )
-      )
-    )
-  )
-
-  (symbol (lib_id "SSQ-108-01-G-S:SSQ-108-01-G-S") (at 271.78 65.405 0) (unit 1)
-    (in_bom yes) (on_board no) (dnp no) (fields_autoplaced)
-    (uuid 0602766d-a8ef-421d-a167-cf9295c5c5a1)
-    (property "Reference" "J15" (at 277.495 67.31 0)
-      (effects (font (size 1.27 1.27)) (justify left))
-    )
-    (property "Value" "SSQ-108-01-G-S" (at 278.13 66.675 0)
-      (effects (font (size 1.27 1.27)) (justify left top) hide)
-    )
-    (property "Footprint" "SSQ-108-01-G-S:SAMTEC_SSQ-108-01-G-S" (at 271.78 65.405 0)
-      (effects (font (size 1.27 1.27)) (justify bottom) hide)
-    )
-    (property "Datasheet" "" (at 276.86 65.405 0)
-      (effects (font (size 1.27 1.27)) hide)
-    )
-    (property "Description" "CONN RCPT 8POS 0.1 GOLD PCB" (at 271.78 65.405 0)
-      (effects (font (size 1.27 1.27)) hide)
-    )
-    (property "Manufacturer" "Samtec Inc." (at 271.78 65.405 0)
-      (effects (font (size 1.27 1.27)) hide)
-    )
-    (property "MPN" "SSQ-108-01-G-S" (at 271.78 65.405 0)
-      (effects (font (size 1.27 1.27)) hide)
-    )
-    (property "Supplier" "Digi-Key" (at 271.78 65.405 0)
-      (effects (font (size 1.27 1.27)) hide)
-    )
-    (property "SPN" "SAM1180-08-ND" (at 271.78 65.405 0)
-      (effects (font (size 1.27 1.27)) hide)
-    )
-    (pin "01" (uuid ecb2c863-2dc5-4c74-87b4-fcce1c9a9d6c))
-    (pin "02" (uuid 1f055067-e707-40fd-9051-645191c0cd47))
-    (pin "03" (uuid feb18923-4278-4325-99a6-bad18ff40e84))
-    (pin "04" (uuid 8878bab2-66f6-426d-abba-8dfeb127a62c))
-    (pin "05" (uuid 0ab94be4-6732-4315-9cd4-95c10f97ed38))
-    (pin "06" (uuid 33ad4bb5-93f1-4b09-a170-f97cde657b31))
-    (pin "07" (uuid a36c852a-2a30-42d3-be72-ce913774dfe6))
-    (pin "08" (uuid d31f5a4a-349d-40ec-b4d1-3068a0ba4bfc))
-    (instances
-      (project "solar_cooker_v1.5"
-        (path "/c2c342ae-c172-4b44-a50e-ddd387eb2591"
-          (reference "J15") (unit 1)
         )
       )
     )
@@ -2815,7 +2358,7 @@
           (reference "#PWR016") (unit 1)
         )
       )
-      (project "solar_cooker_v1.5"
+      (project "solar_cooker"
         (path "/c2c342ae-c172-4b44-a50e-ddd387eb2591"
           (reference "#PWR017") (unit 1)
         )
@@ -2845,7 +2388,7 @@
           (reference "#PWR014") (unit 1)
         )
       )
-      (project "solar_cooker_v1.5"
+      (project "solar_cooker"
         (path "/c2c342ae-c172-4b44-a50e-ddd387eb2591"
           (reference "#PWR013") (unit 1)
         )
@@ -2875,7 +2418,7 @@
           (reference "#PWR016") (unit 1)
         )
       )
-      (project "solar_cooker_v1.5"
+      (project "solar_cooker"
         (path "/c2c342ae-c172-4b44-a50e-ddd387eb2591"
           (reference "#PWR019") (unit 1)
         )
@@ -2900,7 +2443,7 @@
     )
     (pin "1" (uuid 5899f84a-a81e-4e54-8682-32fe33ba0a91))
     (instances
-      (project "solar_cooker_v1.5"
+      (project "solar_cooker"
         (path "/c2c342ae-c172-4b44-a50e-ddd387eb2591"
           (reference "#PWR036") (unit 1)
         )
@@ -2930,9 +2473,9 @@
           (reference "#PWR011") (unit 1)
         )
       )
-      (project "solar_cooker_v1.5"
+      (project "solar_cooker"
         (path "/c2c342ae-c172-4b44-a50e-ddd387eb2591"
-          (reference "#PWR026") (unit 1)
+          (reference "#PWR025") (unit 1)
         )
       )
     )
@@ -2955,7 +2498,7 @@
     )
     (pin "1" (uuid 0e943d7a-7c15-4540-ae06-981729ff5b62))
     (instances
-      (project "solar_cooker_v1.5"
+      (project "solar_cooker"
         (path "/c2c342ae-c172-4b44-a50e-ddd387eb2591"
           (reference "#PWR030") (unit 1)
         )
@@ -3003,7 +2546,7 @@
           (reference "U9") (unit 1)
         )
       )
-      (project "solar_cooker_v1.5"
+      (project "solar_cooker"
         (path "/c2c342ae-c172-4b44-a50e-ddd387eb2591"
           (reference "U2") (unit 1)
         )
@@ -3033,7 +2576,7 @@
           (reference "#PWR04") (unit 1)
         )
       )
-      (project "solar_cooker_v1.5"
+      (project "solar_cooker"
         (path "/c2c342ae-c172-4b44-a50e-ddd387eb2591"
           (reference "#PWR03") (unit 1)
         )
@@ -3063,7 +2606,7 @@
           (reference "#PWR03") (unit 1)
         )
       )
-      (project "solar_cooker_v1.5"
+      (project "solar_cooker"
         (path "/c2c342ae-c172-4b44-a50e-ddd387eb2591"
           (reference "#PWR07") (unit 1)
         )
@@ -3093,7 +2636,7 @@
           (reference "#PWR011") (unit 1)
         )
       )
-      (project "solar_cooker_v1.5"
+      (project "solar_cooker"
         (path "/c2c342ae-c172-4b44-a50e-ddd387eb2591"
           (reference "#PWR022") (unit 1)
         )
@@ -3118,7 +2661,7 @@
     )
     (pin "1" (uuid 8dac3f0b-0fff-4aea-b5f0-5c72d03efa5e))
     (instances
-      (project "solar_cooker_v1.5"
+      (project "solar_cooker"
         (path "/c2c342ae-c172-4b44-a50e-ddd387eb2591"
           (reference "#PWR020") (unit 1)
         )
@@ -3167,7 +2710,7 @@
           (reference "R1") (unit 1)
         )
       )
-      (project "solar_cooker_v1.5"
+      (project "solar_cooker"
         (path "/c2c342ae-c172-4b44-a50e-ddd387eb2591"
           (reference "R2") (unit 1)
         )
@@ -3197,7 +2740,7 @@
           (reference "#PWR015") (unit 1)
         )
       )
-      (project "solar_cooker_v1.5"
+      (project "solar_cooker"
         (path "/c2c342ae-c172-4b44-a50e-ddd387eb2591"
           (reference "#PWR023") (unit 1)
         )
@@ -3222,7 +2765,7 @@
     )
     (pin "1" (uuid 40e24b88-84d6-4e02-bc67-cb789d243ec0))
     (instances
-      (project "solar_cooker_v1.5"
+      (project "solar_cooker"
         (path "/c2c342ae-c172-4b44-a50e-ddd387eb2591"
           (reference "#PWR011") (unit 1)
         )
@@ -3271,7 +2814,7 @@
           (reference "D?") (unit 1)
         )
       )
-      (project "solar_cooker_v1.5"
+      (project "solar_cooker"
         (path "/c2c342ae-c172-4b44-a50e-ddd387eb2591"
           (reference "D2") (unit 1)
         )
@@ -3301,7 +2844,7 @@
           (reference "#PWR018") (unit 1)
         )
       )
-      (project "solar_cooker_v1.5"
+      (project "solar_cooker"
         (path "/c2c342ae-c172-4b44-a50e-ddd387eb2591"
           (reference "#PWR08") (unit 1)
         )
@@ -3331,9 +2874,9 @@
           (reference "#PWR012") (unit 1)
         )
       )
-      (project "solar_cooker_v1.5"
+      (project "solar_cooker"
         (path "/c2c342ae-c172-4b44-a50e-ddd387eb2591"
-          (reference "#PWR027") (unit 1)
+          (reference "#PWR026") (unit 1)
         )
       )
     )
@@ -3356,7 +2899,7 @@
     )
     (pin "1" (uuid 94ae6068-574b-4ef7-abe7-cf93f795656d))
     (instances
-      (project "solar_cooker_v1.5"
+      (project "solar_cooker"
         (path "/c2c342ae-c172-4b44-a50e-ddd387eb2591"
           (reference "#PWR034") (unit 1)
         )
@@ -3405,7 +2948,7 @@
           (reference "R1") (unit 1)
         )
       )
-      (project "solar_cooker_v1.5"
+      (project "solar_cooker"
         (path "/c2c342ae-c172-4b44-a50e-ddd387eb2591"
           (reference "R1") (unit 1)
         )
@@ -3435,7 +2978,7 @@
           (reference "#PWR017") (unit 1)
         )
       )
-      (project "solar_cooker_v1.5"
+      (project "solar_cooker"
         (path "/c2c342ae-c172-4b44-a50e-ddd387eb2591"
           (reference "#PWR06") (unit 1)
         )
@@ -3465,7 +3008,7 @@
           (reference "#PWR015") (unit 1)
         )
       )
-      (project "solar_cooker_v1.5"
+      (project "solar_cooker"
         (path "/c2c342ae-c172-4b44-a50e-ddd387eb2591"
           (reference "#PWR018") (unit 1)
         )
@@ -3517,103 +3060,9 @@
           (reference "U2") (unit 1)
         )
       )
-      (project "solar_cooker_v1.5"
+      (project "solar_cooker"
         (path "/c2c342ae-c172-4b44-a50e-ddd387eb2591"
           (reference "J2") (unit 1)
-        )
-      )
-    )
-  )
-
-  (symbol (lib_id "SSQ-108-01-G-S:SSQ-108-01-G-S") (at 184.15 79.375 0) (unit 1)
-    (in_bom yes) (on_board no) (dnp no) (fields_autoplaced)
-    (uuid 4cc1d66b-27a7-4cc8-ab68-197da6b342e3)
-    (property "Reference" "J12" (at 189.865 81.28 0)
-      (effects (font (size 1.27 1.27)) (justify left))
-    )
-    (property "Value" "SSQ-108-01-G-S" (at 190.5 80.645 0)
-      (effects (font (size 1.27 1.27)) (justify left top) hide)
-    )
-    (property "Footprint" "SSQ-108-01-G-S:SAMTEC_SSQ-108-01-G-S" (at 184.15 79.375 0)
-      (effects (font (size 1.27 1.27)) (justify bottom) hide)
-    )
-    (property "Datasheet" "" (at 189.23 79.375 0)
-      (effects (font (size 1.27 1.27)) hide)
-    )
-    (property "Description" "CONN RCPT 8POS 0.1 GOLD PCB" (at 184.15 79.375 0)
-      (effects (font (size 1.27 1.27)) hide)
-    )
-    (property "Manufacturer" "Samtec Inc." (at 184.15 79.375 0)
-      (effects (font (size 1.27 1.27)) hide)
-    )
-    (property "MPN" "SSQ-108-01-G-S" (at 184.15 79.375 0)
-      (effects (font (size 1.27 1.27)) hide)
-    )
-    (property "Supplier" "Digi-Key" (at 184.15 79.375 0)
-      (effects (font (size 1.27 1.27)) hide)
-    )
-    (property "SPN" "SAM1180-08-ND" (at 184.15 79.375 0)
-      (effects (font (size 1.27 1.27)) hide)
-    )
-    (pin "01" (uuid 8216763d-3d24-41eb-b4d3-45f315c3a8b6))
-    (pin "02" (uuid 8cf81e35-fc84-4900-a001-76ac30f643e1))
-    (pin "03" (uuid ecf7b00d-ac14-4117-ac27-892f1655cdd9))
-    (pin "04" (uuid ef72309d-2980-4f51-9ff7-74b033de581b))
-    (pin "05" (uuid ac9e95ab-0b69-4f33-b891-09b8a8fbdb4e))
-    (pin "06" (uuid 85fbdca1-669e-43fe-afba-ab36e4d5237d))
-    (pin "07" (uuid 0c0d1faf-32f5-48af-9f02-223f0fb67bbf))
-    (pin "08" (uuid 1a006f25-d015-48cb-bf9b-1d10cb322351))
-    (instances
-      (project "solar_cooker_v1.5"
-        (path "/c2c342ae-c172-4b44-a50e-ddd387eb2591"
-          (reference "J12") (unit 1)
-        )
-      )
-    )
-  )
-
-  (symbol (lib_id "SSQ-108-01-G-S:SSQ-108-01-G-S") (at 184.15 37.465 0) (unit 1)
-    (in_bom yes) (on_board no) (dnp no) (fields_autoplaced)
-    (uuid 5223b230-416d-4703-bfe5-b5893162c70c)
-    (property "Reference" "J10" (at 189.865 39.37 0)
-      (effects (font (size 1.27 1.27)) (justify left))
-    )
-    (property "Value" "SSQ-108-01-G-S" (at 190.5 38.735 0)
-      (effects (font (size 1.27 1.27)) (justify left top) hide)
-    )
-    (property "Footprint" "SSQ-108-01-G-S:SAMTEC_SSQ-108-01-G-S" (at 184.15 37.465 0)
-      (effects (font (size 1.27 1.27)) (justify bottom) hide)
-    )
-    (property "Datasheet" "" (at 189.23 37.465 0)
-      (effects (font (size 1.27 1.27)) hide)
-    )
-    (property "Description" "CONN RCPT 8POS 0.1 GOLD PCB" (at 184.15 37.465 0)
-      (effects (font (size 1.27 1.27)) hide)
-    )
-    (property "Manufacturer" "Samtec Inc." (at 184.15 37.465 0)
-      (effects (font (size 1.27 1.27)) hide)
-    )
-    (property "MPN" "SSQ-108-01-G-S" (at 184.15 37.465 0)
-      (effects (font (size 1.27 1.27)) hide)
-    )
-    (property "Supplier" "Digi-Key" (at 184.15 37.465 0)
-      (effects (font (size 1.27 1.27)) hide)
-    )
-    (property "SPN" "SAM1180-08-ND" (at 184.15 37.465 0)
-      (effects (font (size 1.27 1.27)) hide)
-    )
-    (pin "01" (uuid dc8f8246-b26c-48fe-95f9-6f42e5ef0f74))
-    (pin "02" (uuid 98e4001d-ffc3-4750-a87e-4c2dd3f61fbb))
-    (pin "03" (uuid 0dc5aa2c-11fb-4f77-b190-29be3d43ba6b))
-    (pin "04" (uuid 211291c1-2d8a-4966-b685-e6b4811b6301))
-    (pin "05" (uuid c44c30f2-bdc3-46ac-9e86-fbbfeb258fb3))
-    (pin "06" (uuid 630c9570-2b09-4e3b-82ea-8cb7d2083805))
-    (pin "07" (uuid b733797a-8d26-4996-9c01-19607714ed4f))
-    (pin "08" (uuid dc445c9e-129a-4a9d-870e-8f884a23655e))
-    (instances
-      (project "solar_cooker_v1.5"
-        (path "/c2c342ae-c172-4b44-a50e-ddd387eb2591"
-          (reference "J10") (unit 1)
         )
       )
     )
@@ -3641,7 +3090,7 @@
           (reference "#PWR05") (unit 1)
         )
       )
-      (project "solar_cooker_v1.5"
+      (project "solar_cooker"
         (path "/c2c342ae-c172-4b44-a50e-ddd387eb2591"
           (reference "#PWR012") (unit 1)
         )
@@ -3671,7 +3120,7 @@
           (reference "#PWR016") (unit 1)
         )
       )
-      (project "solar_cooker_v1.5"
+      (project "solar_cooker"
         (path "/c2c342ae-c172-4b44-a50e-ddd387eb2591"
           (reference "#PWR024") (unit 1)
         )
@@ -3720,7 +3169,7 @@
           (reference "R?") (unit 1)
         )
       )
-      (project "solar_cooker_v1.5"
+      (project "solar_cooker"
         (path "/c2c342ae-c172-4b44-a50e-ddd387eb2591"
           (reference "R4") (unit 1)
         )
@@ -3750,7 +3199,7 @@
           (reference "#PWR06") (unit 1)
         )
       )
-      (project "solar_cooker_v1.5"
+      (project "solar_cooker"
         (path "/c2c342ae-c172-4b44-a50e-ddd387eb2591"
           (reference "#PWR05") (unit 1)
         )
@@ -3780,7 +3229,7 @@
           (reference "#PWR05") (unit 1)
         )
       )
-      (project "solar_cooker_v1.5"
+      (project "solar_cooker"
         (path "/c2c342ae-c172-4b44-a50e-ddd387eb2591"
           (reference "#PWR04") (unit 1)
         )
@@ -3810,7 +3259,7 @@
           (reference "#PWR016") (unit 1)
         )
       )
-      (project "solar_cooker_v1.5"
+      (project "solar_cooker"
         (path "/c2c342ae-c172-4b44-a50e-ddd387eb2591"
           (reference "#PWR028") (unit 1)
         )
@@ -3840,84 +3289,9 @@
           (reference "#PWR016") (unit 1)
         )
       )
-      (project "solar_cooker_v1.5"
+      (project "solar_cooker"
         (path "/c2c342ae-c172-4b44-a50e-ddd387eb2591"
           (reference "#PWR010") (unit 1)
-        )
-      )
-    )
-  )
-
-  (symbol (lib_id "SSQ-118-01-G-D:SSQ-118-01-G-D") (at 192.405 126.365 0) (unit 1)
-    (in_bom yes) (on_board no) (dnp no) (fields_autoplaced)
-    (uuid 763f46c7-a007-4ec2-9156-37249e3b0fa0)
-    (property "Reference" "J13" (at 192.405 100.965 0)
-      (effects (font (size 1.27 1.27)))
-    )
-    (property "Value" "SSQ-118-01-G-D" (at 184.785 151.765 0)
-      (effects (font (size 1.27 1.27)) (justify left bottom) hide)
-    )
-    (property "Footprint" "SAMTEC_SSQ-118-01-G-D" (at 184.785 126.365 0)
-      (effects (font (size 1.27 1.27)) (justify bottom) hide)
-    )
-    (property "Datasheet" "" (at 196.215 126.365 0)
-      (effects (font (size 1.27 1.27)) hide)
-    )
-    (property "Description" "CONN RCPT 36POS 0.1 GOLD PCB" (at 192.405 126.365 0)
-      (effects (font (size 1.27 1.27)) hide)
-    )
-    (property "Manufacturer" "Samtec Inc." (at 192.405 126.365 0)
-      (effects (font (size 1.27 1.27)) hide)
-    )
-    (property "MPN" "SSQ-118-01-G-D" (at 192.405 126.365 0)
-      (effects (font (size 1.27 1.27)) hide)
-    )
-    (property "Supplier" "Digi-Key" (at 192.405 126.365 0)
-      (effects (font (size 1.27 1.27)) hide)
-    )
-    (property "SPN" "SAM1179-18-ND" (at 192.405 126.365 0)
-      (effects (font (size 1.27 1.27)) hide)
-    )
-    (pin "01" (uuid b55ed594-2262-4e17-890d-fefe1d1f4df3))
-    (pin "02" (uuid a7be4125-ad83-493d-9174-94d9b6f39447))
-    (pin "03" (uuid b7f74a7a-7811-403a-9cad-b65be18ba1ec))
-    (pin "04" (uuid 16ab2c15-38cc-4301-8b88-f9175ce42aa2))
-    (pin "05" (uuid 6a0745bb-9253-46ea-b461-0f6749385acc))
-    (pin "06" (uuid df56d0c5-1855-4891-bcd5-9f3dbe7b9443))
-    (pin "07" (uuid f4e15433-f341-4db1-99d0-f1e9eff39d58))
-    (pin "08" (uuid 4777bd6a-c46f-4f4d-b4be-39ea61cff37d))
-    (pin "09" (uuid adb68bf8-4403-4fcc-993d-28077efee05e))
-    (pin "10" (uuid b06b1540-e124-49a3-90ab-8b965ea2b8fc))
-    (pin "11" (uuid 1275ab4a-41f2-42ea-a404-b993792c53cb))
-    (pin "12" (uuid d91e4804-aa4e-43c9-9743-1ae6263c8d0e))
-    (pin "13" (uuid 7e9c24e1-2af1-45d5-bc47-df3fa05cb94d))
-    (pin "14" (uuid 11e4f37f-fcd7-4814-b8db-0dcc03cf1695))
-    (pin "15" (uuid 4577b247-eebb-467d-86dc-33a7eac245f2))
-    (pin "16" (uuid 6a9f9ed4-9112-435a-b719-cc9acb86d710))
-    (pin "17" (uuid 2a363743-cee6-4169-9890-be822126d3b6))
-    (pin "18" (uuid 475d31c4-ef1e-4d2c-9450-2fe53e5407e7))
-    (pin "19" (uuid cd832581-1efc-4019-908b-8082ef61900a))
-    (pin "20" (uuid aaa307f7-8f5c-4d2d-8cb8-a14bfb7f8631))
-    (pin "21" (uuid 9832a322-8c7a-4773-a5bf-ebf6e280315b))
-    (pin "22" (uuid df637c18-f5a6-4d6f-bb64-fa41b5368cdb))
-    (pin "23" (uuid c5d484b0-a814-434a-ba2b-e18a0ce765b8))
-    (pin "24" (uuid 2f8931f5-0954-4712-9443-91519c4e8981))
-    (pin "25" (uuid a6adb48a-420e-4e14-a38d-e033c7c7056d))
-    (pin "26" (uuid 67e10a04-4ae3-474b-ba65-a66b248946d6))
-    (pin "27" (uuid 27a250c6-74c4-4193-b9af-0841b053caf0))
-    (pin "28" (uuid f9f16757-4cab-4246-af67-9cc44b0a1336))
-    (pin "29" (uuid 8e5a7290-2903-4e68-b2ac-680bd717a399))
-    (pin "30" (uuid 670d788d-a6d4-4a5e-b4c0-43c657f61c7c))
-    (pin "31" (uuid 8872c7e7-bd73-4d15-9dfd-ff0d72cfa535))
-    (pin "32" (uuid 80ecfa1c-06f8-4010-8b02-e61ac57c60a7))
-    (pin "33" (uuid 4dbe490a-2884-403f-89fe-8224021f23e5))
-    (pin "34" (uuid bb97b954-3baa-4de1-99f6-ff0580fa1553))
-    (pin "35" (uuid 67bd272c-ac63-4986-8ea0-ced0a8b0634c))
-    (pin "36" (uuid e89050bc-2b4c-4ec2-9655-bfff4ccf4284))
-    (instances
-      (project "solar_cooker_v1.5"
-        (path "/c2c342ae-c172-4b44-a50e-ddd387eb2591"
-          (reference "J13") (unit 1)
         )
       )
     )
@@ -3962,7 +3336,7 @@
     (pin "7" (uuid 9a67773f-3ae6-4d89-9e6b-448555f09371))
     (pin "8" (uuid 0e5a8f73-2f21-4725-acc5-88f03d4adcbf))
     (instances
-      (project "solar_cooker_v1.5"
+      (project "solar_cooker"
         (path "/c2c342ae-c172-4b44-a50e-ddd387eb2591"
           (reference "J4") (unit 1)
         )
@@ -3992,7 +3366,7 @@
           (reference "#PWR022") (unit 1)
         )
       )
-      (project "solar_cooker_v1.5"
+      (project "solar_cooker"
         (path "/c2c342ae-c172-4b44-a50e-ddd387eb2591"
           (reference "#PWR031") (unit 1)
         )
@@ -4022,7 +3396,7 @@
           (reference "#PWR06") (unit 1)
         )
       )
-      (project "solar_cooker_v1.5"
+      (project "solar_cooker"
         (path "/c2c342ae-c172-4b44-a50e-ddd387eb2591"
           (reference "#PWR014") (unit 1)
         )
@@ -4047,56 +3421,9 @@
     )
     (pin "1" (uuid 5897a98a-20df-4c4b-bca8-81970690b1e6))
     (instances
-      (project "solar_cooker_v1.5"
+      (project "solar_cooker"
         (path "/c2c342ae-c172-4b44-a50e-ddd387eb2591"
           (reference "#PWR037") (unit 1)
-        )
-      )
-    )
-  )
-
-  (symbol (lib_id "SSQ-108-01-G-S:SSQ-108-01-G-S") (at 184.15 58.42 0) (unit 1)
-    (in_bom yes) (on_board no) (dnp no) (fields_autoplaced)
-    (uuid 8a5be195-8283-44ce-b1df-28b350217b10)
-    (property "Reference" "J11" (at 189.865 60.325 0)
-      (effects (font (size 1.27 1.27)) (justify left))
-    )
-    (property "Value" "SSQ-108-01-G-S" (at 190.5 59.69 0)
-      (effects (font (size 1.27 1.27)) (justify left top) hide)
-    )
-    (property "Footprint" "SSQ-108-01-G-S:SAMTEC_SSQ-108-01-G-S" (at 184.15 58.42 0)
-      (effects (font (size 1.27 1.27)) (justify bottom) hide)
-    )
-    (property "Datasheet" "" (at 189.23 58.42 0)
-      (effects (font (size 1.27 1.27)) hide)
-    )
-    (property "Description" "CONN RCPT 8POS 0.1 GOLD PCB" (at 184.15 58.42 0)
-      (effects (font (size 1.27 1.27)) hide)
-    )
-    (property "Manufacturer" "Samtec Inc." (at 184.15 58.42 0)
-      (effects (font (size 1.27 1.27)) hide)
-    )
-    (property "MPN" "SSQ-108-01-G-S" (at 184.15 58.42 0)
-      (effects (font (size 1.27 1.27)) hide)
-    )
-    (property "Supplier" "Digi-Key" (at 184.15 58.42 0)
-      (effects (font (size 1.27 1.27)) hide)
-    )
-    (property "SPN" "SAM1180-08-ND" (at 184.15 58.42 0)
-      (effects (font (size 1.27 1.27)) hide)
-    )
-    (pin "01" (uuid 98d8a89e-02af-4d5c-800f-b51e56119cb2))
-    (pin "02" (uuid a46d0a4b-6cd5-4320-b770-b22c5f1290b0))
-    (pin "03" (uuid 61da7552-ce93-4fac-8af8-224cbf2b6472))
-    (pin "04" (uuid b4d2ab4e-0956-4113-8e0d-45ed6de71ff4))
-    (pin "05" (uuid 9341aa92-f82c-48c8-a081-e1adede1b6b7))
-    (pin "06" (uuid 12c916f6-bccf-4b93-be54-8d7c3be82526))
-    (pin "07" (uuid 3be18017-5ff1-4a5b-ad35-a565e9153b8d))
-    (pin "08" (uuid a37b758a-6693-45ad-9edd-dcdb3ad5187a))
-    (instances
-      (project "solar_cooker_v1.5"
-        (path "/c2c342ae-c172-4b44-a50e-ddd387eb2591"
-          (reference "J11") (unit 1)
         )
       )
     )
@@ -4119,7 +3446,7 @@
     )
     (pin "1" (uuid 6354346e-ec9d-4f31-8f32-3eda3fb3daf0))
     (instances
-      (project "solar_cooker_v1.5"
+      (project "solar_cooker"
         (path "/c2c342ae-c172-4b44-a50e-ddd387eb2591"
           (reference "#PWR035") (unit 1)
         )
@@ -4168,7 +3495,7 @@
           (reference "D?") (unit 1)
         )
       )
-      (project "solar_cooker_v1.5"
+      (project "solar_cooker"
         (path "/c2c342ae-c172-4b44-a50e-ddd387eb2591"
           (reference "D1") (unit 1)
         )
@@ -4211,7 +3538,7 @@
     (pin "3" (uuid 8692e481-574a-4957-9737-b84e6825445b))
     (pin "4" (uuid c2fec20a-4082-4252-8c3c-472469268600))
     (instances
-      (project "solar_cooker_v1.5"
+      (project "solar_cooker"
         (path "/c2c342ae-c172-4b44-a50e-ddd387eb2591"
           (reference "U3") (unit 1)
         )
@@ -4258,7 +3585,7 @@
     (pin "7" (uuid 82991f18-1ea7-4586-b3e8-afd3f2c7b8f3))
     (pin "8" (uuid cd08b181-3f34-48d8-84bb-fbe367879297))
     (instances
-      (project "solar_cooker_v1.5"
+      (project "solar_cooker"
         (path "/c2c342ae-c172-4b44-a50e-ddd387eb2591"
           (reference "J1") (unit 1)
         )
@@ -4288,7 +3615,7 @@
           (reference "#PWR05") (unit 1)
         )
       )
-      (project "solar_cooker_v1.5"
+      (project "solar_cooker"
         (path "/c2c342ae-c172-4b44-a50e-ddd387eb2591"
           (reference "#PWR015") (unit 1)
         )
@@ -4313,7 +3640,7 @@
     )
     (pin "1" (uuid c3391992-9e6d-48f8-af54-5ab04442435c))
     (instances
-      (project "solar_cooker_v1.5"
+      (project "solar_cooker"
         (path "/c2c342ae-c172-4b44-a50e-ddd387eb2591"
           (reference "#PWR02") (unit 1)
         )
@@ -4343,7 +3670,7 @@
           (reference "#PWR010") (unit 1)
         )
       )
-      (project "solar_cooker_v1.5"
+      (project "solar_cooker"
         (path "/c2c342ae-c172-4b44-a50e-ddd387eb2591"
           (reference "#PWR01") (unit 1)
         )
@@ -4373,7 +3700,7 @@
           (reference "#PWR013") (unit 1)
         )
       )
-      (project "solar_cooker_v1.5"
+      (project "solar_cooker"
         (path "/c2c342ae-c172-4b44-a50e-ddd387eb2591"
           (reference "#PWR016") (unit 1)
         )
@@ -4398,7 +3725,7 @@
     )
     (pin "1" (uuid d3d860b4-b657-41c8-a279-fce8c2002dd2))
     (instances
-      (project "solar_cooker_v1.5"
+      (project "solar_cooker"
         (path "/c2c342ae-c172-4b44-a50e-ddd387eb2591"
           (reference "#PWR033") (unit 1)
         )
@@ -4445,7 +3772,7 @@
     (pin "7" (uuid 770476a4-43f6-46d2-b3f1-4c8e3b2f7b86))
     (pin "8" (uuid c29bd0db-e639-48ea-9ede-bd0d234717e1))
     (instances
-      (project "solar_cooker_v1.5"
+      (project "solar_cooker"
         (path "/c2c342ae-c172-4b44-a50e-ddd387eb2591"
           (reference "J7") (unit 1)
         )
@@ -4494,58 +3821,9 @@
           (reference "R?") (unit 1)
         )
       )
-      (project "solar_cooker_v1.5"
+      (project "solar_cooker"
         (path "/c2c342ae-c172-4b44-a50e-ddd387eb2591"
           (reference "R3") (unit 1)
-        )
-      )
-    )
-  )
-
-  (symbol (lib_id "SSQ-110-01-G-S:SSQ-110-01-G-S") (at 274.955 42.545 0) (unit 1)
-    (in_bom yes) (on_board no) (dnp no) (fields_autoplaced)
-    (uuid c1c9f513-dc3b-4766-9bb5-15702f1d0749)
-    (property "Reference" "J16" (at 280.035 41.91 0)
-      (effects (font (size 1.27 1.27)) (justify left))
-    )
-    (property "Value" "SSQ-110-01-G-S" (at 267.335 57.785 0)
-      (effects (font (size 1.27 1.27)) (justify left bottom) hide)
-    )
-    (property "Footprint" "SAMTEC_SSQ-110-01-G-S" (at 274.955 42.545 0)
-      (effects (font (size 1.27 1.27)) (justify bottom) hide)
-    )
-    (property "Datasheet" "" (at 274.955 42.545 0)
-      (effects (font (size 1.27 1.27)) hide)
-    )
-    (property "Description" "CONN RCPT 10POS 0.1 GOLD PCB" (at 274.955 42.545 0)
-      (effects (font (size 1.27 1.27)) hide)
-    )
-    (property "Manufacturer" "Samtec Inc." (at 274.955 42.545 0)
-      (effects (font (size 1.27 1.27)) hide)
-    )
-    (property "MPN" "SSQ-110-01-G-S" (at 274.955 42.545 0)
-      (effects (font (size 1.27 1.27)) hide)
-    )
-    (property "Supplier" "Digi-Key" (at 274.955 42.545 0)
-      (effects (font (size 1.27 1.27)) hide)
-    )
-    (property "SPN" "SAM1180-10-ND" (at 274.955 42.545 0)
-      (effects (font (size 1.27 1.27)) hide)
-    )
-    (pin "01" (uuid caaac7be-4f36-42b3-81fa-89d946448446))
-    (pin "02" (uuid b8ce0710-4c69-435b-a673-1e5d5461a9ad))
-    (pin "03" (uuid 53873f97-5176-42c7-8b95-f7e790e33ab5))
-    (pin "04" (uuid 11dfb9ea-12c9-42c5-9a5b-a0709493bc56))
-    (pin "05" (uuid 3a7fd77d-08fb-4c67-b20e-b7c8f9539359))
-    (pin "06" (uuid c71ee896-3375-436f-aa68-b38f4ab45a0b))
-    (pin "07" (uuid eef056e9-dec9-45c3-923f-828a7e516abd))
-    (pin "08" (uuid 941bcc4a-aa2c-4823-9bfa-17054a44d1a7))
-    (pin "09" (uuid e5171e0c-013a-4e97-9094-90af21aeb230))
-    (pin "10" (uuid b6f42ca7-865d-4ecc-905c-c0bb1873e619))
-    (instances
-      (project "solar_cooker_v1.5"
-        (path "/c2c342ae-c172-4b44-a50e-ddd387eb2591"
-          (reference "J16") (unit 1)
         )
       )
     )
@@ -4590,57 +3868,9 @@
           (reference "U5") (unit 1)
         )
       )
-      (project "solar_cooker_v1.5"
+      (project "solar_cooker"
         (path "/c2c342ae-c172-4b44-a50e-ddd387eb2591"
           (reference "U1") (unit 1)
-        )
-      )
-    )
-  )
-
-  (symbol (lib_id "SSQ-109-01-G-S:SSQ-109-01-G-S") (at 170.815 39.37 0) (unit 1)
-    (in_bom yes) (on_board no) (dnp no) (fields_autoplaced)
-    (uuid c469a069-d994-40ff-9f1c-aa6a30c1dff6)
-    (property "Reference" "J9" (at 175.895 40.005 0)
-      (effects (font (size 1.27 1.27)) (justify left))
-    )
-    (property "Value" "SSQ-109-01-G-S" (at 163.195 54.61 0)
-      (effects (font (size 1.27 1.27)) (justify left bottom) hide)
-    )
-    (property "Footprint" "SAMTEC_SSQ-109-01-G-S" (at 170.815 39.37 0)
-      (effects (font (size 1.27 1.27)) (justify bottom) hide)
-    )
-    (property "Datasheet" "" (at 170.815 39.37 0)
-      (effects (font (size 1.27 1.27)) hide)
-    )
-    (property "Description" "CONN RCPT 9POS 0.1 GOLD PCB" (at 170.815 39.37 0)
-      (effects (font (size 1.27 1.27)) hide)
-    )
-    (property "Manufacturer" "Samtec Inc." (at 170.815 39.37 0)
-      (effects (font (size 1.27 1.27)) hide)
-    )
-    (property "MPN" "SSQ-109-01-G-S" (at 170.815 39.37 0)
-      (effects (font (size 1.27 1.27)) hide)
-    )
-    (property "Supplier" "Digi-Key" (at 170.815 39.37 0)
-      (effects (font (size 1.27 1.27)) hide)
-    )
-    (property "SPN" "SAM1180-09-ND" (at 170.815 39.37 0)
-      (effects (font (size 1.27 1.27)) hide)
-    )
-    (pin "01" (uuid 861eb4f6-e1d7-4af6-9e96-b70ff0ee632c))
-    (pin "02" (uuid e21a56dc-804d-4a32-b2bb-cc4c0f557b05))
-    (pin "03" (uuid 582b8263-9993-460d-ab4c-d9c30b47c1f8))
-    (pin "04" (uuid e9e5ddec-9d2a-44e2-95db-95b1237bea7f))
-    (pin "05" (uuid 7b37b4d6-c29e-4dd3-8d80-c6e3cc986c49))
-    (pin "06" (uuid 2d28d0c0-c3ff-49a3-8dad-c0f2361b23e9))
-    (pin "07" (uuid 4d7182aa-dcdb-40ed-b292-6b818d22824e))
-    (pin "08" (uuid e448e460-9b7c-438c-adcb-5359e42ccf2f))
-    (pin "09" (uuid 0ba6f854-aa51-428b-afb2-49a86752416a))
-    (instances
-      (project "solar_cooker_v1.5"
-        (path "/c2c342ae-c172-4b44-a50e-ddd387eb2591"
-          (reference "J9") (unit 1)
         )
       )
     )
@@ -4660,24 +3890,6 @@
     )
     (property "Datasheet" "" (at 235.585 88.265 0)
       (effects (font (size 1.27 1.27)) hide)
-    )
-    (property "MF" "Arduino" (at 235.585 88.265 0)
-      (effects (font (size 1.27 1.27)) (justify bottom) hide)
-    )
-    (property "DESCRIPTION" "Dev.kit: Arduino; SPI, TWI, UART; ICSP, USB B, pin strips, supply" (at 235.585 88.265 0)
-      (effects (font (size 1.27 1.27)) (justify bottom) hide)
-    )
-    (property "PACKAGE" "None" (at 235.585 88.265 0)
-      (effects (font (size 1.27 1.27)) (justify bottom) hide)
-    )
-    (property "PRICE" "None" (at 235.585 88.265 0)
-      (effects (font (size 1.27 1.27)) (justify bottom) hide)
-    )
-    (property "MP" "ARDUINO MEGA2560 REV3 - RETAIL" (at 235.585 88.265 0)
-      (effects (font (size 1.27 1.27)) (justify bottom) hide)
-    )
-    (property "AVAILABILITY" "Unavailable" (at 235.585 88.265 0)
-      (effects (font (size 1.27 1.27)) (justify bottom) hide)
     )
     (pin "0" (uuid b925268a-8041-4059-a4c0-6c58cd735c2a))
     (pin "1" (uuid 68fd8104-ab33-4032-aff8-c813593481a7))
@@ -4766,7 +3978,7 @@
     (pin "VIN" (uuid cd35bdac-897c-4f09-bac1-bcb7cc14aa0f))
     (pin "AD0" (uuid 993ea61f-88f3-4f1a-8a6b-4bec08721540))
     (instances
-      (project "solar_cooker_v1.5"
+      (project "solar_cooker"
         (path "/c2c342ae-c172-4b44-a50e-ddd387eb2591"
           (reference "A1") (unit 1)
         )
@@ -4817,7 +4029,7 @@
           (reference "U6") (unit 1)
         )
       )
-      (project "solar_cooker_v1.5"
+      (project "solar_cooker"
         (path "/c2c342ae-c172-4b44-a50e-ddd387eb2591"
           (reference "J5") (unit 1)
         )
@@ -4847,9 +4059,9 @@
           (reference "#PWR015") (unit 1)
         )
       )
-      (project "solar_cooker_v1.5"
+      (project "solar_cooker"
         (path "/c2c342ae-c172-4b44-a50e-ddd387eb2591"
-          (reference "#PWR025") (unit 1)
+          (reference "#PWR027") (unit 1)
         )
       )
     )
@@ -4889,7 +4101,7 @@
     (pin "2" (uuid 43832087-91b8-44b2-9a81-9520815f7390))
     (pin "3" (uuid d2f3f8ec-f3d0-4914-948d-88c487f1d49d))
     (instances
-      (project "solar_cooker_v1.5"
+      (project "solar_cooker"
         (path "/c2c342ae-c172-4b44-a50e-ddd387eb2591"
           (reference "S1") (unit 1)
         )
@@ -4937,7 +4149,7 @@
     (pin "8" (uuid d46b199e-7cc0-480d-a038-4027b7f726ad))
     (pin "9" (uuid 1987336a-f150-44c5-a07d-07543484b73c))
     (instances
-      (project "solar_cooker_v1.5"
+      (project "solar_cooker"
         (path "/c2c342ae-c172-4b44-a50e-ddd387eb2591"
           (reference "J6") (unit 1)
         )
@@ -4962,7 +4174,7 @@
     )
     (pin "1" (uuid c897f151-157d-47d6-abff-f606a8c1db5e))
     (instances
-      (project "solar_cooker_v1.5"
+      (project "solar_cooker"
         (path "/c2c342ae-c172-4b44-a50e-ddd387eb2591"
           (reference "#PWR021") (unit 1)
         )
@@ -5014,56 +4226,9 @@
           (reference "U3") (unit 1)
         )
       )
-      (project "solar_cooker_v1.5"
+      (project "solar_cooker"
         (path "/c2c342ae-c172-4b44-a50e-ddd387eb2591"
           (reference "J3") (unit 1)
-        )
-      )
-    )
-  )
-
-  (symbol (lib_id "SSQ-108-01-G-S:SSQ-108-01-G-S") (at 271.145 88.9 0) (unit 1)
-    (in_bom yes) (on_board no) (dnp no) (fields_autoplaced)
-    (uuid e62e3dfb-9811-4a90-bf19-04ac2d63b3f9)
-    (property "Reference" "J14" (at 276.225 90.805 0)
-      (effects (font (size 1.27 1.27)) (justify left))
-    )
-    (property "Value" "SSQ-108-01-G-S" (at 277.495 90.17 0)
-      (effects (font (size 1.27 1.27)) (justify left top) hide)
-    )
-    (property "Footprint" "SSQ-108-01-G-S:SAMTEC_SSQ-108-01-G-S" (at 271.145 88.9 0)
-      (effects (font (size 1.27 1.27)) (justify bottom) hide)
-    )
-    (property "Datasheet" "" (at 276.225 88.9 0)
-      (effects (font (size 1.27 1.27)) hide)
-    )
-    (property "Description" "CONN RCPT 8POS 0.1 GOLD PCB" (at 271.145 88.9 0)
-      (effects (font (size 1.27 1.27)) hide)
-    )
-    (property "Manufacturer" "Samtec Inc." (at 271.145 88.9 0)
-      (effects (font (size 1.27 1.27)) hide)
-    )
-    (property "MPN" "SSQ-108-01-G-S" (at 271.145 88.9 0)
-      (effects (font (size 1.27 1.27)) hide)
-    )
-    (property "Supplier" "Digi-Key" (at 271.145 88.9 0)
-      (effects (font (size 1.27 1.27)) hide)
-    )
-    (property "SPN" "SAM1180-08-ND" (at 271.145 88.9 0)
-      (effects (font (size 1.27 1.27)) hide)
-    )
-    (pin "01" (uuid ef7e05ae-0905-4497-a6bf-b11b6c9042ea))
-    (pin "02" (uuid b6c76e31-2e98-4e7b-a7ab-6e98d4056c2f))
-    (pin "03" (uuid 528ef4fb-cc20-4bb5-98d7-9dfaa1e942b7))
-    (pin "04" (uuid 21c4da75-e10d-4778-b7fc-aa53e6bde1f2))
-    (pin "05" (uuid 77e27f60-b4d6-45b7-9fd3-b1b4f3e29053))
-    (pin "06" (uuid 3b6c0894-1cc7-454d-92ae-5142b84bf67d))
-    (pin "07" (uuid e5f556f5-17d4-4d89-b531-2fdeb3fd21a2))
-    (pin "08" (uuid b58b751d-af1d-4cc2-a905-1390feefbe52))
-    (instances
-      (project "solar_cooker_v1.5"
-        (path "/c2c342ae-c172-4b44-a50e-ddd387eb2591"
-          (reference "J14") (unit 1)
         )
       )
     )
@@ -5104,7 +4269,7 @@
     (pin "3" (uuid 2aec140a-a307-43fb-bc8c-4e76e6db2c3f))
     (pin "4" (uuid 7aa94aae-a0e4-43d2-a760-ef41bab2c718))
     (instances
-      (project "solar_cooker_v1.5"
+      (project "solar_cooker"
         (path "/c2c342ae-c172-4b44-a50e-ddd387eb2591"
           (reference "PS1") (unit 1)
         )
@@ -5129,7 +4294,7 @@
     )
     (pin "1" (uuid 20435ddd-fcc6-4259-ae84-2b8a4ea819e1))
     (instances
-      (project "solar_cooker_v1.5"
+      (project "solar_cooker"
         (path "/c2c342ae-c172-4b44-a50e-ddd387eb2591"
           (reference "#PWR032") (unit 1)
         )
@@ -5159,10 +4324,27 @@
           (reference "#PWR024") (unit 1)
         )
       )
-      (project "solar_cooker_v1.5"
+      (project "solar_cooker"
         (path "/c2c342ae-c172-4b44-a50e-ddd387eb2591"
           (reference "#PWR029") (unit 1)
         )
+      )
+    )
+  )
+
+  (sheet (at 149.098 166.624) (size 22.733 27.559) (fields_autoplaced)
+    (stroke (width 0.1524) (type solid))
+    (fill (color 0 0 0 0.0000))
+    (uuid 14865a9e-5c92-459f-ac42-a80900d0fae9)
+    (property "Sheetname" "connectors" (at 149.098 165.9124 0)
+      (effects (font (size 1.27 1.27)) (justify left bottom))
+    )
+    (property "Sheetfile" "connectors.kicad_sch" (at 149.098 194.7676 0)
+      (effects (font (size 1.27 1.27)) (justify left top))
+    )
+    (instances
+      (project "solar_cooker"
+        (path "/c2c342ae-c172-4b44-a50e-ddd387eb2591" (page "2"))
       )
     )
   )
