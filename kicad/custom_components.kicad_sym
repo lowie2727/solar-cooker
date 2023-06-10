@@ -27,6 +27,9 @@
     (property "SPN" "WM13967-ND" (at 0 0 0)
       (effects (font (size 1.27 1.27)) hide)
     )
+    (property "Sim.Enable" "0" (at 0 0 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
     (symbol "AM2315_0_1"
       (rectangle (start -5.08 5.08) (end 5.08 -5.08)
         (stroke (width 0) (type default))
@@ -78,6 +81,9 @@
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "SPN" "SAM1180-07-ND" (at 0 0 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (property "Sim.Enable" "0" (at 0 0 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (symbol "BME680_0_1"
@@ -143,6 +149,9 @@
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "SPN" "SAM1180-09-ND" (at 0 0 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (property "Sim.Enable" "0" (at 0 0 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (symbol "GPS_0_1"
@@ -218,6 +227,9 @@
     (property "SPN" "SAM1180-08-ND" (at 0 0 0)
       (effects (font (size 1.27 1.27)) hide)
     )
+    (property "Sim.Enable" "0" (at 0 0 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
     (symbol "Pt100_0_1"
       (rectangle (start -5.08 10.16) (end 5.08 -10.16)
         (stroke (width 0) (type default))
@@ -287,6 +299,9 @@
     (property "SPN" "WM9752-ND" (at 0 0 0)
       (effects (font (size 1.27 1.27)) hide)
     )
+    (property "Sim.Enable" "0" (at 0 0 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
     (symbol "anemometer_0_1"
       (rectangle (start -5.08 3.81) (end 5.08 -3.81)
         (stroke (width 0) (type default))
@@ -334,6 +349,9 @@
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "SPN" "SAM1180-08-ND" (at 0 0 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (property "Sim.Enable" "0" (at 0 0 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (symbol "clock_module_0_1"
@@ -403,6 +421,9 @@
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "SPN" "SAM1180-09-ND" (at 0 0 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (property "Sim.Enable" "0" (at 0 0 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (symbol "display_0_1"
@@ -514,6 +535,9 @@
     (property "SPN" "SAM1180-08-ND" (at 0 0 0)
       (effects (font (size 1.27 1.27)) hide)
     )
+    (property "Sim.Enable" "0" (at 0 0 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
     (symbol "microSD_0_1"
       (rectangle (start -5.08 10.16) (end 5.08 -10.16)
         (stroke (width 0) (type default))
@@ -581,6 +605,9 @@
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "SPN" "WM13967-ND" (at 0 0 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (property "Sim.Enable" "0" (at 0 0 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (symbol "pyranometer_0_1"

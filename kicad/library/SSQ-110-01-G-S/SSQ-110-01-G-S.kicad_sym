@@ -27,6 +27,9 @@
     (property "SPN" "SAM1180-10-ND" (at 0 0 0)
       (effects (font (size 1.27 1.27)) hide)
     )
+    (property "Sim.Enable" "0" (at 0 0 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
     (symbol "SSQ-110-01-G-S_0_0"
       (rectangle (start 0 13.97) (end 3.81 -11.43)
         (stroke (width 0.254) (type default))

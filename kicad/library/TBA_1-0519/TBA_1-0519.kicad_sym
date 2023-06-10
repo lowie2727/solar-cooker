@@ -27,6 +27,9 @@
     (property "SPN" "1951-3372-ND" (at 0 0 0)
       (effects (font (size 1.27 1.27)) hide)
     )
+    (property "Sim.Enable" "0" (at 0 0 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
     (symbol "TBA_1-0519_0_0"
       (rectangle (start -15.24 -5.08) (end 15.24 5.08)
         (stroke (width 0.254) (type default))

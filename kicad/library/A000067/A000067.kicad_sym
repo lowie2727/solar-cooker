@@ -12,6 +12,9 @@
     (property "Datasheet" "" (at 0 0 0)
       (effects (font (size 1.27 1.27)) hide)
     )
+    (property "Sim.Enable" "0" (at 0 0 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
     (symbol "A000067_0_0"
       (rectangle (start -15.24 60.96) (end 15.24 -60.96)
         (stroke (width 0.254) (type default))

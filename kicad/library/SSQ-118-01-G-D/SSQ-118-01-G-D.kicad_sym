@@ -27,6 +27,9 @@
     (property "SPN" "SAM1179-18-ND" (at 0 0 0)
       (effects (font (size 1.27 1.27)) hide)
     )
+    (property "Sim.Enable" "0" (at 0 0 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
     (symbol "SSQ-118-01-G-D_0_0"
       (rectangle (start -3.81 24.13) (end 3.81 -21.59)
         (stroke (width 0.254) (type default))

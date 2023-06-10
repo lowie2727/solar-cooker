@@ -27,6 +27,9 @@
     (property "SPN" "EG5137-ND" (at 0 0 0)
       (effects (font (size 1.27 1.27)) hide)
     )
+    (property "Sim.Enable" "0" (at 0 0 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
     (symbol "500SSP1S2M2QEA_0_0"
       (polyline
         (pts
