@@ -15,7 +15,7 @@ void setup() {
 }
 
 void loop() {
-  uint16_t rtd = thermo.readRTD();
+  thermo.readRTD();
   Serial.print("Temperature = ");
   Serial.print(thermo.temperature(RNOMINAL, RREF));
   Serial.println(" °C");

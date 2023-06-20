@@ -1,7 +1,6 @@
 #include <Arduino.h>
-#include <GravityRtc.h>
 
-void clockModuleSetup();
+void clockSetup();
 
 String getDateTimeISO();
 

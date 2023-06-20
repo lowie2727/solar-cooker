@@ -3,7 +3,7 @@
 #include <Wire.h>
 
 // AM2315
-#include "AM2315.h"
+#include "AM2315C.h"
 
 // anemometer
 #include "anemometer.h"
@@ -12,7 +12,7 @@
 #include "BME680.h"
 
 // clock module
-#include "clockModule.h"
+#include "clock.h"
 
 // microSD
 #include "microSD.h"
@@ -36,7 +36,7 @@ void setup() {
 
   AM2315Setup();
   BME680Setup();
-  clockModuleSetup();
+  clockSetup();
   microSDSetup();
   PT100Setup();
   switchSetup();

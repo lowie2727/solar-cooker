@@ -1,4 +1,4 @@
-#include "clockModule.h"
+#include "clock.h"
 #include <SD.h>
 
 const uint8_t CS_SD = 4;
