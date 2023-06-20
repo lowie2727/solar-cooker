@@ -323,14 +323,14 @@
       )
     )
   )
-  (symbol "clock_module" (pin_numbers hide) (in_bom yes) (on_board yes)
+  (symbol "clock" (pin_numbers hide) (in_bom yes) (on_board yes)
     (property "Reference" "J" (at 0 13.97 0)
       (effects (font (size 1.27 1.27)))
     )
-    (property "Value" "clock_module" (at 0 11.43 0)
+    (property "Value" "clock" (at 0 11.43 0)
       (effects (font (size 1.27 1.27)))
     )
-    (property "Footprint" "custom_components:clock_module" (at 0 0 0)
+    (property "Footprint" "custom_components:clock" (at 0 0 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Datasheet" "" (at 0 0 0)
@@ -354,13 +354,13 @@
     (property "Sim.Enable" "0" (at 0 0 0)
       (effects (font (size 1.27 1.27)) hide)
     )
-    (symbol "clock_module_0_1"
+    (symbol "clock_0_1"
       (rectangle (start -5.08 10.16) (end 5.08 -10.16)
         (stroke (width 0) (type default))
         (fill (type none))
       )
     )
-    (symbol "clock_module_1_1"
+    (symbol "clock_1_1"
       (pin input line (at -7.62 8.89 0) (length 2.54)
         (name "VIN" (effects (font (size 1.27 1.27))))
         (number "1" (effects (font (size 1.27 1.27))))
