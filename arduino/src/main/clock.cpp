@@ -78,7 +78,9 @@ String getHour12() {
 
 String getHour24() {
   DateTime now = rtc.now();
-  return String(now.hour());
+  char buffer[3];
+  sprintf(buffer, "%02d", now.hour());
+  return String(buffer);
 }
 
 String getMinute() {

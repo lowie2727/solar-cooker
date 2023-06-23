@@ -10,9 +10,7 @@ void switchSetup() {
   pinMode(LED_RED_PIN, OUTPUT);
 }
 
-int getSwitchState() {
-  return digitalRead(SWITCH_PIN);
-}
+int getSwitchState() { return digitalRead(SWITCH_PIN); }
 
 void greenLedOn() {
   digitalWrite(LED_GREEN_PIN, HIGH);

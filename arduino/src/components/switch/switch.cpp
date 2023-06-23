@@ -1,23 +1,21 @@
 #include <Arduino.h>
 
-int switchPin = 6;
-int ledPin = LED_BUILTIN;
-int switchState = LOW;
+int switchPin = 24;
+int ledGreenPin = 22;
+int ledRedPin = 23;
 
 void setup() {
   Serial.begin(9600);
-  pinMode(ledPin, OUTPUT);
+  pinMode(ledGreenPin, OUTPUT);
+  pinMode(ledRedPin, OUTPUT);
   pinMode(switchPin, INPUT);
 }
 
 void loop() {
-  switchState = digitalRead(switchPin);
+  int switchState = digitalRead(switchPin);
 
-  if (switchState) {
-    digitalWrite(ledPin, HIGH);
-    Serial.println(switchState);
-  } else {
-    digitalWrite(ledPin, LOW);
-    Serial.println(switchState);
-  }
+  digitalWrite(ledGreenPin, switchState);
+  digitalWrite(ledRedPin, !switchState);
+
+  Serial.println(switchState);
 }

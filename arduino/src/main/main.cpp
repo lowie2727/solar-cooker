@@ -30,7 +30,7 @@ Adafruit_ILI9341 tft = Adafruit_ILI9341(TFT_CS, TFT_DC);
 #include "microSD.h"
 
 // PT100
-#include "PT100.h"
+#include "Pt100.h"
 
 // pyranometer
 #include "pyranometer.h"
@@ -50,8 +50,8 @@ void setup() {
   BME680Setup();
   clockSetup();
   LCDSetup();
-  microSDSetup();
-  PT100Setup();
+  //microSDSetup();
+  Pt100Setup();
   switchSetup();
 }
 
@@ -60,8 +60,8 @@ void loop() {
     greenLedOn();
 
     if (!fileNameUpdated) {
-      updateFileName();
-      writeCSVHeaders();
+      //updateFileName();
+      //writeCSVHeaders();
       fileNameUpdated = 1;
     }
 
@@ -83,16 +83,16 @@ void loop() {
       String BME680Temp = getBME680Temperature();
       String BME680Pres = getBME680Pressure();
       String BME680Hum = getBME680Humidity();
-      String PT100Temp1 = getPT100Temp1();
-      //String PT100Temp2 = getPT100Temp2();
-      //String PT100Temp3 = getPT100Temp3();
+      String PT100Temp1 = getPt100Temp1();
+      // String PT100Temp2 = getPt100Temp2();
+      // String PT100Temp3 = getPt100Temp3();
       String pyranoIrr = getSolarIrradiance();
 
-      String dataSd = year + ";" + month + ";" + day + ";" + hour12 + ";" +
+/*      String dataSd = year + ";" + month + ";" + day + ";" + hour12 + ";" +
                       minute + ";" + second + ";" + AM2315Temp + ";" +
                       windSpeed + ";" + BME680Pres + ";" + BME680Hum + ";" +
                       PT100Temp1 + ";" + pyranoIrr;
-      stringToSd(dataSd);
+      stringToSd(dataSd);*/
 
       tft.fillScreen(ILI9341_BLACK);
       tft.setCursor(0, 0);
