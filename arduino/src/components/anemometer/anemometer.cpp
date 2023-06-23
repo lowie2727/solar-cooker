@@ -15,7 +15,7 @@ void loop() {
   Serial.print(voltage);
   Serial.println(" V");
 
-  float windSpeed = mapfloat(voltage, 0.4, 2, 0, 32.4);
+  float windSpeed = mapfloat(voltage, 0, 5, 0, 30);
   Serial.print("Wind Speed =");
   Serial.print(windSpeed);
   Serial.println("m/s");
