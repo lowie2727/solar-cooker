@@ -8,7 +8,7 @@ const int ANEMO_PIN = A0;
 String getWindSpeed() {
   float sensorValue = analogRead(ANEMO_PIN);
   float voltage = (sensorValue / 1023) * 5;
-  float windSpeed = mapfloat(voltage, 0.4, 2, 0, 32.4);
+  float windSpeed = mapfloat(voltage, 0, 5, 0, 30);
   return String(windSpeed);
 }
 

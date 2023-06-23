@@ -31,8 +31,8 @@ String getDateTimeFile() {
   DateTime now = rtc.now();
 
   char fileName[100];
-  snprintf(fileName, 100, "%02u%02u%02u%02u.csv", now.day(), now.hour(), now.minute(),
-           now.second());
+  snprintf(fileName, 100, "%02u%02u%02u%02u.csv", now.day(), now.hour(),
+           now.minute(), now.second());
 
   return String(fileName);
 }
@@ -53,31 +53,44 @@ String getYear() {
 
 String getMonth() {
   DateTime now = rtc.now();
-  return String(now.month());
+  char buffer[3];
+  sprintf(buffer, "%02d", now.month());
+  return String(buffer);
 }
 
 String getDay() {
   DateTime now = rtc.now();
-  return String(now.day());
+  char buffer[3];
+  sprintf(buffer, "%02d", now.day());
+  return String(buffer);
 }
 
-String getHour() {
+String getHour12() {
   DateTime now = rtc.now();
   char buffer[3];
   if (now.hour() < 12) {
     sprintf(buffer, "%02d AM", now.hour());
   } else {
-    sprintf(buffer, "%02d PM", now.hour());
+    sprintf(buffer, "%02d PM", now.hour() - 12);
   }
   return String(buffer);
 }
 
+String getHour24() {
+  DateTime now = rtc.now();
+  return String(now.hour());
+}
+
 String getMinute() {
   DateTime now = rtc.now();
-  return String(now.minute());
+  char buffer[3];
+  sprintf(buffer, "%02d", now.minute());
+  return String(buffer);
 }
 
 String getSecond() {
   DateTime now = rtc.now();
-  return String(now.second());
+  char buffer[3];
+  sprintf(buffer, "%02d", now.second());
+  return String(buffer);
 }

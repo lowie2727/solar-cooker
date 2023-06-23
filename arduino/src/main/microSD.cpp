@@ -24,6 +24,7 @@ void updateFileName() {
   String directoryName = getDirectoryName();
   String fileName = getDateTimeFile();
 
+  SD.mkdir(getYear());
   SD.mkdir(directoryName);
 
   filePath = directoryName + fileName;

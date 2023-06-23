@@ -1,47 +1,38 @@
 #include <Adafruit_MAX31865.h>
 
-const uint8_t CS_PT100 = 11;
-Adafruit_MAX31865 thermo = Adafruit_MAX31865(CS_PT100);
+const uint8_t CS_PT100_1 = 11;
+const uint8_t CS_PT100_2 = 12;
+const uint8_t CS_PT100_3 = 13;
+
+Adafruit_MAX31865 thermo1 = Adafruit_MAX31865(CS_PT100_1);
+Adafruit_MAX31865 thermo2 = Adafruit_MAX31865(CS_PT100_2);
+Adafruit_MAX31865 thermo3 = Adafruit_MAX31865(CS_PT100_3);
 
 const float RREF = 430.0;
 const float RNOMINAL = 100.0;
 
 void PT100Fault();
 
-void PT100Setup() { thermo.begin(MAX31865_4WIRE); }
+void PT100Setup() {
+  thermo1.begin(MAX31865_4WIRE);
+  thermo2.begin(MAX31865_4WIRE);
+  thermo2.begin(MAX31865_4WIRE);
+}
 
-String getPT100Temperature() {
-  thermo.readRTD();
-  float temperature = thermo.temperature(RNOMINAL, RREF);
-  PT100Fault();
+String getPT100Temp1() {
+  thermo1.readRTD();
+  float temperature = thermo1.temperature(RNOMINAL, RREF);
   return String(temperature);
 }
 
-void PT100Fault() {
-  uint8_t fault = thermo.readFault();
+String getPT100Temp2() {
+  thermo2.readRTD();
+  float temperature = thermo2.temperature(RNOMINAL, RREF);
+  return String(temperature);
+}
 
-  if (fault) {
-    Serial.print(F("Fault 0x"));
-    Serial.println(fault, HEX);
-    if (fault & MAX31865_FAULT_HIGHTHRESH) {
-      Serial.println(F("RTD High Threshold"));
-    }
-    if (fault & MAX31865_FAULT_LOWTHRESH) {
-      Serial.println(F("RTD Low Threshold"));
-    }
-    if (fault & MAX31865_FAULT_REFINLOW) {
-      Serial.println(F("REFIN- > 0.85 x Bias"));
-    }
-    if (fault & MAX31865_FAULT_REFINHIGH) {
-      Serial.println(F("REFIN- < 0.85 x Bias - FORCE- open"));
-    }
-    if (fault & MAX31865_FAULT_RTDINLOW) {
-      Serial.println(F("RTDIN- < 0.85 x Bias - FORCE- open"));
-    }
-    if (fault & MAX31865_FAULT_OVUV) {
-      Serial.println(F("Under/Over voltage"));
-    }
-    thermo.clearFault();
-  }
-  Serial.println();
+String getPT100Temp3() {
+  thermo3.readRTD();
+  float temperature = thermo3.temperature(RNOMINAL, RREF);
+  return String(temperature);
 }

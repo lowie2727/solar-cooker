@@ -14,6 +14,18 @@
 // clock module
 #include "clock.h"
 
+// LCD
+void LCDSetup();
+
+#include "Adafruit_GFX.h"
+#include "Adafruit_ILI9341.h"
+#include "SPI.h"
+
+#define TFT_DC 7
+#define TFT_CS 3
+
+Adafruit_ILI9341 tft = Adafruit_ILI9341(TFT_CS, TFT_DC);
+
 // microSD
 #include "microSD.h"
 
@@ -37,6 +49,7 @@ void setup() {
   AM2315Setup();
   BME680Setup();
   clockSetup();
+  LCDSetup();
   microSDSetup();
   PT100Setup();
   switchSetup();
@@ -54,13 +67,14 @@ void loop() {
 
     unsigned long currentMillis = millis();
 
-    if (currentMillis - previousMillis >= 1000) {
+    if (currentMillis - previousMillis >= 2000) {
       previousMillis = currentMillis;
 
       String year = getYear();
       String month = getMonth();
       String day = getDay();
-      String hour = getHour();
+      String hour12 = getHour24();
+      String hour24 = getHour24();
       String minute = getMinute();
       String second = getSecond();
 
@@ -69,57 +83,38 @@ void loop() {
       String BME680Temp = getBME680Temperature();
       String BME680Pres = getBME680Pressure();
       String BME680Hum = getBME680Humidity();
-      String PT100Temp = getPT100Temperature();
+      String PT100Temp1 = getPT100Temp1();
+      //String PT100Temp2 = getPT100Temp2();
+      //String PT100Temp3 = getPT100Temp3();
       String pyranoIrr = getSolarIrradiance();
 
-      String dataCSV = year + ";" + month + ";" + day + ";" + hour + ";"+ minute + ";" + second + ";" + AM2315Temp + ";" + windSpeed + ";" + BME680Pres + ";" + BME680Hum + ";" + PT100Temp + ";" + pyranoIrr;
-      Serial.println(dataCSV);
-      stringToSd(dataCSV);
-      // csv data
+      String dataSd = year + ";" + month + ";" + day + ";" + hour12 + ";" +
+                      minute + ";" + second + ";" + AM2315Temp + ";" +
+                      windSpeed + ";" + BME680Pres + ";" + BME680Hum + ";" +
+                      PT100Temp1 + ";" + pyranoIrr;
+      stringToSd(dataSd);
 
-      /*char csv[100];
-      snprintf(csv, 100,
-               "%04u;%02u;%02u;%s;%02u;%02u;%.2f;%.2f;%.2f;%.2f;%.2f;%.2f;%.2f",
-               year, month, day, hour.c_str(), minute, second,
-               (double)AM2315Temp, (double)windSpeed, (double)BME680Pres,
-               (double)BME680Hum, (double)PT100Temp, (double)pyranoIrr);*/
-      //stringToSd(csv);
-
-      // serial monitor data
-      /*char date[100];
-      snprintf(date, 100, "Date: %04u-%02u-%02u", year, month, day);
-      Serial.println(date);*/
-
-      /*char time[100];
-      snprintf(time, 100, "Time: %s:%02u:%02u", hour.c_str(), minute, second);
-      Serial.println(time);*/
-
-      /*char AM2315[100];
-      snprintf(AM2315, 100, "AM2315 Temperature: %.2f °C", (double)AM2315Temp);
-      Serial.println(AM2315);
-
-      char anemo[100];
-      snprintf(anemo, 100, "Wind speed: %.2f m/s", (double)windSpeed);
-      Serial.println(anemo);
-
-      char BME680[100];
-      snprintf(
-          BME680, 100,
-          "BME680 Temperature: %.2f °C, Pressure: %.2f hPa, Humidity: %.2f \%",
-          (double)BME680Temp, (double)BME680Pres, (double)BME680Hum);
-      Serial.println(BME680);
-
-      char PT100[100];
-      snprintf(PT100, 100, "PT100: %.2f °C", (double)PT100Temp);
-      Serial.println(PT100);
-
-      char pyranometer[100];
-      snprintf(pyranometer, 100, "Pyranometer Irradiance: %.2f °C",
-               (double)pyranoIrr);
-      Serial.println(pyranometer);*/
+      tft.fillScreen(ILI9341_BLACK);
+      tft.setCursor(0, 0);
+      tft.setTextColor(ILI9341_GREEN);
+      tft.setTextSize(2);
+      tft.println("date: " + day + "-" + month + "-" + year);
+      tft.println("time: " + hour24 + ":" + minute + ":" + second);
+      tft.println();
+      tft.println("Temp. pot: " + PT100Temp1 + " C");
+      tft.println("Temp. out: " + AM2315Temp + " C");
+      tft.println("Sun irr. : " + pyranoIrr + " W/m2");
+      tft.println("Wind     : " + windSpeed + " m/s");
+      tft.println("Pressure : " + BME680Pres + " hpa");
+      tft.println("Humidity : " + BME680Hum + " %");
     }
   } else {
     redLedOn();
     fileNameUpdated = 0;
   }
+}
+
+void LCDSetup() {
+  tft.begin();
+  tft.fillScreen(ILI9341_BLACK);
 }

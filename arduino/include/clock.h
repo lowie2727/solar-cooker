@@ -14,7 +14,9 @@ String getMonth();
 
 String getDay();
 
-String getHour();
+String getHour12();
+
+String getHour24();
 
 String getMinute();
 
