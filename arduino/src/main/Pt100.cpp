@@ -17,20 +17,20 @@ void Pt100Setup() {
   thermo2.begin(MAX31865_4WIRE);
 }
 
-String getPt100Temp1() {
+float getPt100Temp1() {
   thermo1.readRTD();
   float temperature = thermo1.temperature(RNOMINAL, RREF);
-  return String(temperature);
+  return temperature;
 }
 
-String getPt100Temp2() {
+float getPt100Temp2() {
   thermo2.readRTD();
   float temperature = thermo2.temperature(RNOMINAL, RREF);
-  return String(temperature);
+  return temperature;
 }
 
-String getPt100Temp3() {
+float getPt100Temp3() {
   thermo3.readRTD();
   float temperature = thermo3.temperature(RNOMINAL, RREF);
-  return String(temperature);
+  return temperature;
 }

@@ -2,22 +2,14 @@
 
 void clockSetup();
 
-String getDateTimeISO();
+uint16_t getYear();
 
-String getDateTimeFile();
+uint8_t getMonth();
 
-String getDirectoryName();
+uint8_t getDay();
 
-String getYear();
+uint8_t getHour24();
 
-String getMonth();
+uint8_t getMinute();
 
-String getDay();
-
-String getHour12();
-
-String getHour24();
-
-String getMinute();
-
-String getSecond();
+uint8_t getSecond();

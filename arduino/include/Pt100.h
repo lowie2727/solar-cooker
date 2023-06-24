@@ -1,7 +1,7 @@
 void Pt100Setup();
 
-String getPt100Temp1();
+float getPt100Temp1();
 
-String getPt100Temp2();
+float getPt100Temp2();
 
-String getPt100Temp3();
+float getPt100Temp3();

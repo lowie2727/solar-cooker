@@ -1,1 +1,1 @@
-String getWindSpeed();
+float getWindSpeed();

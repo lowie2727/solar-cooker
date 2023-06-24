@@ -17,82 +17,32 @@ void clockSetup() {
   }
 }
 
-String getDateTimeISO() {
+uint16_t getYear() {
   DateTime now = rtc.now();
-
-  char dateTimeISO[100];
-  sprintf(dateTimeISO, "%04u-%02u-%02uT%02u:%02u:%02u", now.year(), now.month(),
-          now.day(), now.hour(), now.minute(), now.second());
-
-  return String(dateTimeISO);
+  return now.year();
 }
 
-String getDateTimeFile() {
+uint8_t getMonth() {
   DateTime now = rtc.now();
-
-  char fileName[100];
-  snprintf(fileName, 100, "%02u%02u%02u%02u.csv", now.day(), now.hour(),
-           now.minute(), now.second());
-
-  return String(fileName);
+  return now.month();
 }
 
-String getDirectoryName() {
+uint8_t getDay() {
   DateTime now = rtc.now();
-
-  char diretoryName[100];
-  snprintf(diretoryName, 100, "%04u/%02u/", now.year(), now.month());
-
-  return String(diretoryName);
+  return now.day();
 }
 
-String getYear() {
+uint8_t getHour24() {
   DateTime now = rtc.now();
-  return String(now.year());
+  return now.hour();
 }
 
-String getMonth() {
+uint8_t getMinute() {
   DateTime now = rtc.now();
-  char buffer[3];
-  sprintf(buffer, "%02d", now.month());
-  return String(buffer);
+  return now.minute();
 }
 
-String getDay() {
+uint8_t getSecond() {
   DateTime now = rtc.now();
-  char buffer[3];
-  sprintf(buffer, "%02d", now.day());
-  return String(buffer);
-}
-
-String getHour12() {
-  DateTime now = rtc.now();
-  char buffer[3];
-  if (now.hour() < 12) {
-    sprintf(buffer, "%02d AM", now.hour());
-  } else {
-    sprintf(buffer, "%02d PM", now.hour() - 12);
-  }
-  return String(buffer);
-}
-
-String getHour24() {
-  DateTime now = rtc.now();
-  char buffer[3];
-  sprintf(buffer, "%02d", now.hour());
-  return String(buffer);
-}
-
-String getMinute() {
-  DateTime now = rtc.now();
-  char buffer[3];
-  sprintf(buffer, "%02d", now.minute());
-  return String(buffer);
-}
-
-String getSecond() {
-  DateTime now = rtc.now();
-  char buffer[3];
-  sprintf(buffer, "%02d", now.second());
-  return String(buffer);
+  return now.second();
 }

@@ -2,6 +2,6 @@ void microSDSetup();
 
 void updateFileName();
 
-void stringToSd(String data);
+void stringToSd(char *data);
 
 void writeCSVHeaders();
