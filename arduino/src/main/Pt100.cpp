@@ -34,3 +34,7 @@ float getPt100Temp3() {
   float temperature = thermo3.temperature(RNOMINAL, RREF);
   return temperature;
 }
+
+uint8_t getPt100Fault_1() { return thermo1.readFault(); }
+uint8_t getPt100Fault_2() { return thermo2.readFault(); }
+uint8_t getPt100Fault_3() { return thermo3.readFault(); }

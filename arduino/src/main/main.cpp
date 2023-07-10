@@ -28,7 +28,7 @@ void LCDSetup();
 Adafruit_ILI9341 tft = Adafruit_ILI9341(TFT_CS, TFT_DC, TFT_RST);
 
 // microSD
-#include "microSD.h"
+// #include "microSD.h"
 
 // PT100
 #include "Pt100.h"
@@ -48,13 +48,20 @@ void writeLine3();
 void writeLine4();
 void writeLine5();
 void writeLine6();
+void writeLine7();
+void writeLine8();
 
 unsigned long previousMillis = 0;
 unsigned long previousMillisTemp = 0;
 
-uint8_t previousSecond = 0;
-float previousTemp = 0.0;
-float previousWind = 0.0;
+uint8_t previousSecond = -1;
+float previousTemp = -1;
+float previousWind = -1;
+float previousPressure = -1;
+float previousHumidity = -1;
+float previousPt100Temp1 = -1;
+float previousPt100Temp2 = -1;
+float previousSolarIrradiance = -1;
 
 char previousLine1[100];
 char previousLine2[100];
@@ -62,6 +69,8 @@ char previousLine3[100];
 char previousLine4[100];
 char previousLine5[100];
 char previousLine6[100];
+char previousLine7[100];
+char previousLine8[100];
 
 int fileNameUpdated = 0;
 unsigned long counter = 0;
@@ -72,11 +81,11 @@ void setup() {
   Serial.begin(9600);
   Serial.println();
 
-  AM2315Setup();
+  AM2315CSetup();
   BME680Setup();
   clockSetup();
   LCDSetup();
-  microSDSetup();
+  // microSDSetup();
   Pt100Setup();
   switchSetup();
 }
@@ -87,16 +96,15 @@ void loop() {
 
     if (!fileNameUpdated) {
       // updateFileName();
-      writeCSVHeaders();
-      fileNameUpdated = 1;
+      // writeCSVHeaders();
+      // fileNameUpdated = 1;
     }
-
-    writeDataToScreen();
 
     unsigned long currentMillis = millis();
 
-    if (currentMillis - previousMillis >= 3000) {
-      writeDataToSd();
+    if (currentMillis - previousMillis >= 100) {
+      // writeDataToSd();
+      writeDataToScreen();
       previousMillis = currentMillis;
     }
 
@@ -106,7 +114,7 @@ void loop() {
   }
 }
 
-void writeDataToSd() {
+/*void writeDataToSd() {
   char AM2315CTemp[30];
   dtostrf(getAM2315CTemp(), 4, 2, AM2315CTemp);
 
@@ -133,24 +141,17 @@ void writeDataToSd() {
            getSecond(), AM2315CTemp, windSpeed, BME680Pressure, BME680Humidity,
            Pt100Temp1, solarIrradiance);
   stringToSd(dataSd);
-}
+}*/
 
 void writeDataToScreen() {
   writeLine1();
   writeLine2();
   writeLine3();
-
-  char BME680Pressure[20];
-  dtostrf(getBME680Pressure(), 6, 2, BME680Pressure);
-
-  char BME680Humidity[20];
-  dtostrf(getBME680Humidity(), 4, 2, BME680Humidity);
-
-  char Pt100Temp1[20];
-  dtostrf(getPt100Temp1(), 5, 2, Pt100Temp1);
-
-  char solarIrradiance[20];
-  dtostrf(getSolarIrradiance(), 6, 2, solarIrradiance);
+  writeLine4();
+  writeLine5();
+  writeLine6();
+  writeLine7();
+  writeLine8();
 }
 
 void writeLine1() {
@@ -180,29 +181,26 @@ void writeLine1() {
 }
 
 void writeLine2() {
-
   float temp = previousTemp;
   unsigned long currentMillisTemp = millis();
   char AM2315CTemp[30];
   dtostrf(temp, 4, 2, AM2315CTemp);
 
-  if (currentMillisTemp - previousMillisTemp >= 3000) {
-    temp = getAM2315CTemp();
-    dtostrf(temp, 4, 2, AM2315CTemp);
-    previousMillisTemp = currentMillisTemp;
-  }
+  temp = getAM2315CTemp();
+  dtostrf(temp, 4, 2, AM2315CTemp);
+  previousMillisTemp = currentMillisTemp;
 
   char line2[100];
-  snprintf(line2, 100, "temp out: %s", AM2315CTemp);
+  snprintf(line2, 100, "Temp out: %s", AM2315CTemp);
 
   if (previousTemp != temp) {
     previousTemp = temp;
-    tft.setCursor(0, 20);
+    tft.setCursor(0, 120);
     tft.setTextColor(ILI9341_BLACK);
     tft.setTextSize(2);
     tft.println(previousLine2);
     strcpy(previousLine2, line2);
-    tft.setCursor(0, 20);
+    tft.setCursor(0, 120);
     tft.setTextColor(ILI9341_GREEN);
     tft.setTextSize(2);
     tft.println(line2);
@@ -216,7 +214,7 @@ void writeLine3() {
   dtostrf(getWindSpeed(), 4, 2, windSpeed);
 
   char line3[100];
-  snprintf(line3, 100, "wind speed: %s", windSpeed);
+  snprintf(line3, 100, "Wind speed: %s", windSpeed);
 
   if (previousWind != wind) {
     previousWind = wind;
@@ -229,6 +227,135 @@ void writeLine3() {
     tft.setTextColor(ILI9341_GREEN);
     tft.setTextSize(2);
     tft.println(line3);
+  }
+}
+
+void writeLine4() {
+  float BME680PressureFloat = getBME680Pressure();
+
+  char BME680Pressure[20];
+  dtostrf(BME680PressureFloat, 6, 2, BME680Pressure);
+
+  char line4[100];
+  snprintf(line4, 100, "Pressure: %s", BME680Pressure);
+
+  if (previousPressure != BME680PressureFloat) {
+    previousPressure = BME680PressureFloat;
+    tft.setCursor(0, 60);
+    tft.setTextColor(ILI9341_BLACK);
+    tft.setTextSize(2);
+    tft.println(previousLine4);
+    strcpy(previousLine4, line4);
+    tft.setCursor(0, 60);
+    tft.setTextColor(ILI9341_GREEN);
+    tft.setTextSize(2);
+    tft.println(line4);
+  }
+}
+
+void writeLine5() {
+  float BME680HumidityFloat = getBME680Humidity();
+
+  char BME680Humidity[20];
+  dtostrf(BME680HumidityFloat, 4, 2, BME680Humidity);
+
+  char line4[100];
+  snprintf(line4, 100, "Humidity: %s", BME680Humidity);
+
+  if (previousHumidity != BME680HumidityFloat) {
+    previousHumidity = BME680HumidityFloat;
+    tft.setCursor(0, 80);
+    tft.setTextColor(ILI9341_BLACK);
+    tft.setTextSize(2);
+    tft.println(previousLine4);
+    strcpy(previousLine4, line4);
+    tft.setCursor(0, 80);
+    tft.setTextColor(ILI9341_GREEN);
+    tft.setTextSize(2);
+    tft.println(line4);
+  }
+}
+
+void writeLine6() {
+  float Pt100Temp1Float = getPt100Temp1();
+
+  char Pt100Temp1[20];
+  dtostrf(Pt100Temp1Float, 5, 2, Pt100Temp1);
+
+  char line6[100];
+  snprintf(line6, 100, "Pot 1: %s", Pt100Temp1);
+
+  if (previousPt100Temp1 != Pt100Temp1Float) {
+    previousPt100Temp1 = Pt100Temp1Float;
+    tft.setCursor(0, 140);
+    tft.setTextColor(ILI9341_BLACK);
+    tft.setTextSize(2);
+    tft.println(previousLine6);
+    strcpy(previousLine6, line6);
+    tft.setCursor(0, 140);
+    tft.setTextColor(ILI9341_GREEN);
+    tft.setTextSize(2);
+    tft.println(line6);
+  }
+}
+
+void writeLine7() {
+  float solarIrradianceFloat = getSolarIrradiance();
+
+  char solarIrradiance[20];
+  dtostrf(solarIrradianceFloat, 6, 2, solarIrradiance);
+
+  char line7[100];
+  snprintf(line7, 100, "Solar irr: %s", solarIrradiance);
+
+  if (previousSolarIrradiance != solarIrradianceFloat) {
+    previousSolarIrradiance = solarIrradianceFloat;
+    tft.setCursor(0, 100);
+    tft.setTextColor(ILI9341_BLACK);
+    tft.setTextSize(2);
+    tft.println(previousLine7);
+    strcpy(previousLine7, line7);
+    tft.setCursor(0, 100);
+    tft.setTextColor(ILI9341_GREEN);
+    tft.setTextSize(2);
+    tft.println(line7);
+  }
+}
+
+void writeLine8() {
+  char line8[100];
+  if (!getPt100Fault_2()) {
+    float Pt100Temp2Float = getPt100Temp2();
+
+    char Pt100Temp2[20];
+    dtostrf(Pt100Temp2Float, 5, 2, Pt100Temp2);
+
+    char line8[100];
+    snprintf(line8, 100, "Pot 2: %s", Pt100Temp2);
+
+    if (previousPt100Temp2 != Pt100Temp2Float) {
+      previousPt100Temp2 = Pt100Temp2Float;
+      tft.setCursor(0, 160);
+      tft.setTextColor(ILI9341_BLACK);
+      tft.setTextSize(2);
+      tft.println(previousLine8);
+      strcpy(previousLine8, line8);
+      tft.setCursor(0, 160);
+      tft.setTextColor(ILI9341_GREEN);
+      tft.setTextSize(2);
+      tft.println(line8);
+    }
+  } else {
+    tft.setCursor(0, 160);
+    tft.setTextColor(ILI9341_BLACK);
+    tft.setTextSize(2);
+    snprintf(line8, 100, "Pot 2: NULL");
+    tft.println(previousLine8);
+    strcpy(previousLine8, line8);
+    tft.setCursor(0, 160);
+    tft.setTextColor(ILI9341_GREEN);
+    tft.setTextSize(2);
+    tft.println(line8);
   }
 }
 

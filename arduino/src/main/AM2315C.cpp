@@ -1,18 +1,24 @@
-#include <Adafruit_AM2315.h>
+#include <Adafruit_AHTX0.h>
 
-Adafruit_AM2315 am2315;
+Adafruit_AHTX0 aht;
 
-void AM2315Setup() {
-  if (!am2315.begin()) {
-    Serial.println(F("Sensor not found, check wiring & pullups!"));
+void AM2315CSetup() {
+  Serial.println("Adafruit AHT10/AHT20 demo!");
+
+  if (!aht.begin()) {
+    Serial.println("Could not find AHT? Check wiring");
+    while (1)
+      delay(10);
   }
+  Serial.println("AHT10 or AHT20 found");
 }
 
 float getAM2315CTemp() {
-  float temperature, humidity;
-  if (!am2315.readTemperatureAndHumidity(&temperature, &humidity)) {
-    Serial.println(F("Failed to read data from AM2315"));
-    return -1.0;
-  }
-  return temperature;
+  sensors_event_t humidity, temp;
+  aht.getEvent(&humidity,
+               &temp); // populate temp and humidity objects with fresh data
+  // Serial.print("Temperature: "); Serial.print(temp.temperature);
+  // Serial.println(" degrees C"); Serial.print("Humidity: ");
+  // Serial.print(humidity.relative_humidity); Serial.println("% rH");
+  return temp.temperature;
 }

@@ -1,4 +1,4 @@
-#include <Arduino.h>
+/*#include <Arduino.h>
 
 // clock module
 #include "clock.h"
@@ -110,3 +110,4 @@ void testWriteToSd() {
   myFile.close();
   Serial.println(F("done writing."));
 }
+*/
