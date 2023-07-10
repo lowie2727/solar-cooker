@@ -1,38 +1,24 @@
 #include <Arduino.h>
-#include <SPI.h>
+#include <Adafruit_AHTX0.h>
 
-#include <Adafruit_AM2315.h>
-
-Adafruit_AM2315 am2315;
+Adafruit_AHTX0 aht;
 
 void setup() {
   Serial.begin(9600);
-  while (!Serial) {
-    delay(10);
-  }
-  Serial.println("AM2315 Test!");
+  Serial.println("Adafruit AHT10/AHT20 demo!");
 
-  if (!am2315.begin()) {
-    Serial.println("Sensor not found, check wiring & pullups!");
-    while (1)
-      ;
+  if (! aht.begin()) {
+    Serial.println("Could not find AHT? Check wiring");
+    while (1) delay(10);
   }
-
-  // begin() does a test read, so need to wait 2secs before first read
-  delay(2000);
+  Serial.println("AHT10 or AHT20 found");
 }
 
 void loop() {
-  float temperature, humidity;
+  sensors_event_t humidity, temp;
+  aht.getEvent(&humidity, &temp);// populate temp and humidity objects with fresh data
+  Serial.print("Temperature: "); Serial.print(temp.temperature); Serial.println(" degrees C");
+  Serial.print("Humidity: "); Serial.print(humidity.relative_humidity); Serial.println("% rH");
 
-  if (!am2315.readTemperatureAndHumidity(&temperature, &humidity)) {
-    Serial.println("Failed to read data from AM2315");
-    return;
-  }
-  Serial.print("Temp *C: ");
-  Serial.println(temperature);
-  Serial.print("Hum %: ");
-  Serial.println(humidity);
-
-  delay(2000);
+  delay(100);
 }
