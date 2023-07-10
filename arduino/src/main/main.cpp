@@ -27,9 +27,6 @@ void LCDSetup();
 
 Adafruit_ILI9341 tft = Adafruit_ILI9341(TFT_CS, TFT_DC, TFT_RST);
 
-// microSD
-// #include "microSD.h"
-
 // PT100
 #include "Pt100.h"
 
@@ -85,7 +82,6 @@ void setup() {
   BME680Setup();
   clockSetup();
   LCDSetup();
-  // microSDSetup();
   Pt100Setup();
   switchSetup();
 }
@@ -94,16 +90,9 @@ void loop() {
   if (getSwitchState()) {
     greenLedOn();
 
-    if (!fileNameUpdated) {
-      // updateFileName();
-      // writeCSVHeaders();
-      // fileNameUpdated = 1;
-    }
-
     unsigned long currentMillis = millis();
 
     if (currentMillis - previousMillis >= 100) {
-      // writeDataToSd();
       writeDataToScreen();
       previousMillis = currentMillis;
     }
@@ -113,35 +102,6 @@ void loop() {
     fileNameUpdated = 0;
   }
 }
-
-/*void writeDataToSd() {
-  char AM2315CTemp[30];
-  dtostrf(getAM2315CTemp(), 4, 2, AM2315CTemp);
-
-  char windSpeed[20];
-  dtostrf(getWindSpeed(), 4, 2, windSpeed);
-
-  char BME680Pressure[20];
-  dtostrf(getBME680Pressure(), 6, 2, BME680Pressure);
-
-  char BME680Humidity[20];
-  dtostrf(getBME680Humidity(), 4, 2, BME680Humidity);
-
-  char Pt100Temp1[20];
-  dtostrf(getPt100Temp1(), 5, 2, Pt100Temp1);
-
-  char solarIrradiance[20];
-  dtostrf(getSolarIrradiance(), 6, 2, solarIrradiance);
-
-  Serial.println("writing to sd");
-
-  char dataSd[500];
-  snprintf(dataSd, 500, "%04d;%02d;%02d;%02d;%02d;%02d;%s;%s;%s;%s;%s;%s",
-           getYear(), getMonth(), getDay(), getHour24(), getMinute(),
-           getSecond(), AM2315CTemp, windSpeed, BME680Pressure, BME680Humidity,
-           Pt100Temp1, solarIrradiance);
-  stringToSd(dataSd);
-}*/
 
 void writeDataToScreen() {
   writeLine1();
@@ -191,7 +151,7 @@ void writeLine2() {
   previousMillisTemp = currentMillisTemp;
 
   char line2[100];
-  snprintf(line2, 100, "Temp out: %s", AM2315CTemp);
+  snprintf(line2, 100, "Temp out: %sC", AM2315CTemp);
 
   if (previousTemp != temp) {
     previousTemp = temp;
@@ -214,7 +174,7 @@ void writeLine3() {
   dtostrf(getWindSpeed(), 4, 2, windSpeed);
 
   char line3[100];
-  snprintf(line3, 100, "Wind speed: %s", windSpeed);
+  snprintf(line3, 100, "Wind : %sm/s", windSpeed);
 
   if (previousWind != wind) {
     previousWind = wind;
@@ -237,7 +197,7 @@ void writeLine4() {
   dtostrf(BME680PressureFloat, 6, 2, BME680Pressure);
 
   char line4[100];
-  snprintf(line4, 100, "Pressure: %s", BME680Pressure);
+  snprintf(line4, 100, "Pressure: %shPa", BME680Pressure);
 
   if (previousPressure != BME680PressureFloat) {
     previousPressure = BME680PressureFloat;
@@ -260,7 +220,7 @@ void writeLine5() {
   dtostrf(BME680HumidityFloat, 4, 2, BME680Humidity);
 
   char line4[100];
-  snprintf(line4, 100, "Humidity: %s", BME680Humidity);
+  snprintf(line4, 100, "Humidity: %s%%", BME680Humidity); //switchen naar de am2315C
 
   if (previousHumidity != BME680HumidityFloat) {
     previousHumidity = BME680HumidityFloat;
@@ -277,19 +237,33 @@ void writeLine5() {
 }
 
 void writeLine6() {
-  float Pt100Temp1Float = getPt100Temp1();
-
-  char Pt100Temp1[20];
-  dtostrf(Pt100Temp1Float, 5, 2, Pt100Temp1);
-
   char line6[100];
-  snprintf(line6, 100, "Pot 1: %s", Pt100Temp1);
+  if (!getPt100Fault_1()) {
+    float Pt100Temp1Float = getPt100Temp1();
 
-  if (previousPt100Temp1 != Pt100Temp1Float) {
-    previousPt100Temp1 = Pt100Temp1Float;
+    char Pt100Temp1[20];
+    dtostrf(Pt100Temp1Float, 5, 2, Pt100Temp1);
+
+    char line6[100];
+    snprintf(line6, 100, "Pot 1: %sC", Pt100Temp1);
+
+    if (previousPt100Temp1 != Pt100Temp1Float) {
+      previousPt100Temp1 = Pt100Temp1Float;
+      tft.setCursor(0, 140);
+      tft.setTextColor(ILI9341_BLACK);
+      tft.setTextSize(2);
+      tft.println(previousLine6);
+      strcpy(previousLine6, line6);
+      tft.setCursor(0, 140);
+      tft.setTextColor(ILI9341_GREEN);
+      tft.setTextSize(2);
+      tft.println(line6);
+    }
+  } else {
     tft.setCursor(0, 140);
     tft.setTextColor(ILI9341_BLACK);
     tft.setTextSize(2);
+    snprintf(line6, 100, "Pot 1: NULL");
     tft.println(previousLine6);
     strcpy(previousLine6, line6);
     tft.setCursor(0, 140);
@@ -306,7 +280,7 @@ void writeLine7() {
   dtostrf(solarIrradianceFloat, 6, 2, solarIrradiance);
 
   char line7[100];
-  snprintf(line7, 100, "Solar irr: %s", solarIrradiance);
+  snprintf(line7, 100, "irr: %sW/m2", solarIrradiance);
 
   if (previousSolarIrradiance != solarIrradianceFloat) {
     previousSolarIrradiance = solarIrradianceFloat;
@@ -331,7 +305,7 @@ void writeLine8() {
     dtostrf(Pt100Temp2Float, 5, 2, Pt100Temp2);
 
     char line8[100];
-    snprintf(line8, 100, "Pot 2: %s", Pt100Temp2);
+    snprintf(line8, 100, "Pot 2: %sC", Pt100Temp2);
 
     if (previousPt100Temp2 != Pt100Temp2Float) {
       previousPt100Temp2 = Pt100Temp2Float;
