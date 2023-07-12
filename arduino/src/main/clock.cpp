@@ -11,6 +11,8 @@ void clockSetup() {
     Serial.flush();
   }
 
+  // rtc.adjust(DateTime(F(__DATE__), F(__TIME__)));
+
   if (rtc.lostPower()) {
     Serial.println("RTC lost power, let's set the time!");
     rtc.adjust(DateTime(F(__DATE__), F(__TIME__)));
@@ -45,4 +47,10 @@ uint8_t getMinute() {
 uint8_t getSecond() {
   DateTime now = rtc.now();
   return now.second();
+}
+
+void printTime() {
+  Serial.print(getHour24());
+  Serial.print(getMinute());
+  Serial.println(getSecond());
 }

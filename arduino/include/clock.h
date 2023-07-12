@@ -13,3 +13,5 @@ uint8_t getHour24();
 uint8_t getMinute();
 
 uint8_t getSecond();
+
+void printTime();

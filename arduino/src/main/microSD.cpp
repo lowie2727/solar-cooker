@@ -1,33 +1,26 @@
-/*#include "clock.h"
-#include <SD.h>
+#include <SdFat.h>
+
+#include "clock.h"
+
+SdFat sd;
+SdFile myFile;
 
 const uint8_t CS_SD = 4;
 char CSVHeaders[] =
     "Year;Month;Day;Hour (12-hour clock);Minute;Second;Outside temperature "
     "[°C];Wind speed [m/s];Air pressure (inside box) [hPa];Relative humidity "
-    "(inside box) [%];Temperature inside pot [°C];Solar irradiance [W/m²]";
-char filePath[200] = "test.csv";
+    "(inside box) [%];Temperature inside pot 1 [°C];Temperature inside pot 2 "
+    "[°C];Solar irradiance [W/m²]";
+char filePath[200];
 
 void microSDSetup() {
-
-  pinMode(53, OUTPUT);
   Serial.print(F("Initializing SD card..."));
 
-  // see if the card is present and can be initialized:
-  if (!SD.begin(CS_SD)) {
-    Serial.println(F("Card failed, or not present"));
-    while (1) {
-    };
+  if (!sd.begin(CS_SD, SPI_HALF_SPEED)) {
+    sd.initErrorHalt();
   }
-  Serial.println(F("card initialized."));
-  File dataFile = SD.open(filePath, FILE_WRITE);
 
-  if (dataFile) {
-    dataFile.close();
-  } else {
-    Serial.print(F("error opening "));
-    Serial.println(filePath);
-  }
+  Serial.println(F("Initialized"));
 }
 
 void updateFileName() {
@@ -37,41 +30,21 @@ void updateFileName() {
   char dirName[200];
   snprintf(dirName, 200, "%04d/%02d/", getYear(), getMonth());
 
-  SD.mkdir(String(getYear()));
-  SD.mkdir(dirName);
+  sd.mkdir(String(getYear()));
+  sd.mkdir(dirName);
 
-  File dataFile = SD.open(filePath, FILE_WRITE);
-
-  if (dataFile) {
-    dataFile.close();
-  } else {
-    Serial.print(F("error opening "));
-    Serial.println(filePath);
+  if (!myFile.open(filePath, O_RDWR | O_CREAT | O_AT_END)) {
+    sd.errorHalt("opening file for write failed");
   }
+  myFile.close();
 }
 
 void stringToSd(char *data) {
-  File dataFile = SD.open(filePath, FILE_WRITE);
-  Serial.println(data);
-  if (dataFile) {
-    dataFile.print(data);
-    dataFile.close();
-  } else {
-    Serial.print(F("error opening "));
-    Serial.println(filePath);
+  if (!myFile.open(filePath, O_RDWR | O_CREAT | O_AT_END)) {
+    sd.errorHalt("opening file for write failed");
   }
-}
-
-void stringToSdLn(String data) {
-  File dataFile = SD.open(filePath, FILE_WRITE);
-  if (dataFile) {
-    dataFile.println(data);
-    dataFile.close();
-  } else {
-    Serial.print(F("error opening "));
-    Serial.println(filePath);
-  }
+  myFile.println(data);
+  myFile.close();
 }
 
 void writeCSVHeaders() { stringToSd(CSVHeaders); }
-*/

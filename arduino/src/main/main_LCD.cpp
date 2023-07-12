@@ -214,16 +214,17 @@ void writeLine4() {
 }
 
 void writeLine5() {
-  float BME680HumidityFloat = getBME680Humidity();
+  float AM2315CHumidityFloat = getAM2315CHum();
 
-  char BME680Humidity[20];
-  dtostrf(BME680HumidityFloat, 4, 2, BME680Humidity);
+  char AM2315CHumidity[20];
+  dtostrf(AM2315CHumidityFloat, 4, 2, AM2315CHumidity);
 
   char line4[100];
-  snprintf(line4, 100, "Humidity: %s%%", BME680Humidity); //switchen naar de am2315C
+  snprintf(line4, 100, "Humidity: %s%%",
+           AM2315CHumidity);
 
-  if (previousHumidity != BME680HumidityFloat) {
-    previousHumidity = BME680HumidityFloat;
+  if (previousHumidity != AM2315CHumidityFloat) {
+    previousHumidity = AM2315CHumidityFloat;
     tft.setCursor(0, 80);
     tft.setTextColor(ILI9341_BLACK);
     tft.setTextSize(2);

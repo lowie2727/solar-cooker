@@ -11,7 +11,6 @@ void BME680Setup() {
     Serial.println(F("Could not find a valid BME680 sensor, check wiring!"));
   }
 
-  // Set up oversampling and filter initialization
   bme.setTemperatureOversampling(BME680_OS_8X);
   bme.setHumidityOversampling(BME680_OS_2X);
   bme.setPressureOversampling(BME680_OS_4X);
