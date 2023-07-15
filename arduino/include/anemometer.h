@@ -1,1 +1,3 @@
+void anemoSetup();
+
 float getWindSpeed();

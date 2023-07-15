@@ -12,9 +12,11 @@ const float RREF = 430.0;
 const float RNOMINAL = 100.0;
 
 void Pt100Setup() {
+  Serial.println(F("Pt100 setup start"));
   thermo1.begin(MAX31865_4WIRE);
   thermo2.begin(MAX31865_4WIRE);
   thermo2.begin(MAX31865_4WIRE);
+  Serial.println(F("Pt100 setup finished\n"));
 }
 
 float getPt100Temp1() {

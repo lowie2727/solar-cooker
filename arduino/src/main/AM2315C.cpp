@@ -3,14 +3,12 @@
 Adafruit_AHTX0 aht;
 
 void AM2315CSetup() {
-  Serial.println("Adafruit AHT10/AHT20 demo!");
+  Serial.println("AM2315C setup start");
 
   if (!aht.begin()) {
-    Serial.println("Could not find AHT? Check wiring");
-    while (1)
-      delay(10);
+    Serial.println(F("Could not find AM2315C, check wiring"));
   }
-  Serial.println("AHT10 or AHT20 found");
+  Serial.println(F("AM2315C setup finished\n"));
 }
 
 float getAM2315CTemp() {

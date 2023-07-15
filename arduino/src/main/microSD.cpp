@@ -2,6 +2,8 @@
 
 #include "clock.h"
 
+void makeFile();
+
 SdFat sd;
 SdFile myFile;
 
@@ -14,13 +16,13 @@ char CSVHeaders[] =
 char filePath[200];
 
 void microSDSetup() {
-  Serial.print(F("Initializing SD card..."));
+  Serial.println(F("microSD setup start"));
 
-  if (!sd.begin(CS_SD, SPI_HALF_SPEED)) {
+  if (!sd.begin(CS_SD, SPI_FULL_SPEED)) {
     sd.initErrorHalt();
   }
 
-  Serial.println(F("Initialized"));
+  Serial.println("microSD setup finished\n");
 }
 
 void updateFileName() {
@@ -33,6 +35,10 @@ void updateFileName() {
   sd.mkdir(String(getYear()));
   sd.mkdir(dirName);
 
+  makeFile();
+}
+
+void makeFile() {
   if (!myFile.open(filePath, O_RDWR | O_CREAT | O_AT_END)) {
     sd.errorHalt("opening file for write failed");
   }
