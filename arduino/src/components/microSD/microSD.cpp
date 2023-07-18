@@ -1,4 +1,4 @@
-# include <Arduino.h>
+#include <Arduino.h>
 
 // Ported to SdFat from the native Arduino SD library example by Bill Greiman
 // On the Ethernet Shield, CS is pin 4. SdFat handles setting SS

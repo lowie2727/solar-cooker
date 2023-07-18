@@ -58,7 +58,7 @@ void loop() {
 
     unsigned long currentMillis = millis();
 
-    if (currentMillis - previousMillis >= 1000) {
+    if (currentMillis - previousMillis >= 2000) {
       writeDataToSd();
       previousMillis = currentMillis;
     }
@@ -125,7 +125,8 @@ void writeDataToSd() {
   Serial.println(line2);
 
   char line3[100];
-  snprintf(line3, 100, "Temperature pot 1: %s °C\nTemperature pot 2: %s °C", Pt100Temp1,  Pt100Temp2);
+  snprintf(line3, 100, "Temperature pot 1: %s °C\nTemperature pot 2: %s °C",
+           Pt100Temp1, Pt100Temp2);
   Serial.println(line3);
 
   char line4[100];

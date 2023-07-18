@@ -79,10 +79,12 @@ void setup() {
   Serial.println();
 
   AM2315CSetup();
+  anemoSetup();
   BME680Setup();
   clockSetup();
   LCDSetup();
   Pt100Setup();
+  pyranoSetup();
   switchSetup();
 }
 
@@ -92,7 +94,7 @@ void loop() {
 
     unsigned long currentMillis = millis();
 
-    if (currentMillis - previousMillis >= 100) {
+    if (currentMillis - previousMillis >= 1000) {
       writeDataToScreen();
       previousMillis = currentMillis;
     }
@@ -220,8 +222,7 @@ void writeLine5() {
   dtostrf(AM2315CHumidityFloat, 4, 2, AM2315CHumidity);
 
   char line4[100];
-  snprintf(line4, 100, "Humidity: %s%%",
-           AM2315CHumidity);
+  snprintf(line4, 100, "Humidity: %s%%", AM2315CHumidity);
 
   if (previousHumidity != AM2315CHumidityFloat) {
     previousHumidity = AM2315CHumidityFloat;
@@ -281,7 +282,7 @@ void writeLine7() {
   dtostrf(solarIrradianceFloat, 6, 2, solarIrradiance);
 
   char line7[100];
-  snprintf(line7, 100, "irr: %sW/m2", solarIrradiance);
+  snprintf(line7, 100, "Irr: %sW/m2", solarIrradiance);
 
   if (previousSolarIrradiance != solarIrradianceFloat) {
     previousSolarIrradiance = solarIrradianceFloat;

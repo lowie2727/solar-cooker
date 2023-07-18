@@ -2,9 +2,7 @@
 
 const int PYRANO_PIN = A10;
 
-void pyranoSetup() {
-  pinMode(PYRANO_PIN, INPUT);
-}
+void pyranoSetup() { pinMode(PYRANO_PIN, INPUT); }
 
 float getSolarIrradiance() {
   int pyranoValue = analogRead(PYRANO_PIN);

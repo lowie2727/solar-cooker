@@ -5,9 +5,7 @@ float mapfloat(float x, float in_min, float in_max, float out_min,
 
 const int ANEMO_PIN = A0;
 
-void anemoSetup() {
-  pinMode(ANEMO_PIN, INPUT);
-}
+void anemoSetup() { pinMode(ANEMO_PIN, INPUT); }
 
 float getWindSpeed() {
   float sensorValue = analogRead(ANEMO_PIN);

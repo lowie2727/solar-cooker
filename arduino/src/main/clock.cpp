@@ -48,9 +48,3 @@ uint8_t getSecond() {
   DateTime now = rtc.now();
   return now.second();
 }
-
-void printTime() {
-  Serial.print(getHour24());
-  Serial.print(getMinute());
-  Serial.println(getSecond());
-}
