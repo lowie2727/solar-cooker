@@ -47,6 +47,7 @@ void writeLine5();
 void writeLine6();
 void writeLine7();
 void writeLine8();
+void writeLine9();
 
 unsigned long previousMillis = 0;
 unsigned long previousMillisTemp = 0;
@@ -68,8 +69,20 @@ char previousLine5[100];
 char previousLine6[100];
 char previousLine7[100];
 char previousLine8[100];
+char previousLine9[100];
 
 int fileNameUpdated = 0;
+
+static float tempBuffer[300] = {0};
+static int bufferIndex = 0; 
+float pretempsum = 0.0;
+int counter3 = 0;
+
+static float tempBuffer2[30] = {0};
+static int bufferIndex2 = 0;
+static int bufferIndex3 = 0; 
+int counter4 = 0;
+
 unsigned long counter = 0;
 unsigned long counter2 = 0;
 unsigned long previousValue = 0;
@@ -80,10 +93,12 @@ void setup() {
 
   AM2315CSetup();
   anemoSetup();
+  anemoSetup();
   BME680Setup();
   clockSetup();
   LCDSetup();
   Pt100Setup();
+  pyranoSetup();
   pyranoSetup();
   switchSetup();
 }
@@ -94,6 +109,7 @@ void loop() {
 
     unsigned long currentMillis = millis();
 
+    if (currentMillis - previousMillis >= 1000) {
     if (currentMillis - previousMillis >= 1000) {
       writeDataToScreen();
       previousMillis = currentMillis;
@@ -114,6 +130,7 @@ void writeDataToScreen() {
   writeLine6();
   writeLine7();
   writeLine8();
+  writeLine9();
 }
 
 void writeLine1() {
@@ -153,7 +170,7 @@ void writeLine2() {
   previousMillisTemp = currentMillisTemp;
 
   char line2[100];
-  snprintf(line2, 100, "Temp out: %sC", AM2315CTemp);
+  snprintf(line2, 100, "Temp Out: %sC", AM2315CTemp);
 
   if (previousTemp != temp) {
     previousTemp = temp;
@@ -176,7 +193,7 @@ void writeLine3() {
   dtostrf(getWindSpeed(), 4, 2, windSpeed);
 
   char line3[100];
-  snprintf(line3, 100, "Wind : %sm/s", windSpeed);
+  snprintf(line3, 100, "Wind: %sm/s", windSpeed);
 
   if (previousWind != wind) {
     previousWind = wind;
@@ -217,13 +234,19 @@ void writeLine4() {
 
 void writeLine5() {
   float AM2315CHumidityFloat = getAM2315CHum();
+  float AM2315CHumidityFloat = getAM2315CHum();
 
+  char AM2315CHumidity[20];
+  dtostrf(AM2315CHumidityFloat, 4, 2, AM2315CHumidity);
   char AM2315CHumidity[20];
   dtostrf(AM2315CHumidityFloat, 4, 2, AM2315CHumidity);
 
   char line4[100];
   snprintf(line4, 100, "Humidity: %s%%", AM2315CHumidity);
+  snprintf(line4, 100, "Humidity: %s%%", AM2315CHumidity);
 
+  if (previousHumidity != AM2315CHumidityFloat) {
+    previousHumidity = AM2315CHumidityFloat;
   if (previousHumidity != AM2315CHumidityFloat) {
     previousHumidity = AM2315CHumidityFloat;
     tft.setCursor(0, 80);
@@ -247,7 +270,7 @@ void writeLine6() {
     dtostrf(Pt100Temp1Float, 5, 2, Pt100Temp1);
 
     char line6[100];
-    snprintf(line6, 100, "Pot 1: %sC", Pt100Temp1);
+    snprintf(line6, 100, "Temp Pot 1: %sC", Pt100Temp1);
 
     if (previousPt100Temp1 != Pt100Temp1Float) {
       previousPt100Temp1 = Pt100Temp1Float;
@@ -265,7 +288,7 @@ void writeLine6() {
     tft.setCursor(0, 140);
     tft.setTextColor(ILI9341_BLACK);
     tft.setTextSize(2);
-    snprintf(line6, 100, "Pot 1: NULL");
+    snprintf(line6, 100, "Temp Pot 1: NULL");
     tft.println(previousLine6);
     strcpy(previousLine6, line6);
     tft.setCursor(0, 140);
@@ -279,7 +302,7 @@ void writeLine7() {
   float solarIrradianceFloat = getSolarIrradiance();
 
   char solarIrradiance[20];
-  dtostrf(solarIrradianceFloat, 6, 2, solarIrradiance);
+  dtostrf(solarIrradianceFloat, 5, 2, solarIrradiance);
 
   char line7[100];
   snprintf(line7, 100, "Irr: %sW/m2", solarIrradiance);
@@ -307,7 +330,7 @@ void writeLine8() {
     dtostrf(Pt100Temp2Float, 5, 2, Pt100Temp2);
 
     char line8[100];
-    snprintf(line8, 100, "Pot 2: %sC", Pt100Temp2);
+    snprintf(line8, 100, "Temp Pot 2: %sC", Pt100Temp2);
 
     if (previousPt100Temp2 != Pt100Temp2Float) {
       previousPt100Temp2 = Pt100Temp2Float;
@@ -325,13 +348,58 @@ void writeLine8() {
     tft.setCursor(0, 160);
     tft.setTextColor(ILI9341_BLACK);
     tft.setTextSize(2);
-    snprintf(line8, 100, "Pot 2: NULL");
+    snprintf(line8, 100, "Temp Pot 2: NULL");
     tft.println(previousLine8);
     strcpy(previousLine8, line8);
     tft.setCursor(0, 160);
     tft.setTextColor(ILI9341_GREEN);
     tft.setTextSize(2);
     tft.println(line8);
+  }
+}
+
+void writeLine9() {
+  float slope = 0.0;
+  float preSlope = 0.0;
+
+  float currentTemp = getPt100Temp1();
+  tempBuffer2[bufferIndex2] = currentTemp;
+  
+  if(counter4 < 30){
+    counter4 += 1;
+    preSlope = (tempBuffer2[bufferIndex3]-tempBuffer2[0])/counter4;
+  }
+
+  bufferIndex2 = (bufferIndex2 + 1) % 30;
+  bufferIndex3 = (bufferIndex2 + 29) % 30;
+
+  slope = (tempBuffer2[bufferIndex3]-tempBuffer2[bufferIndex2])/30;
+
+  char line9[100];
+  if (!getPt100Fault_1()) {
+    char Pt100Temp1[20];
+    if(counter4 < 30){
+      dtostrf(preSlope, 5, 2, Pt100Temp1);
+      snprintf(line9, 100, "Slope 1min: %sC/s", Pt100Temp1);
+    } else{
+      dtostrf(slope, 5, 2, Pt100Temp1);
+      snprintf(line9, 100, "Slope 1min: %sC/s", Pt100Temp1);
+    }
+  } else {
+    snprintf(line9, 100, "Slope 1min: NULL");
+  }
+
+  if (strcmp(line9, previousLine9) != 0) {
+    previousPt100Temp1 = currentTemp;
+    tft.setCursor(0, 180);
+    tft.setTextColor(ILI9341_BLACK);
+    tft.setTextSize(2);
+    tft.println(previousLine9);
+    strcpy(previousLine9, line9);
+    tft.setCursor(0, 180);
+    tft.setTextColor(ILI9341_GREEN);
+    tft.setTextSize(2);
+    tft.println(line9);
   }
 }
 
