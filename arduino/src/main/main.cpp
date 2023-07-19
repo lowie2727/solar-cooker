@@ -47,6 +47,8 @@ void writeLine5();
 void writeLine6();
 void writeLine7();
 void writeLine8();
+void writeLine9();
+void writeLine10();
 
 unsigned long previousMillis = 0;
 unsigned long previousMillisTemp = 0;
@@ -68,8 +70,21 @@ char previousLine5[100];
 char previousLine6[100];
 char previousLine7[100];
 char previousLine8[100];
+char previousLine9[100];
+char previousLine10[100];
 
 int fileNameUpdated = 0;
+
+static float tempBuffer[300] = {0};
+static int bufferIndex = 0; 
+float pretempsum = 0.0;
+int counter3 = 0;
+
+static float tempBuffer2[60] = {0};
+static int bufferIndex2 = 0;
+static int bufferIndex3 = 0; 
+int counter4 = 0;
+
 unsigned long counter = 0;
 unsigned long counter2 = 0;
 unsigned long previousValue = 0;
@@ -112,6 +127,8 @@ void writeDataToScreen() {
   writeLine6();
   writeLine7();
   writeLine8();
+  writeLine9();
+  writeLine10();
 }
 
 void writeLine1() {
@@ -330,6 +347,95 @@ void writeLine8() {
     tft.setTextColor(ILI9341_GREEN);
     tft.setTextSize(2);
     tft.println(line8);
+  }
+}
+
+
+void writeLine10() {
+  float pretemp = 0.0;
+  float sum = 0.0;
+
+  float currentTemp = getPt100Temp1();
+  tempBuffer[bufferIndex] = currentTemp;
+  
+  if(counter3 < 300){
+    pretempsum = pretempsum + currentTemp;
+    counter3 += 1;
+    pretemp = pretempsum/counter3;
+  }
+
+  for (int i = 0; i < 300; i++) {
+    sum += tempBuffer[i];
+  }
+
+  float avgTemp = sum / 300;
+  bufferIndex = (bufferIndex + 1) % 300;
+
+  char line10[100];
+  if (!getPt100Fault_1()) {
+    char Pt100Temp1[20];
+    if(counter3 < 300){
+        dtostrf(pretemp, 5, 2, Pt100Temp1);
+    } else{
+      dtostrf(avgTemp, 5, 2, Pt100Temp1);
+    }
+    snprintf(line10, 100, "Avg 5min: %sC", Pt100Temp1);
+  } else {
+    snprintf(line10, 100, "Avg 5min: NULL");
+  }
+
+  if (strcmp(line10, previousLine10) != 0) {
+    previousPt100Temp1 = currentTemp;
+    tft.setCursor(0, 180);
+    tft.setTextColor(ILI9341_BLACK);
+    tft.setTextSize(2);
+    tft.println(previousLine10);
+    strcpy(previousLine10, line10);
+    tft.setCursor(0, 180);
+    tft.setTextColor(ILI9341_GREEN);
+    tft.setTextSize(2);
+    tft.println(line10);
+  }
+}
+
+
+void writeLine9() {
+  float slope = 0.0;
+
+  float currentTemp = getPt100Temp1();
+  tempBuffer2[bufferIndex2] = currentTemp;
+  
+  if(counter4 < 60){
+    counter4 += 1;
+  }
+
+  bufferIndex2 = (bufferIndex2 + 1) % 60;
+  bufferIndex3 = (bufferIndex2 + 59) % 60;
+
+  char line9[100];
+  if (!getPt100Fault_1()) {
+    char Pt100Temp1[20];
+    if(counter4 < 60){
+        snprintf(line9, 100, "Slope 1min: ...");
+    } else{
+      dtostrf(slope, 5, 2, Pt100Temp1);
+      snprintf(line9, 100, "Slope 1min: %sC/s", Pt100Temp1);
+    }
+  } else {
+    snprintf(line9, 100, "Slope 1min: NULL");
+  }
+
+  if (strcmp(line9, previousLine9) != 0) {
+    previousPt100Temp1 = currentTemp;
+    tft.setCursor(0, 200);
+    tft.setTextColor(ILI9341_BLACK);
+    tft.setTextSize(2);
+    tft.println(previousLine9);
+    strcpy(previousLine9, line9);
+    tft.setCursor(0, 200);
+    tft.setTextColor(ILI9341_GREEN);
+    tft.setTextSize(2);
+    tft.println(line9);
   }
 }
 
