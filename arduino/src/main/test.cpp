@@ -32,15 +32,18 @@ void writeLine2();
 void writeLine3();
 void writeLine4();
 void writeLine5();
+void writeLine6();
 
 char previousLine1[100];
 char previousLine2[100];
 char previousLine3[100];
 char previousLine4[100];
 char previousLine5[100];
+char previousLine6[100];
 
 float previousPt100Temp1 = -1;
 float previousPt100Temp2 = -1;
+float previousPt100Temp3 = -1;
 uint8_t previousSecond = -1;
 float previousWind = -1;
 float previousSolarIrradiance = -1;
@@ -128,11 +131,11 @@ void writeCSVHeaders() {
       "Year;Month;Day;Hour (12-hour clock);Minute;Second;Outside temperature "
       "[°C];Wind speed [m/s];Air pressure (inside box) [hPa];Relative humidity "
       "(inside box) [%];Temperature inside pot 1 [°C];Temperature inside pot 2 "
-      "[°C];Solar irradiance [W/m²]";
+      "[°C];Temperature inside pot 3 [°C];Solar irradiance [W/m²]";
   if (!myFile.open(filePath, O_RDWR | O_CREAT | O_AT_END)) {
     sd.errorHalt(F("opening test.txt for write failed"));
   }
-  Serial.println(CSVHeaders);
+  Serial.println("Writing CSV headers");
   myFile.println(CSVHeaders);
   myFile.close();
   Serial.println(F("done writing."));
@@ -158,19 +161,34 @@ void writeDataToSD() {
   dtostrf(getWindSpeed(), 4, 2, windSpeed);
 
   char Pt100Temp1[20];
-  dtostrf(getPt100Temp1(), 5, 2, Pt100Temp1);
+  if (!getPt100Fault_1()) {
+    dtostrf(getPt100Temp1(), 5, 2, Pt100Temp1);
+  } else {
+    snprintf(Pt100Temp1, 20, "x");
+  }
 
   char Pt100Temp2[20];
-  dtostrf(getPt100Temp2(), 5, 2, Pt100Temp2);
+  if (!getPt100Fault_2()) {
+    dtostrf(getPt100Temp2(), 5, 2, Pt100Temp2);
+  } else {
+    snprintf(Pt100Temp2, 20, "x");
+  }
+
+  char Pt100Temp3[20];
+  if (!getPt100Fault_3()) {
+    dtostrf(getPt100Temp3(), 5, 2, Pt100Temp3);
+  } else {
+    snprintf(Pt100Temp3, 20, "x");
+  }
 
   char solarIrradiance[20];
   dtostrf(getSolarIrradiance(), 6, 2, solarIrradiance);
 
   char dataSd[500];
-  snprintf(dataSd, 500, "%04d;%02d;%02d;%02d;%02d;%02d;%s;%s;%s;%s;%s;%s;%s",
+  snprintf(dataSd, 500, "%04d;%02d;%02d;%02d;%02d;%02d;%s;%s;%s;%s;%s;%s;%s;%s",
            getYear(), getMonth(), getDay(), getHour24(), getMinute(),
            getSecond(), AM2315CTemp, windSpeed, BME680Pressure, AM2315CHum,
-           Pt100Temp1, Pt100Temp2, solarIrradiance);
+           Pt100Temp1, Pt100Temp2, Pt100Temp3, solarIrradiance);
 
   if (!myFile.open(filePath, O_RDWR | O_CREAT | O_AT_END)) {
     sd.errorHalt(F("opening test.txt for write failed"));
@@ -184,6 +202,8 @@ void writeDataToSD() {
 void updateFileName() {
   snprintf(filePath, 200, "%04d/%02d/%02d%02d%02d%02d.csv", getYear(),
            getMonth(), getDay(), getHour24(), getMinute(), getSecond());
+
+  Serial.println(filePath);
 
   char dirName[200];
   snprintf(dirName, 200, "%04d/%02d/", getYear(), getMonth());
@@ -212,13 +232,14 @@ void writeDataToScreen() {
   writeLine3();
   writeLine4();
   writeLine5();
+  writeLine6();
 }
 
 void writeLine1() {
   unsigned long currentTestDurationSeconds =
       (unsigned long)(millis() - testDurationMillis) / 1000;
 
-  uint8_t hours = (uint8_t)currentTestDurationSeconds / 3600;
+  uint8_t hours = currentTestDurationSeconds / 3600;
 
   int remainder1 = currentTestDurationSeconds % 3600;
   uint8_t minutes = remainder1 / 60;
@@ -226,7 +247,7 @@ void writeLine1() {
   uint8_t seconds = remainder1 % 60;
 
   char line1[100];
-  snprintf(line1, 100, "time  : %02dh %02dm %02ds", hours, minutes, seconds);
+  snprintf(line1, 100, "Time  : %02dh %02dm %02ds", hours, minutes, seconds);
 
   if (previousSecond != seconds) {
     previousSecond = seconds;
@@ -307,7 +328,7 @@ void writeLine3() {
     tft.setTextColor(ILI9341_BLACK);
     tft.setTextSize(2);
     snprintf(line3, 100, "Pot 2 : NULL");
-    tft.println(previousLine2);
+    tft.println(previousLine3);
     strcpy(previousLine3, line3);
     tft.setCursor(0, 40);
     tft.setTextColor(ILI9341_GREEN);
@@ -317,19 +338,33 @@ void writeLine3() {
 }
 
 void writeLine4() {
-  float wind = getWindSpeed();
-
-  char windSpeed[20];
-  dtostrf(getWindSpeed(), 4, 2, windSpeed);
-
   char line4[100];
-  snprintf(line4, 100, "Wind  : %s m/s", windSpeed);
+  if (!getPt100Fault_3()) {
+    float Pt100Temp3Float = getPt100Temp3();
 
-  if (previousWind != wind) {
-    previousWind = wind;
+    char Pt100Temp3[20];
+    dtostrf(Pt100Temp3Float, 5, 2, Pt100Temp3);
+
+    char line4[100];
+    snprintf(line4, 100, "Pot 3 : %s C", Pt100Temp3);
+
+    if (previousPt100Temp3 != Pt100Temp3Float) {
+      previousPt100Temp3 = Pt100Temp3Float;
+      tft.setCursor(0, 60);
+      tft.setTextColor(ILI9341_BLACK);
+      tft.setTextSize(2);
+      tft.println(previousLine4);
+      strcpy(previousLine4, line4);
+      tft.setCursor(0, 60);
+      tft.setTextColor(ILI9341_GREEN);
+      tft.setTextSize(2);
+      tft.println(line4);
+    }
+  } else {
     tft.setCursor(0, 60);
     tft.setTextColor(ILI9341_BLACK);
     tft.setTextSize(2);
+    snprintf(line4, 100, "Pot 3 : NULL");
     tft.println(previousLine4);
     strcpy(previousLine4, line4);
     tft.setCursor(0, 60);
@@ -340,16 +375,16 @@ void writeLine4() {
 }
 
 void writeLine5() {
-  float solarIrradianceFloat = getSolarIrradiance();
+  float wind = getWindSpeed();
 
-  char solarIrradiance[20];
-  dtostrf(solarIrradianceFloat, 6, 2, solarIrradiance);
+  char windSpeed[20];
+  dtostrf(getWindSpeed(), 4, 2, windSpeed);
 
   char line5[100];
-  snprintf(line5, 100, "Irr : %s W/m2", solarIrradiance);
+  snprintf(line5, 100, "Wind  : %s m/s", windSpeed);
 
-  if (previousSolarIrradiance != solarIrradianceFloat) {
-    previousSolarIrradiance = solarIrradianceFloat;
+  if (previousWind != wind) {
+    previousWind = wind;
     tft.setCursor(0, 80);
     tft.setTextColor(ILI9341_BLACK);
     tft.setTextSize(2);
@@ -359,5 +394,28 @@ void writeLine5() {
     tft.setTextColor(ILI9341_GREEN);
     tft.setTextSize(2);
     tft.println(line5);
+  }
+}
+
+void writeLine6() {
+  float solarIrradianceFloat = getSolarIrradiance();
+
+  char solarIrradiance[20];
+  dtostrf(solarIrradianceFloat, 6, 2, solarIrradiance);
+
+  char line6[100];
+  snprintf(line6, 100, "Irr : %s W/m2", solarIrradiance);
+
+  if (previousSolarIrradiance != solarIrradianceFloat) {
+    previousSolarIrradiance = solarIrradianceFloat;
+    tft.setCursor(0, 100);
+    tft.setTextColor(ILI9341_BLACK);
+    tft.setTextSize(2);
+    tft.println(previousLine6);
+    strcpy(previousLine6, line6);
+    tft.setCursor(0, 100);
+    tft.setTextColor(ILI9341_GREEN);
+    tft.setTextSize(2);
+    tft.println(line6);
   }
 }
