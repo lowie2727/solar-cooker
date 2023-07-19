@@ -80,7 +80,7 @@ static int bufferIndex = 0;
 float pretempsum = 0.0;
 int counter3 = 0;
 
-static float tempBuffer2[60] = {0};
+static float tempBuffer2[30] = {0};
 static int bufferIndex2 = 0;
 static int bufferIndex3 = 0; 
 int counter4 = 0;
@@ -191,7 +191,7 @@ void writeLine3() {
   dtostrf(getWindSpeed(), 4, 2, windSpeed);
 
   char line3[100];
-  snprintf(line3, 100, "Wind : %sm/s", windSpeed);
+  snprintf(line3, 100, "Wind: %sm/s", windSpeed);
 
   if (previousWind != wind) {
     previousWind = wind;
@@ -262,7 +262,7 @@ void writeLine6() {
     dtostrf(Pt100Temp1Float, 5, 2, Pt100Temp1);
 
     char line6[100];
-    snprintf(line6, 100, "Pot 1: %sC", Pt100Temp1);
+    snprintf(line6, 100, "Temp Pot 1: %sC", Pt100Temp1);
 
     if (previousPt100Temp1 != Pt100Temp1Float) {
       previousPt100Temp1 = Pt100Temp1Float;
@@ -280,7 +280,7 @@ void writeLine6() {
     tft.setCursor(0, 140);
     tft.setTextColor(ILI9341_BLACK);
     tft.setTextSize(2);
-    snprintf(line6, 100, "Pot 1: NULL");
+    snprintf(line6, 100, "Temp Pot 1: NULL");
     tft.println(previousLine6);
     strcpy(previousLine6, line6);
     tft.setCursor(0, 140);
@@ -294,7 +294,7 @@ void writeLine7() {
   float solarIrradianceFloat = getSolarIrradiance();
 
   char solarIrradiance[20];
-  dtostrf(solarIrradianceFloat, 6, 2, solarIrradiance);
+  dtostrf(solarIrradianceFloat, 5, 2, solarIrradiance);
 
   char line7[100];
   snprintf(line7, 100, "irr: %sW/m2", solarIrradiance);
@@ -401,22 +401,27 @@ void writeLine10() {
 
 void writeLine9() {
   float slope = 0.0;
+  float preSlope = 0.0;
 
   float currentTemp = getPt100Temp1();
   tempBuffer2[bufferIndex2] = currentTemp;
   
-  if(counter4 < 60){
+  if(counter4 < 30){
     counter4 += 1;
+    preSlope = (tempBuffer2[bufferIndex3]-tempBuffer2[0])/counter4;
   }
 
-  bufferIndex2 = (bufferIndex2 + 1) % 60;
-  bufferIndex3 = (bufferIndex2 + 59) % 60;
+  bufferIndex2 = (bufferIndex2 + 1) % 30;
+  bufferIndex3 = (bufferIndex2 + 29) % 30;
+
+  slope = (tempBuffer2[bufferIndex3]-tempBuffer2[bufferIndex2])/30;
 
   char line9[100];
   if (!getPt100Fault_1()) {
     char Pt100Temp1[20];
-    if(counter4 < 60){
-        snprintf(line9, 100, "Slope 1min: ...");
+    if(counter4 < 30){
+      dtostrf(preSlope, 5, 2, Pt100Temp1);
+      snprintf(line9, 100, "Slope 1min: %sC/s", Pt100Temp1);
     } else{
       dtostrf(slope, 5, 2, Pt100Temp1);
       snprintf(line9, 100, "Slope 1min: %sC/s", Pt100Temp1);
