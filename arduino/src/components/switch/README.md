@@ -1,7 +1,13 @@
 # Sources
 
-- [basontech.com](https://basontech.com/arduino/control-led-with-pushbutton-on-arduino/)
+- [basontech.com](https://basontech.com/arduino/control-led-with-pushbutton-on-arduino)
 
 # Schematic
 
-![pinout](images/pinout.png)
+## LEDs
+
+![pinout](images/pinout_LED.png)
+
+## Switch
+
+![pinout](images/pinout_switch.png)

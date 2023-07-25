@@ -1,16 +1,14 @@
 # Sources
 
-- [cactus.io](http://cactus.io/hookups/sensors/temperature-humidity/am2315/hookup-arduino-to-am2315-temp-humidity-sensor)
+- [learn.adafruit.com](https://learn.adafruit.com/adafruit-aht20)
 
-- [learn.adafruit.com](https://learn.adafruit.com/am2315-encased-i2c-temperature-humidity-sensor/arduino-code)
+# Dependencies
 
-# Prerequisites
-
-You first have to install the **Adafruit AM2315** in the arduino IDE library manager
+- [Adafruit AHTX0](https://github.com/adafruit/Adafruit_AHTX0)
 
 # Schematic
 
-TODO KiCad
+![pinout](images/pinout_AM2315C.png)
 
 ## I2C
 
@@ -18,5 +16,3 @@ TODO KiCad
 | --- | --- | ---- |
 | SDA | SDA | 20   |
 | SCL | SCL | 21   |
-
-![pinout](images/pinout.png)

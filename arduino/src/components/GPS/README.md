@@ -1,15 +1,11 @@
 # Sources
 
-- [arduinogetstarted.com](https://arduinogetstarted.com/tutorials/arduino-gps)
+- [learn.adafruit.com](https://learn.adafruit.com/adafruit-ultimate-gps)
 
-# TODO
+# Dependencies
 
-Make sure the output is formatted according to the [ISO 6709](https://en.wikipedia.org/wiki/ISO_6709) standard.
-
-# Prerequisites
-
-You first have to install the **TinyGPSPlus** library in the arduino IDE library manager
+- [Adafruit GPS Library](https://github.com/adafruit/Adafruit_GPS)
 
 # Schematic
 
-![pinout](images/pinout.png)
+![pinout](images/pinout_GPS.png)

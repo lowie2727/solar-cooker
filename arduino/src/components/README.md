@@ -1,5 +1,5 @@
 # Components
 
-Here you can test each component individually.
+Here you will find the code to test each component individually.
 
-Check the prerequistis for each component, as libraries are not installed by default.
+Used sources and libraries can be found in the various subfolders. PlatformIO installs libraries automatically, so you don't have to worry about that.

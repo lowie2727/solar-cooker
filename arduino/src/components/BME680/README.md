@@ -1,12 +1,14 @@
 # Sources
 
-- [randomnerdtutorials.com](https://randomnerdtutorials.com/bme680-sensor-arduino-gas-temperature-humidity-pressure/)
+- [learn.adafruit.com](https://learn.adafruit.com/adafruit-bme680-humidity-temperature-barometic-pressure-voc-gas)
 
-# Prerequisites
+# Dependencies
 
-You first have to install the **Adafruit BME680** library in the arduino IDE library manager
+- [Adafruit BME680 Library](https://github.com/adafruit/Adafruit_BME680)
 
 # Schematic
+
+![pinout](images/pinout_BME680.png)
 
 ## SPI
 
@@ -15,5 +17,3 @@ You first have to install the **Adafruit BME680** library in the arduino IDE lib
 | MISO | 11  | 50   |
 | MOSI | 12  | 51   |
 | SCK  | 13  | 52   |
-
-![pinout](images/pinout.png)

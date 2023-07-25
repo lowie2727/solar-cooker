@@ -1,7 +1,7 @@
 # Sources
 
-- [how2electronics.com](https://how2electronics.com/measure-wind-speed-using-anemometer-arduino/)
+- [wiki.dfrobot.com](https://wiki.dfrobot.com/Wind_Speed_Sensor_Voltage_Type_0-5V__SKU_SEN0170)
 
 # Schematic
 
-![pinout](images/pinout.png)
+![pinout](images/pinout_anemometer.png)

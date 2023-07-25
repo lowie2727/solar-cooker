@@ -1,12 +1,14 @@
-# TODO
-
-- [x] create file name based on current time
-
 # Sources
 
-- [lastminuteengineers.com](https://lastminuteengineers.com/arduino-micro-sd-card-module-tutorial/)
+- [learn.adafruit.com](https://learn.adafruit.com/adafruit-micro-sd-breakout-board-card-tutorial)
+
+# Dependencies
+
+- [SdFat](https://github.com/greiman/SdFat)
 
 # Schematic
+
+![pinout](images/pinout_microSD.png)
 
 ## SPI
 
@@ -15,5 +17,3 @@
 | MISO | 11  | 50   |
 | MOSI | 12  | 51   |
 | SCK  | 13  | 52   |
-
-![pinout](images/pinout.png)
