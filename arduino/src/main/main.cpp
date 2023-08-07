@@ -33,6 +33,9 @@ void writeLine3();
 void writeLine4();
 void writeLine5();
 void writeLine6();
+void writeLine7();
+void writeLine8();
+void writeLine9();
 
 char previousLine1[100];
 char previousLine2[100];
@@ -40,13 +43,19 @@ char previousLine3[100];
 char previousLine4[100];
 char previousLine5[100];
 char previousLine6[100];
+char previousLine7[100];
+char previousLine8[100];
+char previousLine9[100];
 
+float previousTemp = -1;
+float previousHumidity = -1;
 float previousPt100Temp1 = -1;
 float previousPt100Temp2 = -1;
 float previousPt100Temp3 = -1;
 uint8_t previousSecond = -1;
 float previousWind = -1;
 float previousSolarIrradiance = -1;
+float previousSlope = -1;
 
 void writeDataToScreen();
 
@@ -70,6 +79,13 @@ void makeFile();
 void microSDSetup();
 void writeCSVHeaders();
 void writeDataToSD();
+
+float tempBuffer[60];
+int bufferIndex = 0;
+int isArrayEmpty = 1;
+
+void shiftAndAppend(float array[], float value);
+void initArray(float array[], float value);
 
 unsigned long testDurationMillis = 0;
 
@@ -117,6 +133,7 @@ void loop() {
   } else {
     redLedOn();
     fileNameUpdated = 0;
+    isArrayEmpty = 1;
   }
 }
 
@@ -128,7 +145,7 @@ void microSDSetup() {
 
 void writeCSVHeaders() {
   char CSVHeaders[] =
-      "Year;Month;Day;Hour (12-hour clock);Minute;Second;Outside temperature "
+      "Year;Month;Day;Hour;Minute;Second;Outside temperature "
       "[°C];Wind speed [m/s];Air pressure (inside box) [hPa];Relative humidity "
       "(inside box) [%];Temperature inside pot 1 [°C];Temperature inside pot 2 "
       "[°C];Temperature inside pot 3 [°C];Solar irradiance [W/m²]";
@@ -233,6 +250,9 @@ void writeDataToScreen() {
   writeLine4();
   writeLine5();
   writeLine6();
+  writeLine7();
+  writeLine8();
+  writeLine9();
 }
 
 void writeLine1() {
@@ -417,5 +437,96 @@ void writeLine6() {
     tft.setTextColor(ILI9341_GREEN);
     tft.setTextSize(2);
     tft.println(line6);
+  }
+}
+
+void writeLine7() {
+  if (!getPt100Fault_1()) {
+    float temp = getPt100Temp1();
+    if (isArrayEmpty) {
+      initArray(tempBuffer, temp);
+      isArrayEmpty = 0;
+    } else {
+      shiftAndAppend(tempBuffer, temp);
+    }
+  }
+
+  char slope[30];
+  float slopeFloat = tempBuffer[59] - tempBuffer[0];
+  dtostrf(slopeFloat, 4, 2, slope);
+
+  char line7[100];
+  snprintf(line7, 100, "Slope 1min: %sC", slope);
+
+  if (previousSlope != slopeFloat) {
+    previousSlope = slopeFloat;
+    tft.setCursor(0, 120);
+    tft.setTextColor(ILI9341_BLACK);
+    tft.setTextSize(2);
+    tft.println(previousLine7);
+    strcpy(previousLine7, line7);
+    tft.setCursor(0, 120);
+    tft.setTextColor(ILI9341_GREEN);
+    tft.setTextSize(2);
+    tft.println(line7);
+  }
+}
+
+void shiftAndAppend(float array[], float value) {
+  for (size_t i = 0; i < 60 - 1; i++) {
+    array[i] = array[i + 1];
+  }
+  array[60 - 1] = value;
+}
+
+void initArray(float array[], float value) {
+  for (size_t i = 0; i < 60; i++) {
+    array[i] = value;
+  }
+}
+
+void writeLine8() {
+  float temp = getAM2315CTemp();
+
+  char AM2315CTemp[30];
+  dtostrf(temp, 4, 2, AM2315CTemp);
+
+  char line8[100];
+  snprintf(line8, 100, "Temp out: %sC", AM2315CTemp);
+
+  if (previousTemp != temp) {
+    previousTemp = temp;
+    tft.setCursor(0, 140);
+    tft.setTextColor(ILI9341_BLACK);
+    tft.setTextSize(2);
+    tft.println(previousLine8);
+    strcpy(previousLine8, line8);
+    tft.setCursor(0, 140);
+    tft.setTextColor(ILI9341_GREEN);
+    tft.setTextSize(2);
+    tft.println(line8);
+  }
+}
+
+void writeLine9() {
+  float AM2315CHumidityFloat = getAM2315CHum();
+
+  char AM2315CHumidity[20];
+  dtostrf(AM2315CHumidityFloat, 4, 2, AM2315CHumidity);
+
+  char line9[100];
+  snprintf(line9, 100, "Humidity: %s%%", AM2315CHumidity);
+
+  if (previousHumidity != AM2315CHumidityFloat) {
+    previousHumidity = AM2315CHumidityFloat;
+    tft.setCursor(0, 160);
+    tft.setTextColor(ILI9341_BLACK);
+    tft.setTextSize(2);
+    tft.println(previousLine9);
+    strcpy(previousLine9, line9);
+    tft.setCursor(0, 160);
+    tft.setTextColor(ILI9341_GREEN);
+    tft.setTextSize(2);
+    tft.println(line9);
   }
 }

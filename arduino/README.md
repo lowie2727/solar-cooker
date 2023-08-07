@@ -2,7 +2,7 @@
 
 The [**src**](src) folder contains the code for both the individual components and the code for the entire testing station.
 
-The folder [**src/main**](src/main) contains the various components brought together. Each component has its own cpp file. It is joined via header files in [main.cpp](src/main/main.cpp).
+The folder [**src/main**](src/main) contains the various components brought together. Each component has its own cpp file except for the LCD screen and microSD module. It is joined via header files in [main.cpp](src/main/main.cpp).
 
 In the [**src/components**](src/components) subfolder, you will find code for each individual component, along with the connection diagram.
 
